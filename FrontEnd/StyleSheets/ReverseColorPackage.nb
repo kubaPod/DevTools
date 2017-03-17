@@ -1,0 +1,454 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14183,        446]
+NotebookOptionsPosition[      9760,        346]
+NotebookOutlinePosition[     10292,        366]
+CellTagsIndexPosition[     10249,        363]
+MenuPosition->0
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Style Definition for DarkPackages", "Title"],
+
+Cell[StyleData[StyleDefinitions -> "Default.nb"]],
+
+Cell[CellGroupData[{
+
+Cell["notebook options settings", "Subsection"],
+
+Cell[StyleData[All, "Working"],
+ CellInsertionPointCell->None,
+ InitializationCellEvaluation->False,
+ DockedCells->FEPrivate`FrontEndResource["FEExpressions", "PackageToolbar"],
+ DefaultNewCellStyle->"Code",
+ ShowPredictiveInterface->False],
+
+Cell[StyleData["Notebook"],
+ CellBracketOptions->{"Color"->RGBColor[0.3, 0.3, 0.3],
+ "HoverColor"->RGBColor[
+  0.14901960784313725`, 0.5450980392156862, 0.8235294117647058]},
+ AutoStyleOptions->{
+ "CommentStyle"->{
+  FontColor -> RGBColor[0.89, 0.56, 1.], ShowAutoStyles -> False, 
+   ShowSyntaxStyles -> False, AutoNumberFormatting -> False},
+ "ExcessArgumentStyle"->{
+  FontColor -> 
+   RGBColor[0.8627450980392157, 0.19607843137254902`, 0.1843137254901961]},
+ "FunctionLocalVariableStyle"->{FontColor -> RGBColor[0.52549, 0.843137, 1.]},
+ "GraphicsCompatibilityProblemStyle"->{
+  FontColor -> 
+   RGBColor[0.8627450980392157, 0.19607843137254902`, 0.1843137254901961]},
+ "LocalScopeConflictStyle"->{
+  FontColor -> 
+   RGBColor[0.8274509803921568, 0.21176470588235294`, 0.5098039215686274]},
+ "LocalVariableStyle"->{FontColor -> RGBColor[0., 0.8200000000000001, 0.32]},
+ "MissingArgumentStyle"->{
+  FontColor -> 
+   RGBColor[0.8627450980392157, 0.19607843137254902`, 0.1843137254901961]},
+ "MisspelledWordStyle"->{
+  FontColor -> 
+   RGBColor[0.8274509803921568, 0.21176470588235294`, 0.5098039215686274]},
+ "NoKernelPresentStyle"->{
+  FontColor -> 
+   RGBColor[0.16470588235294117`, 0.6313725490196078, 0.596078431372549]},
+ "PatternVariableStyle"->{
+  FontColor -> RGBColor[0.11, 1., 0.08], FontSlant -> "Italic"},
+ "StringStyle"->{
+  FontColor -> RGBColor[0.98, 0.71, 0.], ShowAutoStyles -> False, 
+   ShowSyntaxStyles -> False, AutoNumberFormatting -> False},
+ "UndefinedSymbolStyle"->{FontColor -> RGBColor[0.42, 0.94, 1]},
+ "UnknownOptionStyle"->{
+  FontColor -> 
+   RGBColor[0.8627450980392157, 0.19607843137254902`, 0.1843137254901961]},
+ "UnwantedAssignmentStyle"->{
+  FontColor -> 
+   RGBColor[0.8627450980392157, 0.19607843137254902`, 0.1843137254901961]}},
+ CodeAssistOptions->{"AutoConvertEnable"->False,
+ "HeadHighlightStyle"->{
+  Background -> None, FontColor -> RGBColor[1, 1, 0], FontWeight -> Bold},
+ "MatchHighlightStyle"->{
+  Background -> None, FontColor -> RGBColor[1, 1, 0], FontWeight -> Bold}},
+ TranslationOptions->{"Language"->None},
+ FontColor->RGBColor[1, 1, 1],
+ Background->GrayLevel[0.15]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Styles for Title and Section Cells", "Section"],
+
+Cell[StyleData["Title"],
+ FontColor->GrayLevel[1]],
+
+Cell[StyleData["Chapter"],
+ FontColor->RGBColor[0.8, 0.8, 0.8]],
+
+Cell[StyleData["Subchapter"],
+ FontColor->RGBColor[0.65, 0.65, 0.65]],
+
+Cell[StyleData["Subtitle"],
+ FontColor->RGBColor[0.796078, 0.294118, 0.0862745]],
+
+Cell[StyleData["Subsubtitle"],
+ FontColor->RGBColor[0.852811, 0.696178, 0.0932479]],
+
+Cell[StyleData["Section"],
+ FontColor->RGBColor[
+  0.1399099717708095, 0.5224231326771954, 0.6501869230182346]],
+
+Cell[StyleData["Subsection"],
+ FontColor->GrayLevel[0.749996]],
+
+Cell[StyleData["Subsubsection"],
+ FontColor->RGBColor[0.823529, 0.490654, 0.202274]],
+
+Cell[StyleData["Subsubsubsection"],
+ FontColor->RGBColor[0.954147, 0.694224, 0.124651]],
+
+Cell[StyleData["Subsubsubsubsection"],
+ FontColor->RGBColor[0.913237, 0.365469, 0.0854353]],
+
+Cell[StyleData["Text"],
+ FontFamily->"Gill Sans Light",
+ FontSize->14,
+ FontWeight->"Plain",
+ FontSlant->"Plain",
+ FontColor->GrayLevel[0.683803]],
+
+Cell[StyleData["ItemParagraph"],
+ FontColor->GrayLevel[0.6]],
+
+Cell[StyleData["SubitemParagraph"],
+ FontColor->GrayLevel[0.6]],
+
+Cell[StyleData["SubsubitemParagraph"],
+ FontColor->GrayLevel[0.6]],
+
+Cell[CellGroupData[{
+
+Cell["Chapter", "Subsection"],
+
+Cell[StyleData["Chapter"],
+ CounterIncrements->"Chapter",
+ CounterAssignments->{{"Subchapter", 0}, {"Section", 0}, {"Equation", 0}, {
+   "Figure", 0}, {"Subsubtitle", 0}, {"Item", 0}, {"Subitem", 0}, {
+   "Subsubitem", 0}, {"ItemNumbered", 0}, {"SubitemNumbered", 0}, {
+   "SubsubitemNumbered", 0}},
+ MenuSortingValue->1150,
+ MenuCommandKey->"2"],
+
+Cell[StyleData["Subchapter"],
+ CounterIncrements->"Subchapter",
+ CounterAssignments->{{"Section", 0}, {"Equation", 0}, {"Figure", 0}, {
+   "Item", 0}, {"Subitem", 0}, {"Subsubitem", 0}, {"ItemNumbered", 0}, {
+   "SubitemNumbered", 0}, {"SubsubitemNumbered", 0}},
+ MenuSortingValue->1200,
+ MenuCommandKey->"3"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Input and Output cells", "Section"],
+
+Cell[StyleData["Code"],
+ CellMargins->{{66, Inherited}, {Inherited, Inherited}},
+ CellFrameLabelMargins->{{17, Inherited}, {Inherited, Inherited}},
+ FontSize->13,
+ FontWeight->Plain,
+ FontColor->GrayLevel[1],
+ Background->GrayLevel[0.25]],
+
+Cell[StyleData["InitializationCell"],
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellFrameMargins->{{10, 10}, {5, 5}},
+ CellFrameLabelMargins->-5,
+ FontColor->GrayLevel[1],
+ Background->GrayLevel[0.25]],
+
+Cell[StyleData["Input"],
+ CellMargins->{{66, Inherited}, {Inherited, Inherited}},
+ CellFrameLabelMargins->{{17, Inherited}, {Inherited, Inherited}},
+ FontSize->13,
+ FontColor->GrayLevel[0.7]],
+
+Cell[StyleData["Output"],
+ CellFrame->True,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellLabelStyle->{"CellLabel", FontColor -> GrayLevel[0.78]},
+ CellFrameMargins->{{10, 0}, {0, 0}},
+ CellFrameStyle->{
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[0.85], 
+    Thickness[5], 
+    Dashing[{2, 7}]]},
+ CellFrameLabelMargins->-5,
+ FontSize->13],
+
+Cell[StyleData["Message"],
+ CellFrame->True,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellLabelStyle->{"CellLabel", FontColor -> GrayLevel[0.78]},
+ CellFrameMargins->{{10, 0}, {0, 0}},
+ CellFrameStyle->{
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[0.85], 
+    Thickness[5], 
+    Dashing[{2, 7}]]},
+ CellFrameLabelMargins->-5,
+ FontColor->RGBColor[
+  0.704600595101854, 0.24277103837644007`, 0.22278171969176777`]],
+
+Cell[StyleData["Print"],
+ CellFrame->True,
+ CellMargins->{{55, Inherited}, {Inherited, Inherited}},
+ CellLabelStyle->{"CellLabel", FontColor -> GrayLevel[0.78]},
+ CellFrameMargins->{{10, 0}, {0, 0}},
+ CellFrameStyle->{
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[1, 0]], 
+   Directive[
+    GrayLevel[0.85], 
+    Thickness[5], 
+    Dashing[{2, 7}]]},
+ CellFrameLabelMargins->-5,
+ FontColor->GrayLevel[0.3]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["misc", "Section"],
+
+Cell[StyleData["InformationCell"],
+ CellBracketOptions->{"Color"->RGBColor[0.760174, 0.600641, 0.675288]},
+ FontColor->GrayLevel[0.3]],
+
+Cell[StyleData["InformationLink"],
+ FontColor->RGBColor[0.4525, 0.48138, 0.7]],
+
+Cell[StyleData["InformationLinkLF"],
+ FontColor->RGBColor[0.4525, 0.48138, 0.7]],
+
+Cell[StyleData["CellLabel"],
+ CellLabelMargins->{{12, Inherited}, {Inherited, Inherited}},
+ LanguageCategory->None,
+ StyleMenuListing->None,
+ FontFamily->"Helvetica",
+ FontSize->9]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Styles for Formulas and Programming", "Section"],
+
+Cell[StyleData["DisplayFormula"],
+ FontColor->GrayLevel[0.85]],
+
+Cell[StyleData["DisplayFormulaNumbered"],
+ FontColor->GrayLevel[0.85]],
+
+Cell[StyleData["Program"],
+ CellFrameColor->GrayLevel[0.4]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Styles for ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " System\[Hyphen]specific Elements"
+}], "Section",
+ CellChangeTimes->{{3.601920784160323*^9, 3.60192078489342*^9}, 
+   3.60356525124664*^9, {3.6037117681643677`*^9, 3.6037117683195887`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["FormatType Styles", "Subsection"],
+
+Cell[StyleData["StandardForm"]],
+
+Cell[StyleData["CellExpression"],
+ FontColor->GrayLevel[0],
+ Background->GrayLevel[0.75]],
+
+Cell[StyleData["CellLabel"],
+ FontSize->9,
+ FontColor->RGBColor[0.603861, 0.615915, 0.607843]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Graphics Styles", "Subsection",
+ CellChangeTimes->{{3.603565272271762*^9, 3.603565284491351*^9}}],
+
+Cell[StyleData["GraphicsAxes"],
+ LineColor->RGBColor[
+  0.5764705882352941, 0.6313725490196078, 0.6313725490196078],
+ FontFamily->"Avenir",
+ FontSize->9,
+ FontWeight->"Plain",
+ FontSlant->"Plain",
+ FontColor->RGBColor[
+  0.5764705882352941, 0.6313725490196078, 0.6313725490196078]],
+
+Cell[StyleData["GraphicsFrame"],
+ LineColor->RGBColor[
+  0.5764705882352941, 0.6313725490196078, 0.6313725490196078],
+ FontFamily->"Avenir",
+ FontSize->9,
+ FontWeight->"Plain",
+ FontSlant->"Plain",
+ FontColor->RGBColor[
+  0.5764705882352941, 0.6313725490196078, 0.6313725490196078]],
+
+Cell[StyleData["Graphics3DAxes"],
+ LineColor->RGBColor[
+  0.5764705882352941, 0.6313725490196078, 0.6313725490196078],
+ FontFamily->"Arial",
+ FontSize->9,
+ FontWeight->"Plain",
+ FontSlant->"Plain",
+ FontColor->RGBColor[
+  0.5764705882352941, 0.6313725490196078, 0.6313725490196078]]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1500, 1007},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+WindowFrame->"Normal",
+DockedCells->FEPrivate`FrontEndResource[
+ "FEExpressions", "BuiltInStylesheetToolbar"],
+TrackCellChangeTimes->False,
+MenuSortingValue->None,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"PrivateStyleSheetFormatting.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[596, 23, 50, 0, 73, "Title"],
+Cell[649, 25, 49, 0, 40, 49, 0, "StyleData", "StyleDefinitions", ""],
+Cell[CellGroupData[{
+Cell[723, 29, 47, 0, 46, "Subsection"],
+Cell[773, 31, 240, 5, 40, 31, 0, "StyleData", "All", "Working"],
+Cell[1016, 38, 2124, 47, 56, 27, 0, "StyleData", "Notebook", "All"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3177, 90, 53, 0, 51, "Section"],
+Cell[3233, 92, 50, 1, 107, 24, 0, "StyleData", "Title", "All"],
+Cell[3286, 95, 63, 1, 81, 26, 0, "StyleData", "Chapter", "All"],
+Cell[3352, 98, 69, 1, 61, 29, 0, "StyleData", "Subchapter", "All"],
+Cell[3424, 101, 80, 1, 66, 27, 0, "StyleData", "Subtitle", "All"],
+Cell[3507, 104, 83, 1, 45, 30, 0, "StyleData", "Subsubtitle", "All"],
+Cell[3593, 107, 111, 2, 80, 26, 0, "StyleData", "Section", "All"],
+Cell[3707, 111, 62, 1, 52, 29, 0, "StyleData", "Subsection", "All"],
+Cell[3772, 114, 84, 1, 45, 32, 0, "StyleData", "Subsubsection", "All"],
+Cell[3859, 117, 87, 1, 39, 35, 0, "StyleData", "Subsubsubsection", "All"],
+Cell[3949, 120, 91, 1, 39, 38, 0, "StyleData", "Subsubsubsubsection", "All"],
+Cell[4043, 123, 146, 5, 44, 23, 0, "StyleData", "Text", "All"],
+Cell[4192, 130, 60, 1, 38, 32, 0, "StyleData", "ItemParagraph", "All"],
+Cell[4255, 133, 63, 1, 38, 35, 0, "StyleData", "SubitemParagraph", "All"],
+Cell[4321, 136, 66, 1, 38, 38, 0, "StyleData", "SubsubitemParagraph", "All"],
+Cell[CellGroupData[{
+Cell[4412, 141, 29, 0, 46, "Subsection"],
+Cell[4444, 143, 346, 7, 81, 26, 0, "StyleData", "Chapter", "All",
+ CounterIncrements->"Chapter",
+ CounterAssignments->{{"Subchapter", 0}, {"Section", 0}, {"Equation", 0}, {
+   "Figure", 0}, {"Subsubtitle", 0}, {"Item", 0}, {"Subitem", 0}, {
+   "Subsubitem", 0}, {"ItemNumbered", 0}, {"SubitemNumbered", 0}, {
+   "SubsubitemNumbered", 0}},
+ MenuSortingValue->1150,
+ MenuCommandKey->"2"],
+Cell[4793, 152, 309, 6, 61, 29, 0, "StyleData", "Subchapter", "All",
+ CounterIncrements->"Subchapter",
+ CounterAssignments->{{"Section", 0}, {"Equation", 0}, {"Figure", 0}, {
+   "Item", 0}, {"Subitem", 0}, {"Subsubitem", 0}, {"ItemNumbered", 0}, {
+   "SubitemNumbered", 0}, {"SubsubitemNumbered", 0}},
+ MenuSortingValue->1200,
+ MenuCommandKey->"3"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[5151, 164, 41, 0, 35, "Section"],
+Cell[5195, 166, 238, 6, 56, 23, 0, "StyleData", "Code", "All"],
+Cell[5436, 174, 217, 5, 50, 37, 0, "StyleData", "InitializationCell", "All"],
+Cell[5656, 181, 191, 4, 40, 24, 0, "StyleData", "Input", "All"],
+Cell[5850, 187, 451, 17, 40, 25, 0, "StyleData", "Output", "All"],
+Cell[6304, 206, 525, 18, 38, 26, 0, "StyleData", "Message", "All"],
+Cell[6832, 226, 463, 17, 40, 24, 0, "StyleData", "Print", "All"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7332, 248, 23, 0, 51, "Section"],
+Cell[7358, 250, 134, 2, 68, 34, 0, "StyleData", "InformationCell", "All"],
+Cell[7495, 254, 78, 1, 40, 34, 0, "StyleData", "InformationLink", "All"],
+Cell[7576, 257, 80, 1, 40, 36, 0, "StyleData", "InformationLinkLF", "All"],
+Cell[7659, 260, 180, 5, 37, 28, 0, "StyleData", "CellLabel", "All",
+ StyleMenuListing->None]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7876, 270, 54, 0, 51, "Section"],
+Cell[7933, 272, 62, 1, 41, 33, 0, "StyleData", "DisplayFormula", "All"],
+Cell[7998, 275, 70, 1, 41, 41, 0, "StyleData", "DisplayFormulaNumbered", \
+"All"],
+Cell[8071, 278, 59, 1, 64, 26, 0, "StyleData", "Program", "All"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8167, 284, 272, 7, 35, "Section"],
+Cell[CellGroupData[{
+Cell[8464, 295, 39, 0, 46, "Subsection"],
+Cell[8506, 297, 31, 0, 39, 31, 0, "StyleData", "StandardForm", "All"],
+Cell[8540, 299, 89, 2, 55, 33, 0, "StyleData", "CellExpression", "All"],
+Cell[8632, 303, 94, 2, 37, 28, 0, "StyleData", "CellLabel", "All"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8763, 310, 103, 1, 30, "Subsection"],
+Cell[8869, 313, 281, 8, 37, 31, 0, "StyleData", "GraphicsAxes", "All"],
+Cell[9153, 323, 282, 8, 37, 32, 0, "StyleData", "GraphicsFrame", "All"],
+Cell[9438, 333, 282, 8, 37, 33, 0, "StyleData", "Graphics3DAxes", "All"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
