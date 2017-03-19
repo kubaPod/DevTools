@@ -1,4 +1,55 @@
-Notebook[{},
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"PacletDirectoryAdd", "@", 
+  RowBox[{
+  "NotebookDirectory", "[", 
+   "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"E:\\\\Idea \
+Projects\\\\mma-package-manager\\\\AESGPackage\\\\\"\>", 
+   ",", "\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\\"\>"}], 
+  "}"}]], "Output",ExpressionUUID->"7a69d5b8-64af-422c-a1cc-e005241f8082"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CurrentValue", "[", 
+   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
+   "]"}], "=", 
+  "\"\<ReverseColorPackage.nb\>\""}]], \
+"Input",ExpressionUUID->"75674a84-f16a-4a3f-bba6-d270af99d085"],
+
+Cell[BoxData["\<\"ReverseColorPackage.nb\"\>"], \
+"Output",ExpressionUUID->"d671926a-4b36-49ec-8853-9e65aa58da50"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PackPaclet", "@", 
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MoreStyles\>\""}], 
+    "}"}], "]"}]}]], \
+"Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
+
+Cell[BoxData["\<\"E:\\\\Idea \
+Projects\\\\MoreStyles\\\\MoreStyles-0.1.0.paclet\"\>"], \
+"Output",ExpressionUUID->"53862de5-0840-47a3-8caa-3750dde32643"]
+}, Open  ]]
+},
+WindowSize->{775, 873},
+WindowMargins->{{482, Automatic}, {Automatic, 74}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
-TrackCellChangeTimes->False
+TrackCellChangeTimes->False,
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (February 5, 2017)",
+StyleDefinitions->"Default.nb"
 ]
+
