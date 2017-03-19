@@ -12,7 +12,7 @@ Paclet[
 	",
     Extensions -> 
         {
-            {"Kernel", Context -> "MoreStyles`"},
+
             {"FrontEnd"}
         }
 ]

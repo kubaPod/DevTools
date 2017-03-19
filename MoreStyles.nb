@@ -1,0 +1,4 @@
+Notebook[{},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TrackCellChangeTimes->False
+]
