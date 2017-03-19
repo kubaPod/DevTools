@@ -1,5 +1,7 @@
 Currently this paclet contains only one style so I did't spend time on creating any fancy api.
 
+It is based on a built-in ReverseColor.nb but adapted a little for .m .wl files.
+
 ![Imgur](http://i.imgur.com/tJLjerW.png)
 
 ### Installation
@@ -37,6 +39,7 @@ If you want to enable dark theme for packages just install the paclet and run:
         $FrontEnd, "DefaultPackageStyleDefinitions"
     ] = "ReverseColorPackage.nb"
     
+Each new or reopened .m .wl file will now use this style by default.
     
 And if you are not amazed just run
     
