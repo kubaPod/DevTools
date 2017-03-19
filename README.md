@@ -1,5 +1,5 @@
 
-![preview](http://imgur.com/tJLjerW)
+![Imgur](http://i.imgur.com/tJLjerW.png)
 
 ###Using styles
 
