@@ -2,7 +2,7 @@ Currently this paclet contains only one style so I did't spend time on creating 
 
 ![Imgur](http://i.imgur.com/tJLjerW.png)
 
-##Installation
+### Installation
 
 Just run this code stolen from [szhorvat/MaTeX](https://github.com/szhorvat/MaTeX) and adjusted a little bit:
 
@@ -26,7 +26,7 @@ Just run this code stolen from [szhorvat/MaTeX](https://github.com/szhorvat/MaTe
       ; If[FileExistsQ[target], PacletInstall[target], $Failed]
     ]
 
-##Enabling package dark stylesheet
+### Enabling package dark stylesheet
 
  
 
