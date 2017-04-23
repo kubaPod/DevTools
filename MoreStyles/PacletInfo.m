@@ -3,7 +3,7 @@
 
 Paclet[
     Name -> "MoreStyles",
-    Version -> "0.1.0",
+    Version -> "0.2.0",
     MathematicaVersion -> "10+",
     Description -> "MoreStyles",
     Creator -> "
@@ -13,7 +13,8 @@ Paclet[
     Extensions -> 
         {
 
-            {"FrontEnd"}
+            {"FrontEnd"},
+            {"Kernel", Context -> "MoreStyles`"}
         }
 ]
 

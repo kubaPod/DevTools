@@ -1,6 +1,11 @@
 Notebook[{
 
 Cell[CellGroupData[{
+Cell["test", \
+"Subsubsection",ExpressionUUID->"c37b4342-abe7-4c9a-abab-9cc1ba45b03f"],
+
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{
@@ -8,11 +13,23 @@ Cell[BoxData[
    "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"E:\\\\Idea \
-Projects\\\\mma-package-manager\\\\AESGPackage\\\\\"\>", 
-   ",", "\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\\"\>"}], 
-  "}"}]], "Output",ExpressionUUID->"7a69d5b8-64af-422c-a1cc-e005241f8082"]
+ RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\\"\>", 
+  "}"}]], "Output",ExpressionUUID->"e51b6d4d-a77f-4748-9b79-ca95e1513cfe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\"\<Location\>\"", "/.", 
+  RowBox[{"PacletInformation", "/@", 
+   RowBox[{
+   "PacletFind", "[", "\"\<MoreStyles\>\"", 
+    "]"}]}]}]], \
+"Input",ExpressionUUID->"de140152-7981-48ea-b59f-0e3eda26eb66"],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\MoreStyles\"\>", 
+  "}"}]], "Output",ExpressionUUID->"b9a721bc-3224-44e3-8aae-4b55f36bb564"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -22,34 +39,67 @@ Cell[BoxData[
   RowBox[{"CurrentValue", "[", 
    RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
    "]"}], "=", 
-  "\"\<ReverseColorPackage.nb\>\""}]], \
-"Input",ExpressionUUID->"75674a84-f16a-4a3f-bba6-d270af99d085"],
+  RowBox[{"FileNameJoin", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MoreStyles\>\"", ",", 
+     "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
+     "\"\<DeveloperPackageDark.nb\>\""}], "}"}], 
+   "]"}]}]], "Input",ExpressionUUID->"75674a84-f16a-4a3f-bba6-d270af99d085"],
 
-Cell[BoxData["\<\"ReverseColorPackage.nb\"\>"], \
-"Output",ExpressionUUID->"d671926a-4b36-49ec-8853-9e65aa58da50"]
+Cell[BoxData["\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\MoreStyles\\\\FrontEnd\
+\\\\StyleSheets\\\\DeveloperPackageDark.nb\"\>"], \
+"Output",ExpressionUUID->"1d7e2b6a-a269-4f4d-8d25-4509da30eac0"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"PackPaclet", "@", 
-  RowBox[{"FileNameJoin", "[", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MoreStyles\>\""}], 
-    "}"}], "]"}]}]], \
+ RowBox[{"CurrentValue", "[", 
+  RowBox[{"$FrontEndSession", ",", "\"\<DefaultPackageStyleDefinitions\>\""}],
+   "]"}]], "Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"],
+
+Cell[BoxData["\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\MoreStyles\\\\FrontEnd\
+\\\\StyleSheets\\\\ReverseColorPackage.nb\"\>"], \
+"Output",ExpressionUUID->"822d5cbf-e880-4d7d-a31f-adac5efdba8f"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["release", \
+"Subsubsection",ExpressionUUID->"8627bb23-b02f-458f-915d-48616c414809"],
+
+Cell[BoxData[
+ RowBox[{"path", "=", 
+  RowBox[{"PackPaclet", "@", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MoreStyles\>\""}], 
+     "}"}], "]"}]}]}]], \
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\MoreStyles\\\\MoreStyles-0.1.0.paclet\"\>"], \
-"Output",ExpressionUUID->"53862de5-0840-47a3-8caa-3750dde32643"]
+Cell[BoxData[
+ RowBox[{"PacletUninstall", "/@", 
+  RowBox[{
+  "PacletFind", "[", "\"\<MoreStyles\>\"", 
+   "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
+
+Cell[BoxData[
+ RowBox[{"PacletInstall", "@", 
+  "path"}]], "Input",ExpressionUUID->"796c29a9-7abc-4e2a-9b3b-0cd04bfb6433"],
+
+Cell[BoxData[
+ RowBox[{"RestartPacletManager", "[", 
+  "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"]
 }, Open  ]]
 },
-WindowSize->{775, 873},
-WindowMargins->{{482, Automatic}, {Automatic, 74}},
+WindowSize->{861, 1022},
+WindowMargins->{{Automatic, 171}, {Automatic, 0}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (February 5, 2017)",
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 

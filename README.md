@@ -1,32 +1,29 @@
 Currently this paclet contains only one style so I did't spend time on creating any fancy api.
 
-It is based on a built-in ReverseColor.nb but adapted a little for .m .wl files.
+It is based on a built-in ReverseColor.nb but adapted a little for .m .wl files. 
+
+It also supports multiline indentation of code!
 
 ![Imgur](http://i.imgur.com/tJLjerW.png)
 
 ### Installation
 
-Just run this code stolen from [szhorvat/MaTeX](https://github.com/szhorvat/MaTeX) and adjusted a little bit:
+- Manual
 
-    Module[{json, download, target}
-      , Check[
-            json = Import[
-                "https://api.github.com/repos/kubapod/MoreStyles/releases/latest"
-              , "JSON"
-            ]
-          ; download = Lookup[First @ Lookup[json, "assets"], "browser_download_url"]
-          ; target = FileNameJoin[{CreateDirectory[], "paclet.paclet"}]
-          ; If[
-                $Notebooks
-              , PrintTemporary @ Labeled[ProgressIndicator[Appearance -> "Necklace"]
-                  , "Downloading...", Right]
-              , Print["Downloading..."]
-            ]
-          ; URLSave[download, target]
-          , Return[$Failed]
-        ]
-      ; If[FileExistsQ[target], PacletInstall[target], $Failed]
-    ]
+  Go to 'releases' tab and download appropriate .paclet file.
+   
+  Run `PacletInstall @ path/to/the.paclet` file
+  
+- via MPM
+  
+  If you don't have ``MPM` `` yet, run:
+  
+  `Import["https://raw.githubusercontent.com/kubapod/mpm/master/install.m"]`
+  
+  and then:
+  
+  ``MPM`MPMInstall["kubapod", "morestyles"]``
+ 
 
 ### Enabling package dark stylesheet
 
@@ -37,7 +34,7 @@ If you want to enable dark theme for packages just install the paclet and run:
  
     CurrentValue[
         $FrontEnd, "DefaultPackageStyleDefinitions"
-    ] = "ReverseColorPackage.nb"
+    ] = "DeveloperPackageDark.nb"
     
 Each new or reopened .m .wl file will now use this style by default.
     

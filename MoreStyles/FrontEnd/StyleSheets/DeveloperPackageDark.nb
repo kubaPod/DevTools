@@ -1,0 +1,19 @@
+Notebook[{
+Cell[StyleData[StyleDefinitions -> \
+"ReverseColorPackage.nb"],ExpressionUUID->"8f8e050e-64a2-4ce7-af96-\
+cb42f4238562"],
+
+Cell[StyleData["Notebook"],
+ NotebookEventActions->{{"KeyDown", "\t"} :> MoreStyles`Kernel`IndentCode[]},
+ NotebookDynamicExpression:>Refresh[
+   Needs["MoreStyles`"], 
+   None],ExpressionUUID->"72abde0c-8d65-42df-8bc8-a6a18a991129"]
+},
+WindowSize->{775, 873},
+WindowMargins->{{482, Automatic}, {Automatic, 74}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TrackCellChangeTimes->False,
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
+StyleDefinitions->"Default.nb"
+]
+
