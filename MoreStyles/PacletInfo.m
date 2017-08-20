@@ -3,7 +3,7 @@
 
 Paclet[
     Name -> "MoreStyles",
-    Version -> "0.3git .0",
+    Version -> "0.3.0",
     MathematicaVersion -> "10+",
     Description -> "MoreStyles",
     Creator -> "
