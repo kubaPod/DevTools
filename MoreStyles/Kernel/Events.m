@@ -13,9 +13,9 @@ BeginPackage["MoreStyles`"];
 
     IndentCode // ClearAll;
 
-    IndentCode[]:= With[
+    IndentCode[tab_String:"  "]:= With[
         { sel = CurrentValue["SelectionData"]
-        , tab = "  "
+
         }
       , Module[
             { selString := First @ FrontEndExecute[FrontEnd`ExportPacket[BoxData@sel, "PlainText"]]

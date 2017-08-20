@@ -4,16 +4,25 @@ Cell[StyleData[StyleDefinitions -> \
 cb42f4238562"],
 
 Cell[StyleData["Notebook"],
- NotebookEventActions->{{"KeyDown", "\t"} :> MoreStyles`Kernel`IndentCode[]},
- NotebookDynamicExpression:>Refresh[
-   Needs["MoreStyles`"], 
-   None],ExpressionUUID->"72abde0c-8d65-42df-8bc8-a6a18a991129"]
+ NotebookEventActions->{{"KeyDown", "\t"} :> 
+   Block[{$ContextPath}, Needs["MoreStyles`"]; 
+     MoreStyles`Kernel`IndentCode[]]},
+ DockedCells->{
+   Cell[
+    BoxData[
+     DynamicBox[
+      ToBoxes[
+       Refresh[Needs["MoreStyles`"]; MoreStyles`DeveloperToolbar[], None], 
+       StandardForm], CachedValue -> (ToBoxes[
+          ProgressIndicator[Appearance -> "Percolate"]] SynchronousUpdating -> 
+       False)]]], 
+   Inherited},ExpressionUUID->"72abde0c-8d65-42df-8bc8-a6a18a991129"]
 },
 WindowSize->{775, 873},
 WindowMargins->{{482, Automatic}, {Automatic, 74}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 

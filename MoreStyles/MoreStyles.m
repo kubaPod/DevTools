@@ -7,5 +7,13 @@ BeginPackage["MoreStyles`"]
 
   Get @ "MoreStyles`Kernel`Events`";
 
+  DeveloperToolbar;
+
+  Begin["`Private`"];
+
+  DeveloperToolbar[]:= Button["Get", Get @ NotebookFileName[], Method -> "Queued"];
+
+  End[];
+
 
 EndPackage[]

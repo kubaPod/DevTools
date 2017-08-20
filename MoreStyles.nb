@@ -4,18 +4,11 @@ Cell[CellGroupData[{
 Cell["test", \
 "Subsubsection",ExpressionUUID->"c37b4342-abe7-4c9a-abab-9cc1ba45b03f"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{
   "NotebookDirectory", "[", 
    "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
-
-Cell[BoxData[
- RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\\"\>", 
-  "}"}]], "Output",ExpressionUUID->"e51b6d4d-a77f-4748-9b79-ca95e1513cfe"]
-}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -28,11 +21,10 @@ Cell[BoxData[
 "Input",ExpressionUUID->"de140152-7981-48ea-b59f-0e3eda26eb66"],
 
 Cell[BoxData[
- RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\MoreStyles\"\>", 
-  "}"}]], "Output",ExpressionUUID->"b9a721bc-3224-44e3-8aae-4b55f36bb564"]
+ RowBox[{"{", "\<\"C:\\\\Users\\\\user\\\\AppData\\\\Roaming\\\\Mathematica\\\
+\\Paclets\\\\Repository\\\\MoreStyles-0.2.0\"\>", 
+  "}"}]], "Output",ExpressionUUID->"23c2acfd-e87f-4eaf-9ca9-1110e83e6147"]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
@@ -47,28 +39,21 @@ Cell[BoxData[
      "\"\<DeveloperPackageDark.nb\>\""}], "}"}], 
    "]"}]}]], "Input",ExpressionUUID->"75674a84-f16a-4a3f-bba6-d270af99d085"],
 
-Cell[BoxData["\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\MoreStyles\\\\FrontEnd\
-\\\\StyleSheets\\\\DeveloperPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"1d7e2b6a-a269-4f4d-8d25-4509da30eac0"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
 Cell[BoxData[
- RowBox[{"CurrentValue", "[", 
-  RowBox[{"$FrontEndSession", ",", "\"\<DefaultPackageStyleDefinitions\>\""}],
-   "]"}]], "Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"],
-
-Cell[BoxData["\<\"E:\\\\Idea Projects\\\\MoreStyles\\\\MoreStyles\\\\FrontEnd\
-\\\\StyleSheets\\\\ReverseColorPackage.nb\"\>"], \
-"Output",ExpressionUUID->"822d5cbf-e880-4d7d-a31f-adac5efdba8f"]
-}, Open  ]]
+ RowBox[{
+  RowBox[{"CurrentValue", "[", 
+   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
+   "]"}], "=", 
+  "Inherited"}]], \
+"Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["release", \
 "Subsubsection",ExpressionUUID->"8627bb23-b02f-458f-915d-48616c414809"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"path", "=", 
@@ -80,6 +65,13 @@ Cell[BoxData[
      "}"}], "]"}]}]}]], \
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
+Cell[BoxData["\<\"E:\\\\Idea \
+Projects\\\\MoreStyles\\\\MoreStyles-0.3.0.paclet\"\>"], \
+"Output",ExpressionUUID->"a2732fd2-1e89-430f-bc82-0567feb05d9c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"PacletUninstall", "/@", 
   RowBox[{
@@ -87,19 +79,83 @@ Cell[BoxData[
    "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
 
 Cell[BoxData[
+ RowBox[{"{", "Null", 
+  "}"}]], "Output",ExpressionUUID->"0c1e8e92-03e5-4343-81b9-e4896be95faa"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
  RowBox[{"PacletInstall", "@", 
   "path"}]], "Input",ExpressionUUID->"796c29a9-7abc-4e2a-9b3b-0cd04bfb6433"],
 
 Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+  "Paclet", "[", "\<\"MoreStyles\"\>", ",", "\<\"0.3.0\"\>", ",", "<>", "]"}],
+  PacletManager`Paclet[
+  "Name" -> "MoreStyles", "Version" -> "0.3.0", "MathematicaVersion" -> "10+",
+    "Description" -> "MoreStyles", "Creator" -> 
+   "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
+   "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "MoreStyles`"}}, 
+   "Location" -> 
+   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
+MoreStyles-0.3.0"]]], \
+"Output",ExpressionUUID->"e1cf94b7-49e3-40a3-a901-409d1b4d4ad6"]
+}, Open  ]],
+
+Cell[BoxData[
  RowBox[{"RestartPacletManager", "[", 
-  "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"]
+  "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "MPM`"}]], "Input",ExpressionUUID->"e1a57909-0f3a-4201-b64c-0a2f361088c3"],
+
+Cell[BoxData[
+ RowBox[{"MPM`MPMInstall", "[", 
+  RowBox[{"\"\<kubapod\>\"", ",", "\"\<morestyles\>\""}], 
+  "]"}]], "Input",ExpressionUUID->"d6803381-2ac3-42bf-b39b-38dfa3d52bda"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  "\"\<https://raw.githubusercontent.com/kubapod/mpm/master/install.m\>\"", 
+  "]"}]], "Input",ExpressionUUID->"08fda10f-415c-49f5-961d-472c0bf32871"],
+
+Cell[BoxData[
+ RowBox[{"NotebookFileName", "[", 
+  "]"}]], "Input",ExpressionUUID->"74f54892-8ace-446e-bcb9-4456ce5868f4"],
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{
+   RowBox[{"Refresh", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Needs", "[", "\"\<MoreStyles`\>\"", "]"}], ";", 
+      RowBox[{"MoreStyles`DeveloperToolbar", "[", "]"}]}], ",", "None"}], 
+    "]"}], ",", 
+   RowBox[{"SynchronousUpdating", "\[Rule]", "False"}], ",", 
+   RowBox[{"CachedValue", "\[Rule]", 
+    RowBox[{"ToBoxes", "@", 
+     RowBox[{"ProgressIndicator", "[", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Percolate\>\""}], "]"}]}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"1a1d4693-0aa4-4385-9424-124da22cae00"],
+
+Cell[BoxData[
+ RowBox[{"Button", "[", 
+  RowBox[{"\"\<Get\>\"", ",", 
+   RowBox[{"Get", " ", "@", " ", 
+    RowBox[{"NotebookFileName", "[", "]"}]}], ",", 
+   RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], 
+  "]"}]], "Input",ExpressionUUID->"ab3236d2-9c48-43e3-8b3e-7aa5f2a48c71"]
 }, Open  ]]
 },
-WindowSize->{861, 1022},
-WindowMargins->{{Automatic, 171}, {Automatic, 0}},
+WindowSize->{1116, 873},
+WindowMargins->{{Automatic, -1332}, {Automatic, 60}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (March 13, 2017)",
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 
