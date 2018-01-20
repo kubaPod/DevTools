@@ -1,5 +1,5 @@
 
-BeginPackage["MoreStyles`"];
+BeginPackage["DevTools`"];
 
 
   BeginPackage["`Kernel`"];
@@ -19,7 +19,7 @@ BeginPackage["MoreStyles`"];
         }
       , Module[
             { selString := First @ FrontEndExecute[FrontEnd`ExportPacket[BoxData@sel, "PlainText"]]
-            , steps
+            , steps (*counted because we need to move selection back where it was before action //modulo indentation*)
             , result
             }
           , Which[

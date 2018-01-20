@@ -20,10 +20,8 @@ Cell[BoxData[
     "]"}]}]}]], \
 "Input",ExpressionUUID->"de140152-7981-48ea-b59f-0e3eda26eb66"],
 
-Cell[BoxData[
- RowBox[{"{", "\<\"C:\\\\Users\\\\user\\\\AppData\\\\Roaming\\\\Mathematica\\\
-\\Paclets\\\\Repository\\\\MoreStyles-0.2.0\"\>", 
-  "}"}]], "Output",ExpressionUUID->"23c2acfd-e87f-4eaf-9ca9-1110e83e6147"]
+Cell[BoxData["\<\"Location\"\>"], \
+"Output",ExpressionUUID->"b529a8ff-32ad-49c7-b973-f35cfe4f4da8"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -45,15 +43,27 @@ Cell[BoxData[
    RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
    "]"}], "=", 
   "Inherited"}]], \
-"Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"]
+"Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CurrentValue", "[", 
+   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
+   "]"}], "=", 
+  "\"\<DeveloperPackageDark.nb\>\""}]], \
+"Input",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"],
+
+Cell[BoxData["\<\"DeveloperPackageDark.nb\"\>"], \
+"Output",ExpressionUUID->"05578581-d827-4eb0-961a-8e7f9a745648"]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["release", \
 "Subsubsection",ExpressionUUID->"8627bb23-b02f-458f-915d-48616c414809"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"path", "=", 
@@ -65,11 +75,6 @@ Cell[BoxData[
      "}"}], "]"}]}]}]], \
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\MoreStyles\\\\MoreStyles-0.3.0.paclet\"\>"], \
-"Output",ExpressionUUID->"a2732fd2-1e89-430f-bc82-0567feb05d9c"]
-}, Open  ]],
-
 Cell[CellGroupData[{
 
 Cell[BoxData[
@@ -80,14 +85,27 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", "Null", 
-  "}"}]], "Output",ExpressionUUID->"0c1e8e92-03e5-4343-81b9-e4896be95faa"]
+  "}"}]], "Output",ExpressionUUID->"5e73e3f2-d226-439c-be13-bfb6e000e426"]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletInstall", "@", 
   "path"}]], "Input",ExpressionUUID->"796c29a9-7abc-4e2a-9b3b-0cd04bfb6433"],
+
+Cell[BoxData[
+ RowBox[{"RestartPacletManager", "[", 
+  "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"],
+
+Cell[BoxData[
+ RowBox[{"<<", 
+  "MPM`"}]], "Input",ExpressionUUID->"e1a57909-0f3a-4201-b64c-0a2f361088c3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MPM`MPMInstall", "[", 
+  RowBox[{"\"\<kubapod\>\"", ",", "\"\<morestyles\>\""}], 
+  "]"}]], "Input",ExpressionUUID->"d6803381-2ac3-42bf-b39b-38dfa3d52bda"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -101,21 +119,8 @@ Cell[BoxData[
    "Location" -> 
    "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
 MoreStyles-0.3.0"]]], \
-"Output",ExpressionUUID->"e1cf94b7-49e3-40a3-a901-409d1b4d4ad6"]
+"Output",ExpressionUUID->"18f04f03-a88d-40cb-bde2-3c381e80a11a"]
 }, Open  ]],
-
-Cell[BoxData[
- RowBox[{"RestartPacletManager", "[", 
-  "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"],
-
-Cell[BoxData[
- RowBox[{"<<", 
-  "MPM`"}]], "Input",ExpressionUUID->"e1a57909-0f3a-4201-b64c-0a2f361088c3"],
-
-Cell[BoxData[
- RowBox[{"MPM`MPMInstall", "[", 
-  RowBox[{"\"\<kubapod\>\"", ",", "\"\<morestyles\>\""}], 
-  "]"}]], "Input",ExpressionUUID->"d6803381-2ac3-42bf-b39b-38dfa3d52bda"],
 
 Cell[BoxData[
  RowBox[{"Import", "[", 
@@ -148,7 +153,26 @@ Cell[BoxData[
    RowBox[{"Get", " ", "@", " ", 
     RowBox[{"NotebookFileName", "[", "]"}]}], ",", 
    RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], 
-  "]"}]], "Input",ExpressionUUID->"ab3236d2-9c48-43e3-8b3e-7aa5f2a48c71"]
+  "]"}]], "Input",ExpressionUUID->"ab3236d2-9c48-43e3-8b3e-7aa5f2a48c71"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  "\"\<https://raw.githubusercontent.com/kubapod/mpm/master/install.m\>\"", 
+  "]"}]], "Input",ExpressionUUID->"c21942c5-91e6-4426-a70e-7f34bc7f931b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"Paclet", "[", "\<\"MPM\"\>", ",", "\<\"0.3.0\"\>", ",", "<>", "]"}],
+  PacletManager`Paclet[
+  "Name" -> "MPM", "Version" -> "0.3.0", "MathematicaVersion" -> "10+", 
+   "Description" -> "", "Creator" -> 
+   "\n\n        Jakub (Kuba) Podkalicki - kuba.pod@gmail.com\n\n    ", 
+   "Extensions" -> {{"Kernel", "Context" -> "MPM`"}}, "Location" -> 
+   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\MPM-\
+0.3.0"]]], "Output",ExpressionUUID->"58041a92-3710-46dd-b145-4d874806ce43"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1116, 873},

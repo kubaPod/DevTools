@@ -2,10 +2,10 @@
 (* :Date: 2017-04-23 *)
 
 
-BeginPackage["MoreStyles`"]
+BeginPackage["DevTools`"]
 (* Exported symbols added here with SymbolName::usage *)
 
-  Get @ "MoreStyles`Kernel`Events`";
+  Get @ "DevTools`Kernel`Events`";
 
   DeveloperToolbar;
 

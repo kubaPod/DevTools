@@ -2,10 +2,10 @@
 
 
 Paclet[
-    Name -> "MoreStyles",
+    Name -> "DevTools",
     Version -> "0.3.0",
     MathematicaVersion -> "10+",
-    Description -> "MoreStyles",
+    Description -> "DevTools",
     Creator -> "
 		Jakub (Kuba) Podkalicki
 		kuba.pod@gmail.com
@@ -14,7 +14,7 @@ Paclet[
         {
 
             {"FrontEnd"},
-            {"Kernel", Context -> "MoreStyles`"}
+            {"Kernel", Context -> "DevTools`"}
         }
 ]
 
