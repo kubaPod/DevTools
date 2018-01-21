@@ -10,19 +10,21 @@ Cell[StyleData["Notebook"],
  DockedCells->{
    Cell[
     BoxData[
-     DynamicBox[
-      ToBoxes[
-       Refresh[Needs["MoreStyles`"]; MoreStyles`DeveloperToolbar[], None], 
-       StandardForm], CachedValue -> (ToBoxes[
-          ProgressIndicator[Appearance -> "Percolate"]] SynchronousUpdating -> 
-       False)]]], 
+     ButtonBox[
+     "\"Get @ NotebookFileName[]\"", BaseStyle -> GrayLevel[0.], 
+      ButtonFunction :> Get[
+        NotebookFileName[]], Method -> "Queued", Appearance -> 
+      FEPrivate`FrontEndResource[
+       "FEExpressions", "GrayButtonNinePatchAppearance"], FrameMargins -> 5, 
+      ImageSize -> All, Evaluator -> Automatic]], 
+    CellFrameMargins -> {{12, 12}, {5, 5}}], 
    Inherited},ExpressionUUID->"72abde0c-8d65-42df-8bc8-a6a18a991129"]
 },
-WindowSize->{775, 873},
-WindowMargins->{{482, Automatic}, {Automatic, 74}},
+WindowSize->{1082, 873},
+WindowMargins->{{Automatic, 166}, {33, Automatic}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 

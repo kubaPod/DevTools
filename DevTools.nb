@@ -4,11 +4,18 @@ Cell[CellGroupData[{
 Cell["test", \
 "Subsubsection",ExpressionUUID->"c37b4342-abe7-4c9a-abab-9cc1ba45b03f"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{
   "NotebookDirectory", "[", 
    "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", 
+  "}"}]], "Output",ExpressionUUID->"713c4b63-aca4-4832-987b-214fda5fa542"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -24,6 +31,8 @@ Cell[BoxData["\<\"Location\"\>"], \
 "Output",ExpressionUUID->"b529a8ff-32ad-49c7-b973-f35cfe4f4da8"]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"CurrentValue", "[", 
@@ -32,10 +41,16 @@ Cell[BoxData[
   RowBox[{"FileNameJoin", "[", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MoreStyles\>\"", ",", 
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", ",", 
      "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
      "\"\<DeveloperPackageDark.nb\>\""}], "}"}], 
    "]"}]}]], "Input",ExpressionUUID->"75674a84-f16a-4a3f-bba6-d270af99d085"],
+
+Cell[BoxData["\<\"E:\\\\Idea \
+Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\\
+DeveloperPackageDark.nb\"\>"], \
+"Output",ExpressionUUID->"aba1053d-3412-4280-b226-6105d9162252"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{
@@ -50,8 +65,8 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"CurrentValue", "[", 
-   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
-   "]"}], "=", 
+   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], "]"}]
+   , "=", 
   "\"\<DeveloperPackageDark.nb\>\""}]], \
 "Input",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"],
 
@@ -175,11 +190,11 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1116, 873},
-WindowMargins->{{Automatic, -1332}, {Automatic, 60}},
+WindowSize->{780, 653},
+WindowMargins->{{222, Automatic}, {Automatic, 143}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (December 18, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 

@@ -7,11 +7,9 @@ BeginPackage["DevTools`"]
 
   Get @ "DevTools`Kernel`Events`";
 
-  DeveloperToolbar;
 
   Begin["`Private`"];
 
-  DeveloperToolbar[]:= Button["Get", Get @ NotebookFileName[], Method -> "Queued"];
 
   End[];
 
