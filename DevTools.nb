@@ -14,7 +14,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", 
-  "}"}]], "Output",ExpressionUUID->"713c4b63-aca4-4832-987b-214fda5fa542"]
+  "}"}]], "Output",ExpressionUUID->"e95405d1-a4b6-42d3-b1a3-8fa1b4e6a622"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -27,8 +27,10 @@ Cell[BoxData[
     "]"}]}]}]], \
 "Input",ExpressionUUID->"de140152-7981-48ea-b59f-0e3eda26eb66"],
 
-Cell[BoxData["\<\"Location\"\>"], \
-"Output",ExpressionUUID->"b529a8ff-32ad-49c7-b973-f35cfe4f4da8"]
+Cell[BoxData[
+ RowBox[{"{", "\<\"C:\\\\Users\\\\user\\\\AppData\\\\Roaming\\\\Mathematica\\\
+\\Paclets\\\\Repository\\\\MoreStyles-0.3.0\"\>", 
+  "}"}]], "Output",ExpressionUUID->"0a40c8e8-0947-43f1-86ef-fe50d236a31c"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -49,7 +51,7 @@ Cell[BoxData[
 Cell[BoxData["\<\"E:\\\\Idea \
 Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\\
 DeveloperPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"aba1053d-3412-4280-b226-6105d9162252"]
+"Output",ExpressionUUID->"5a33cfb9-e8a8-4148-940e-2798502cd88a"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -60,20 +62,14 @@ Cell[BoxData[
   "Inherited"}]], \
 "Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{
   RowBox[{"CurrentValue", "[", 
-   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], "]"}]
-   , "=", 
+   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
+   "]"}], "=", 
   "\"\<DeveloperPackageDark.nb\>\""}]], \
-"Input",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"],
-
-Cell[BoxData["\<\"DeveloperPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"05578581-d827-4eb0-961a-8e7f9a745648"]
-}, Open  ]]
-}, Open  ]],
+"Input",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"]
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -90,18 +86,11 @@ Cell[BoxData[
      "}"}], "]"}]}]}]], \
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletUninstall", "/@", 
   RowBox[{
   "PacletFind", "[", "\"\<MoreStyles\>\"", 
    "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
-
-Cell[BoxData[
- RowBox[{"{", "Null", 
-  "}"}]], "Output",ExpressionUUID->"5e73e3f2-d226-439c-be13-bfb6e000e426"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"PacletInstall", "@", 
@@ -115,27 +104,10 @@ Cell[BoxData[
  RowBox[{"<<", 
   "MPM`"}]], "Input",ExpressionUUID->"e1a57909-0f3a-4201-b64c-0a2f361088c3"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"MPM`MPMInstall", "[", 
   RowBox[{"\"\<kubapod\>\"", ",", "\"\<morestyles\>\""}], 
   "]"}]], "Input",ExpressionUUID->"d6803381-2ac3-42bf-b39b-38dfa3d52bda"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{
-  "Paclet", "[", "\<\"MoreStyles\"\>", ",", "\<\"0.3.0\"\>", ",", "<>", "]"}],
-  PacletManager`Paclet[
-  "Name" -> "MoreStyles", "Version" -> "0.3.0", "MathematicaVersion" -> "10+",
-    "Description" -> "MoreStyles", "Creator" -> 
-   "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
-   "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "MoreStyles`"}}, 
-   "Location" -> 
-   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-MoreStyles-0.3.0"]]], \
-"Output",ExpressionUUID->"18f04f03-a88d-40cb-bde2-3c381e80a11a"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"Import", "[", 
@@ -170,31 +142,137 @@ Cell[BoxData[
    RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], 
   "]"}]], "Input",ExpressionUUID->"ab3236d2-9c48-43e3-8b3e-7aa5f2a48c71"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"Import", "[", 
   "\"\<https://raw.githubusercontent.com/kubapod/mpm/master/install.m\>\"", 
-  "]"}]], "Input",ExpressionUUID->"c21942c5-91e6-4426-a70e-7f34bc7f931b"],
+  "]"}]], "Input",ExpressionUUID->"c21942c5-91e6-4426-a70e-7f34bc7f931b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["DevPackageDark", "Section",
+ CellChangeTimes->{{3.725905432931215*^9, 
+  3.725905439579215*^9}},ExpressionUUID->"3c1ed785-d1e1-4108-aba0-\
+082985cb2aef"],
 
 Cell[BoxData[
- InterpretationBox[
-  RowBox[{"Paclet", "[", "\<\"MPM\"\>", ",", "\<\"0.3.0\"\>", ",", "<>", "]"}],
-  PacletManager`Paclet[
-  "Name" -> "MPM", "Version" -> "0.3.0", "MathematicaVersion" -> "10+", 
-   "Description" -> "", "Creator" -> 
-   "\n\n        Jakub (Kuba) Podkalicki - kuba.pod@gmail.com\n\n    ", 
-   "Extensions" -> {{"Kernel", "Context" -> "MPM`"}}, "Location" -> 
-   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\MPM-\
-0.3.0"]]], "Output",ExpressionUUID->"58041a92-3710-46dd-b145-4d874806ce43"]
+ RowBox[{
+  RowBox[{"Needs", " ", "@", " ", "\"\<DevTools`\>\""}], 
+  ";"}]], "Input",ExpressionUUID->"5afede81-adbd-4002-b0a4-4ee64c0be508"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"DevPackageDark", "[", "]"}], ":=", 
+   RowBox[{"Notebook", "[", 
+    RowBox[{"{", "\n", "  ", 
+     RowBox[{
+      RowBox[{"Cell", "[", 
+       RowBox[{"StyleData", "[", 
+        RowBox[{
+        "StyleDefinitions", " ", "->", " ", 
+         "\"\<ReverseColorPackage.nb\>\""}], "]"}], "]"}], "\n", ",", " ", 
+      RowBox[{"Cell", "[", "\n", "    ", 
+       RowBox[{
+        RowBox[{"StyleData", "[", "\"\<Notebook\>\"", "]"}], "\n", "  ", ",", 
+        " ", 
+        RowBox[{"NotebookEventActions", "->", 
+         RowBox[{"{", "\n", "      ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\"\<KeyDown\>\"", ",", " ", "\"\<\\t\>\""}], "}"}], " ",
+             ":>", " ", 
+            RowBox[{"Block", "[", 
+             RowBox[{
+              RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
+              RowBox[{
+               RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
+               RowBox[{"IndentCode", "[", "]"}]}]}], "]"}]}], "\n", "    ", 
+           ",", " ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Open\>\""}], "}"}],
+             " ", ":>", "  ", 
+            RowBox[{"Block", "[", 
+             RowBox[{
+              RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
+              RowBox[{
+               RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
+               RowBox[{"CodeTemplatesMenuOpen", "[", "]"}]}]}], " ", 
+             "]"}]}]}], "\n", "    ", "}"}]}], "\n", "  ", ",", " ", 
+        RowBox[{"DockedCells", "->", 
+         RowBox[{"{", "\n", "     ", 
+          RowBox[{
+           RowBox[{"Cell", "[", "\n", "       ", 
+            RowBox[{
+             RowBox[{"BoxData", " ", "@", " ", 
+              RowBox[{"ToBoxes", " ", "@", " ", 
+               RowBox[{"Grid", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"{", "\n", "         ", 
+                   RowBox[{"Button", "[", 
+                    RowBox[{"\"\<Get @ ThisFile\>\"", ",", " ", 
+                    RowBox[{"Get", "[", 
+                    RowBox[{"NotebookFileName", "[", "]"}], "]"}], ",", " ", 
+                    RowBox[{"Appearance", "\[Rule]", 
+                    RowBox[{"{", "ParentList", "}"}]}]}], " ", "]"}], "\n", 
+                   "       ", "}"}], "}"}], "\n", "       ", ",", " ", 
+                 RowBox[{"BaseStyle", " ", "\[Rule]", " ", 
+                  RowBox[{"ButtonBoxOptions", " ", "\[Rule]", " ", 
+                   RowBox[{"{", "\n", "           ", 
+                    RowBox[{
+                    RowBox[{"BaseStyle", " ", "->", " ", 
+                    RowBox[{"GrayLevel", "[", "0.", "]"}]}], "\n", 
+                    "         ", ",", " ", 
+                    RowBox[{"Method", " ", "->", " ", "\"\<Queued\>\""}], 
+                    "\n", "         ", ",", " ", 
+                    RowBox[{"Appearance", " ", "->", " ", 
+                    RowBox[{"FEPrivate`FrontEndResource", "[", 
+                    RowBox[{
+                    "\"\<FEExpressions\>\"", ",", " ", 
+                    "\"\<GrayButtonNinePatchAppearance\>\""}], "]"}]}], "\n", 
+                    "         ", ",", " ", 
+                    RowBox[{"FrameMargins", " ", "->", " ", "5"}], "\n", 
+                    "         ", ",", " ", 
+                    RowBox[{"ImageSize", " ", "->", " ", "All"}]}], "\n", 
+                    "         ", "}"}]}]}]}], "\n", "       ", "]"}]}]}], 
+             "\n", "     ", ",", " ", 
+             RowBox[{"CellFrameMargins", " ", "->", " ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"12", ",", " ", "12"}], "}"}], ",", " ", 
+                RowBox[{"{", 
+                 RowBox[{"5", ",", " ", "5"}], "}"}]}], "}"}]}]}], "\n", 
+            "     ", "]"}], "\n", "   ", ",", " ", "Inherited"}], "\n", "   ",
+           "}"}]}]}], "\n", " ", "]"}]}], " ", "\n", "}"}], "]"}]}], 
+  ";"}]], "Code",ExpressionUUID->"cf157824-3cc3-454a-bf90-978fe67c5168"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CreateDocument", "[", 
+  RowBox[{"\"\<test\>\"", ",", 
+   RowBox[{"StyleDefinitions", "\[Rule]", 
+    RowBox[{"DevPackageDark", "[", "]"}]}]}], 
+  "]"}]], "Input",ExpressionUUID->"b349bffb-e4e1-4bb3-803d-ac64897b3e56"],
+
+Cell[BoxData[
+ TemplateBox[{FrontEndObject[
+    LinkObject["mvsmz_shm", 3, 1]],45,
+   "FrontEndObject[LinkObject[\"mvsmz_shm\", 3, 1]]","45","\"Untitled-5\""},
+  "NotebookObjectUnsaved"]], \
+"Output",ExpressionUUID->"5f483e35-1e0d-4142-bbf3-f2bf186752e7"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{780, 653},
-WindowMargins->{{222, Automatic}, {Automatic, 143}},
+WindowSize->{1085, 653},
+WindowMargins->{{258, Automatic}, {133, Automatic}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (December 18, 2017)",
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 

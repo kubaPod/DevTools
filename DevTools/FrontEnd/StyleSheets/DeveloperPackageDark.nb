@@ -5,14 +5,15 @@ cb42f4238562"],
 
 Cell[StyleData["Notebook"],
  NotebookEventActions->{{"KeyDown", "\t"} :> 
-   Block[{$ContextPath}, Needs["MoreStyles`"]; 
-     MoreStyles`Kernel`IndentCode[]]},
+   Block[{$ContextPath}, Needs["DevTools`"]; DevTools`IndentCode[]], {
+    "MenuCommand", "Open"} :> 
+   Block[{$ContextPath}, Needs["DevTools`"]; 
+     DevTools`CodeTemplatesMenuOpen[]]},
  DockedCells->{
    Cell[
     BoxData[
      ButtonBox[
-     "\"Get @ NotebookFileName[]\"", BaseStyle -> GrayLevel[0.], 
-      ButtonFunction :> Get[
+     "\"Get @ ThisFile\"", BaseStyle -> GrayLevel[0.], ButtonFunction :> Get[
         NotebookFileName[]], Method -> "Queued", Appearance -> 
       FEPrivate`FrontEndResource[
        "FEExpressions", "GrayButtonNinePatchAppearance"], FrameMargins -> 5, 
