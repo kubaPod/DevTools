@@ -1,10 +1,14 @@
 Notebook[{
+Cell[BoxData[
+ RowBox[{"PacletDirectoryAdd", "@", 
+  RowBox[{
+  "NotebookDirectory", "[", 
+   "]"}]}]], "Input",ExpressionUUID->"c1c1d341-4773-4df0-ac0a-d788322042f0"],
 
 Cell[CellGroupData[{
+
 Cell["test", \
 "Subsubsection",ExpressionUUID->"c37b4342-abe7-4c9a-abab-9cc1ba45b03f"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
@@ -13,27 +17,12 @@ Cell[BoxData[
    "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
 
 Cell[BoxData[
- RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", 
-  "}"}]], "Output",ExpressionUUID->"e95405d1-a4b6-42d3-b1a3-8fa1b4e6a622"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
  RowBox[{"\"\<Location\>\"", "/.", 
   RowBox[{"PacletInformation", "/@", 
    RowBox[{
    "PacletFind", "[", "\"\<MoreStyles\>\"", 
     "]"}]}]}]], \
 "Input",ExpressionUUID->"de140152-7981-48ea-b59f-0e3eda26eb66"],
-
-Cell[BoxData[
- RowBox[{"{", "\<\"C:\\\\Users\\\\user\\\\AppData\\\\Roaming\\\\Mathematica\\\
-\\Paclets\\\\Repository\\\\MoreStyles-0.3.0\"\>", 
-  "}"}]], "Output",ExpressionUUID->"0a40c8e8-0947-43f1-86ef-fe50d236a31c"]
-}, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
@@ -48,12 +37,6 @@ Cell[BoxData[
      "\"\<DeveloperPackageDark.nb\>\""}], "}"}], 
    "]"}]}]], "Input",ExpressionUUID->"75674a84-f16a-4a3f-bba6-d270af99d085"],
 
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\\
-DeveloperPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"5a33cfb9-e8a8-4148-940e-2798502cd88a"]
-}, Open  ]],
-
 Cell[BoxData[
  RowBox[{
   RowBox[{"CurrentValue", "[", 
@@ -67,9 +50,9 @@ Cell[BoxData[
   RowBox[{"CurrentValue", "[", 
    RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
    "]"}], "=", 
-  "\"\<DeveloperPackageDark.nb\>\""}]], \
+  "\"\<DevPackageDark.nb\>\""}]], \
 "Input",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -156,115 +139,234 @@ Cell["DevPackageDark", "Section",
 082985cb2aef"],
 
 Cell[BoxData[
+ RowBox[{"Block", "[", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"Internal`$ContextMarks", "=", "True"}], "\[IndentingNewLine]", 
+    "}"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"Export", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", 
+        ",", "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
+        "\"\<DevPackageDark.nb\>\""}], "}"}], "]"}], "\[IndentingNewLine]", 
+     ",", 
+     RowBox[{"DevPackageDark", "[", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]", 
+  "]"}]], "Input",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "@", 
+  "%"}]], "Input",ExpressionUUID->"708e5214-7fee-49e7-99d4-4c18515ef4fe"],
+
+Cell[BoxData[
  RowBox[{
   RowBox[{"Needs", " ", "@", " ", "\"\<DevTools`\>\""}], 
   ";"}]], "Input",ExpressionUUID->"5afede81-adbd-4002-b0a4-4ee64c0be508"],
 
 Cell[BoxData[
- RowBox[{
+ RowBox[{"\n", "\n", 
   RowBox[{
-   RowBox[{"DevPackageDark", "[", "]"}], ":=", 
-   RowBox[{"Notebook", "[", 
-    RowBox[{"{", "\n", "  ", 
+   RowBox[{
+    RowBox[{"DevPackageDark", "[", "]"}], ":=", 
+    RowBox[{"With", "[", 
      RowBox[{
-      RowBox[{"Cell", "[", 
-       RowBox[{"StyleData", "[", 
-        RowBox[{
-        "StyleDefinitions", " ", "->", " ", 
-         "\"\<ReverseColorPackage.nb\>\""}], "]"}], "]"}], "\n", ",", " ", 
-      RowBox[{"Cell", "[", "\n", "    ", 
-       RowBox[{
-        RowBox[{"StyleData", "[", "\"\<Notebook\>\"", "]"}], "\n", "  ", ",", 
-        " ", 
-        RowBox[{"NotebookEventActions", "->", 
-         RowBox[{"{", "\n", "      ", 
+      RowBox[{"{", "\n", "  ", 
+       RowBox[{"updateIcon", " ", "=", " ", 
+        RowBox[{"RawBoxes", "@", 
+         RowBox[{"PaneBox", "[", "\n", "    ", 
           RowBox[{
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"\"\<KeyDown\>\"", ",", " ", "\"\<\\t\>\""}], "}"}], " ",
-             ":>", " ", 
-            RowBox[{"Block", "[", 
-             RowBox[{
-              RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
-              RowBox[{
-               RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
-               RowBox[{"IndentCode", "[", "]"}]}]}], "]"}]}], "\n", "    ", 
-           ",", " ", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Open\>\""}], "}"}],
-             " ", ":>", "  ", 
-            RowBox[{"Block", "[", 
-             RowBox[{
-              RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
-              RowBox[{
-               RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
-               RowBox[{"CodeTemplatesMenuOpen", "[", "]"}]}]}], " ", 
-             "]"}]}]}], "\n", "    ", "}"}]}], "\n", "  ", ",", " ", 
-        RowBox[{"DockedCells", "->", 
-         RowBox[{"{", "\n", "     ", 
-          RowBox[{
-           RowBox[{"Cell", "[", "\n", "       ", 
+           RowBox[{"StyleBox", "[", 
             RowBox[{
-             RowBox[{"BoxData", " ", "@", " ", 
-              RowBox[{"ToBoxes", " ", "@", " ", 
-               RowBox[{"Grid", "[", 
+             RowBox[{"DynamicBox", "[", 
+              RowBox[{"FEPrivate`ImportImage", "[", 
+               RowBox[{"FrontEnd`FileName", "[", 
                 RowBox[{
                  RowBox[{"{", 
-                  RowBox[{"{", "\n", "         ", 
-                   RowBox[{"Button", "[", 
+                  RowBox[{"\"\<Toolbars\>\"", ",", "\"\<Package\>\""}], "}"}],
+                  ",", "\"\<UpdateIcon.png\>\""}], "]"}], "]"}], "]"}], ",", 
+             RowBox[{"Magnification", "\[Rule]", "0.5`"}]}], "]"}], "\n", 
+           "  ", ",", " ", 
+           RowBox[{"BaselinePosition", "\[Rule]", 
+            RowBox[{"Scaled", "[", "0.15`", "]"}]}]}], "\n", "  ", "]"}]}]}], 
+       "\n", "}"}], ",", " ", 
+      RowBox[{"Notebook", "[", 
+       RowBox[{"{", "\n", "  ", 
+        RowBox[{
+         RowBox[{"Cell", "[", 
+          RowBox[{"StyleData", "[", 
+           RowBox[{
+           "StyleDefinitions", " ", "->", " ", 
+            "\"\<ReverseColorPackage.nb\>\""}], "]"}], "]"}], "\n", ",", " ", 
+         RowBox[{"Cell", "[", "\n", "    ", 
+          RowBox[{
+           RowBox[{"StyleData", "[", "\"\<Notebook\>\"", "]"}], "\n", "  ", 
+           ",", " ", 
+           RowBox[{"NotebookEventActions", "->", 
+            RowBox[{"{", "\n", "      ", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\"\<KeyDown\>\"", ",", " ", "\"\<\\t\>\""}], "}"}], 
+               " ", ":>", " ", 
+               RowBox[{"Block", "[", 
+                RowBox[{
+                 RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
+                 RowBox[{
+                  RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
+                  RowBox[{"IndentCode", "[", "]"}]}]}], "]"}]}], "\n", "    ",
+               ",", " ", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Open\>\""}], 
+                "}"}], " ", ":>", "  ", 
+               RowBox[{"Block", "[", 
+                RowBox[{
+                 RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
+                 RowBox[{
+                  RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
+                  RowBox[{"CodeTemplatesMenuOpen", "[", "]"}]}]}], " ", 
+                "]"}]}]}], "\n", "    ", "}"}]}], "\n", "  ", ",", " ", 
+           RowBox[{"DockedCells", "->", 
+            RowBox[{"{", "\n", "     ", 
+             RowBox[{
+              RowBox[{"Cell", "[", "\n", "       ", 
+               RowBox[{
+                RowBox[{"BoxData", " ", "@", " ", 
+                 RowBox[{"ToBoxes", " ", "@", " ", 
+                  RowBox[{"Grid", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"{", "\n", "         ", 
+                    RowBox[{
+                    RowBox[{"Pane", "[", "\n", "           ", 
+                    RowBox[{
+                    RowBox[{"Button", "[", 
                     RowBox[{"\"\<Get @ ThisFile\>\"", ",", " ", 
                     RowBox[{"Get", "[", 
                     RowBox[{"NotebookFileName", "[", "]"}], "]"}], ",", " ", 
                     RowBox[{"Appearance", "\[Rule]", 
-                    RowBox[{"{", "ParentList", "}"}]}]}], " ", "]"}], "\n", 
-                   "       ", "}"}], "}"}], "\n", "       ", ",", " ", 
-                 RowBox[{"BaseStyle", " ", "\[Rule]", " ", 
-                  RowBox[{"ButtonBoxOptions", " ", "\[Rule]", " ", 
-                   RowBox[{"{", "\n", "           ", 
+                    RowBox[{"{", "ParentList", "}"}]}], " ", ",", " ", 
+                    RowBox[{"Method", " ", "->", " ", "\"\<Queued\>\""}]}], 
+                    "]"}], "\n", "         ", ",", " ", "Full"}], "\n", 
+                    "         ", "]"}], "\n", "       ", ",", " ", 
+                    RowBox[{"Button", "[", 
                     RowBox[{
-                    RowBox[{"BaseStyle", " ", "->", " ", 
-                    RowBox[{"GrayLevel", "[", "0.", "]"}]}], "\n", 
+                    RowBox[{"Row", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"updateIcon", ",", " ", "\"\<Highlighting\>\""}], 
+                    "}"}], ",", " ", 
+                    RowBox[{"Spacer", "[", "3", "]"}]}], "]"}], "\n", 
                     "         ", ",", " ", 
-                    RowBox[{"Method", " ", "->", " ", "\"\<Queued\>\""}], 
-                    "\n", "         ", ",", " ", 
+                    RowBox[{"FrontEndExecute", "@", 
+                    RowBox[{
+                    "FrontEnd`Private`GetUpdatedSymbolContexts", "[", "]"}]}],
+                     ",", " ", 
+                    RowBox[{"Appearance", "\[Rule]", 
+                    RowBox[{"{", "ParentList", "}"}]}]}], " ", "\n", 
+                    "         ", "]"}], "  ", "\n", "       ", ",", " ", 
+                    RowBox[{"Button", "[", 
+                    RowBox[{
+                    RowBox[{"Row", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"updateIcon", ",", " ", "\"\<Menus\>\""}], "}"}], 
+                    ",", " ", 
+                    RowBox[{"Spacer", "[", "3", "]"}]}], "]"}], "\n", 
+                    "         ", ",", " ", 
+                    RowBox[{"MathLink`CallFrontEnd", "[", 
+                    RowBox[{"FrontEnd`ResetMenusPacket", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Automatic", ",", "Automatic"}], "}"}], "]"}], 
+                    "]"}], ",", " ", 
+                    RowBox[{"Appearance", "\[Rule]", 
+                    RowBox[{"{", "ParentList", "}"}]}], " ", ",", " ", 
+                    RowBox[{"Method", " ", "->", " ", "\"\<Queued\>\""}]}], 
+                    "\n", "         ", "]"}], "\n", "       ", ",", " ", 
+                    RowBox[{"Button", "[", 
+                    RowBox[{
+                    "\"\<Edit code templates\>\"", "\n", "         ", ",", 
+                    " ", 
+                    RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", "$ContextPath", "}"}], ",", " ", 
+                    RowBox[{
+                    RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", 
+                    " ", 
+                    RowBox[{"CodeTemplatesEdit", "[", "]"}]}]}], " ", "]"}], 
+                    ",", " ", 
+                    RowBox[{"Appearance", "\[Rule]", 
+                    RowBox[{"{", "ParentList", "}"}]}], " ", ",", " ", 
+                    RowBox[{"Method", " ", "->", " ", "\"\<Queued\>\""}]}], 
+                    "\n", "         ", "]"}]}], "\n", "       ", "}"}], "}"}],
+                     "\n", "       ", ",", " ", 
+                    RowBox[{"BaseStyle", " ", "\[Rule]", " ", 
+                    RowBox[{"ButtonBoxOptions", " ", "\[Rule]", " ", 
+                    RowBox[{"{", "\n", "           ", 
+                    RowBox[{
+                    RowBox[{
+                    "BaseStyle", " ", "->", " ", 
+                    "\"\<ControlStyleLightBold\>\""}], "\n", "         ", ",",
+                     " ", 
                     RowBox[{"Appearance", " ", "->", " ", 
                     RowBox[{"FEPrivate`FrontEndResource", "[", 
                     RowBox[{
-                    "\"\<FEExpressions\>\"", ",", " ", 
-                    "\"\<GrayButtonNinePatchAppearance\>\""}], "]"}]}], "\n", 
+                    "\"\<MUnitExpressions\>\"", ",", 
+                    "\"\<ButtonAppearances\>\""}], "]"}]}], "\n", "         ",
+                     ",", " ", 
+                    RowBox[{"FrameMargins", " ", "->", " ", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"10", ",", "10"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], "\n", 
                     "         ", ",", " ", 
-                    RowBox[{"FrameMargins", " ", "->", " ", "5"}], "\n", 
-                    "         ", ",", " ", 
-                    RowBox[{"ImageSize", " ", "->", " ", "All"}]}], "\n", 
+                    RowBox[{"ImageSize", " ", "->", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"Automatic", ",", " ", "28"}], "}"}]}]}], "\n", 
                     "         ", "}"}]}]}]}], "\n", "       ", "]"}]}]}], 
-             "\n", "     ", ",", " ", 
-             RowBox[{"CellFrameMargins", " ", "->", " ", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"{", 
-                 RowBox[{"12", ",", " ", "12"}], "}"}], ",", " ", 
-                RowBox[{"{", 
-                 RowBox[{"5", ",", " ", "5"}], "}"}]}], "}"}]}]}], "\n", 
-            "     ", "]"}], "\n", "   ", ",", " ", "Inherited"}], "\n", "   ",
-           "}"}]}]}], "\n", " ", "]"}]}], " ", "\n", "}"}], "]"}]}], 
-  ";"}]], "Code",ExpressionUUID->"cf157824-3cc3-454a-bf90-978fe67c5168"],
+                "\n", "     ", ",", " ", "\"\<DockedCell\>\"", ",", " ", 
+                RowBox[{"CellFrameMargins", "\[Rule]", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"12", ",", "12"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"10", ",", "10"}], "}"}]}], "}"}]}]}], 
+               RowBox[{"(*", 
+                RowBox[{"CellFrameMargins", " ", "->", " ", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"12", ",", " ", "12"}], "}"}], ",", " ", 
+                   RowBox[{"{", 
+                    RowBox[{"5", ",", " ", "5"}], "}"}]}], "}"}]}], "*)"}], 
+               "\n", "     ", "]"}], "\n", "   ", ",", " ", "Inherited"}], 
+             "\n", "   ", "}"}]}]}], "\n", " ", "]"}]}], " ", "\n", "}"}], 
+       "]"}]}], "]"}]}], 
+   ";"}]}]], "Code",ExpressionUUID->"cf157824-3cc3-454a-bf90-978fe67c5168"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"CreateDocument", "[", 
-  RowBox[{"\"\<test\>\"", ",", 
+  RowBox[{
+   RowBox[{"Defer", "@", 
+    RowBox[{"CurrentValue", "@", "DockedCells"}]}], ",", 
    RowBox[{"StyleDefinitions", "\[Rule]", 
     RowBox[{"DevPackageDark", "[", "]"}]}]}], 
   "]"}]], "Input",ExpressionUUID->"b349bffb-e4e1-4bb3-803d-ac64897b3e56"],
 
 Cell[BoxData[
  TemplateBox[{FrontEndObject[
-    LinkObject["mvsmz_shm", 3, 1]],45,
-   "FrontEndObject[LinkObject[\"mvsmz_shm\", 3, 1]]","45","\"Untitled-5\""},
+    LinkObject["zx48g_shm", 3, 1]],176,
+   "FrontEndObject[LinkObject[\"zx48g_shm\", 3, 1]]","176","\"Untitled-40\""},
   "NotebookObjectUnsaved"]], \
-"Output",ExpressionUUID->"5f483e35-1e0d-4142-bbf3-f2bf186752e7"]
+"Output",ExpressionUUID->"24f2ab5c-a9d2-44e5-9f93-83300f2419cf"]
 }, Open  ]]
 }, Open  ]]
 },

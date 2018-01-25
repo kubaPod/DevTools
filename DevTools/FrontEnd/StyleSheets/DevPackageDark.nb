@@ -1,0 +1,103 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3551,         94]
+NotebookOptionsPosition[      3172,         82]
+NotebookOutlinePosition[      3444,         95]
+CellTagsIndexPosition[      3401,         92]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[StyleData[StyleDefinitions -> "ReverseColorPackage.nb"]],
+
+Cell[StyleData["Notebook"],
+ NotebookEventActions->{{"KeyDown", "\t"} :> 
+   Block[{$ContextPath}, Needs["DevTools`"]; DevTools`IndentCode[]], {
+    "MenuCommand", "Open"} :> 
+   Block[{$ContextPath}, Needs["DevTools`"]; 
+     DevTools`CodeTemplatesMenuOpen[]]},
+ DockedCells->{
+   Cell[
+    BoxData[
+     TagBox[
+      GridBox[{{
+         PaneBox[
+          ButtonBox["\"Get @ ThisFile\"", ButtonFunction :> Get[
+             NotebookFileName[]], Appearance -> {ParentList}, Method -> 
+           "Queued", Evaluator -> Automatic], ImageSize -> Full], 
+         ButtonBox[
+          TemplateBox[{
+            TemplateBox[{3}, "Spacer1"], 
+            PaneBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`ImportImage[
+                
+                FrontEnd`FileName[{"Toolbars", "Package"}, 
+                 "UpdateIcon.png"]]], Magnification -> 0.5], BaselinePosition -> 
+             Scaled[0.15]], "\"Highlighting\""}, "RowWithSeparator"], 
+          ButtonFunction :> FrontEndExecute[
+            FrontEnd`Private`GetUpdatedSymbolContexts[]], 
+          Appearance -> {ParentList}, Evaluator -> Automatic, Method -> 
+          "Preemptive"], 
+         ButtonBox[
+          TemplateBox[{
+            TemplateBox[{3}, "Spacer1"], 
+            PaneBox[
+             StyleBox[
+              DynamicBox[
+               FEPrivate`ImportImage[
+                
+                FrontEnd`FileName[{"Toolbars", "Package"}, 
+                 "UpdateIcon.png"]]], Magnification -> 0.5], BaselinePosition -> 
+             Scaled[0.15]], "\"Menus\""}, "RowWithSeparator"], ButtonFunction :> 
+          MathLink`CallFrontEnd[
+            FrontEnd`ResetMenusPacket[{Automatic, Automatic}]], 
+          Appearance -> {ParentList}, Method -> "Queued", Evaluator -> 
+          Automatic], 
+         ButtonBox[
+         "\"Edit code templates\"", ButtonFunction :> 
+          Block[{$ContextPath}, Needs["DevTools`"]; 
+            DevTools`CodeTemplatesEdit[]], Appearance -> {ParentList}, Method -> 
+          "Queued", Evaluator -> Automatic]}}, AutoDelete -> False, 
+       GridBoxItemSize -> {
+        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+       BaseStyle -> (
+        ButtonBoxOptions -> {
+         BaseStyle -> "ControlStyleLightBold", Appearance -> 
+          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
+           FrameMargins -> {{10, 10}, {0, 0}}, 
+          ImageSize -> {Automatic, 28}})], "Grid"]], "DockedCell", 
+    CellFrameMargins -> {{12, 12}, {10, 10}}], Inherited}]
+},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 61, 0, 70, 61, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"361fae44-71ab-4417-88fb-132926ed46bd"],
+Cell[622, 22, 2546, 58, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"33aa913a-9f14-4bfb-b581-6cbd4d682c33"]
+}
+]
+*)
+
+(* End of internal cache information *)

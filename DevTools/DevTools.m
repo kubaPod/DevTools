@@ -69,7 +69,7 @@ IndentCode[tab_String:"  "]:= With[
 ];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*CodeTemplates*)
 
 
@@ -117,7 +117,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*$codeTemplates*)
 
 
@@ -131,7 +131,7 @@ StringWrapCommentFrame[str_String]:=Module[
         , "`sel` // Options = {};"
         , "`sel` // Attributes = {};"
         , "`sel`[]:=Module[
-  {tag = SymbolName[Unevaluated[`sel`]]}
+  {tag = \"`sel`\"}
 , Catch[
     Check[
       code
