@@ -117,7 +117,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*$codeTemplates*)
 
 
@@ -401,7 +401,7 @@ ToProperTemplate[ template:$minimalTemplatePattern]:= Module[
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*apply*)
 
 
@@ -424,10 +424,18 @@ ToProperTemplate[ template:$minimalTemplatePattern]:= Module[
     , _String
     , NotebookWrite[
         notebook
-      , StringTemplate[codeTemplate @ "Template" ] @  <|"sel"-> NotebookRead @ notebook|>
+      , StringTemplate[codeTemplate @ "Template" ] @  <|
+          "sel"-> selectionToString[notebook]
+        |>
       ]
     ]
   ];
+
+
+selectionToString[nb_NotebookObject]:=First @ FrontEndExecute @ FrontEnd`ExportPacket[
+  BoxData @ NotebookRead @ nb
+, "PlainText"
+];
 
 
 (* ::Subsection::Closed:: *)
