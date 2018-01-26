@@ -95,8 +95,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"8741a577-2270-49d8-8ec9-cd76d8a8acc1"],
-Cell[658, 23, 2570, 58, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"33d334b7-a984-4625-9cd2-ce2c32ddb421"]
+Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"a2eb0d17-d27e-4c0c-ab8e-a7032f96cc8d"],
+Cell[658, 23, 2570, 58, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"8c6322c5-eba4-4bfa-81be-3e0e9bc82667"]
 }
 ]
 *)

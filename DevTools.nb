@@ -1,27 +1,26 @@
 Notebook[{
 
 Cell[CellGroupData[{
-Cell[BoxData[
- RowBox[{"PacletDirectoryAdd", "@", 
-  RowBox[{
-  "NotebookDirectory", "[", 
-   "]"}]}]], "Input",ExpressionUUID->"c1c1d341-4773-4df0-ac0a-d788322042f0"],
-
-Cell[BoxData[
- RowBox[{"{", "\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\\"\>", 
-  "}"}]], "Output",ExpressionUUID->"1b414b39-8e96-49e7-8b9d-9e5791e1ce3a"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
 Cell["test", \
 "Subsubsection",ExpressionUUID->"c37b4342-abe7-4c9a-abab-9cc1ba45b03f"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "@", 
+  "\"\<PacletManager`\>\""}]], \
+"Input",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{
   "NotebookDirectory", "[", 
    "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", 
+  "}"}]], "Output",ExpressionUUID->"13da633b-3e1a-40e2-a6e9-182ca43ff592"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"\"\<Location\>\"", "/.", 
@@ -79,8 +78,8 @@ Cell[BoxData[
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
 Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools-0.5.0.paclet\"\>"], \
-"Output",ExpressionUUID->"5fe54849-67e9-4dbb-86eb-706ba2c7cb83"]
+Projects\\\\DevTools\\\\DevTools-0.5.5.paclet\"\>"], \
+"Output",ExpressionUUID->"3e62f86c-cef0-4efd-bbc0-6324178cbbb5"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -93,7 +92,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", 
-  "}"}]], "Output",ExpressionUUID->"47de7bfe-58b5-4f8d-9004-21f6b5565141"]
+  "}"}]], "Output",ExpressionUUID->"fbec6c4e-54b3-4946-bb37-19ee3ae491d8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -110,23 +109,21 @@ Cell[BoxData[
 Cell[BoxData[
  InterpretationBox[
   RowBox[{
-  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.0\"\>", ",", "<>", "]"}],
+  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.5\"\>", ",", "<>", "]"}],
   PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.5.0", "MathematicaVersion" -> "11+", 
+  "Name" -> "DevTools", "Version" -> "0.5.5", "MathematicaVersion" -> "11+", 
    "Description" -> "DevTools", "Creator" -> 
    "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
    "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
    "Location" -> 
    "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-DevTools-0.5.0"]]], \
-"Output",ExpressionUUID->"d03b3386-4dae-490d-bd43-6cdda6e835b1"]
+DevTools-0.5.5"]]], \
+"Output",ExpressionUUID->"577013db-ce5c-4544-bf8f-f51765263d0f"]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{"RestartPacletManager", "[", 
   "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
@@ -136,14 +133,7 @@ Cell[BoxData[
   RowBox[{"FrontEnd`FileName", "[", 
    RowBox[{"{", 
     RowBox[{"\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], 
-   "]"}]}]], "Input",ExpressionUUID->"1ef8b851-6a0b-445d-91a6-f79e8a4bae03"],
-
-Cell[BoxData[
- RowBox[{"FrontEnd`FileName", "[", 
-  RowBox[{"{", 
-   RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackageDark.nb\"\>"}], "}"}], 
-  "]"}]], "Output",ExpressionUUID->"64830920-e78d-4845-85a2-0bcbf5001c96"]
-}, Open  ]]
+   "]"}]}]], "Input",ExpressionUUID->"1ef8b851-6a0b-445d-91a6-f79e8a4bae03"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -231,7 +221,7 @@ Cell[BoxData[
 Cell[BoxData["\<\"E:\\\\Idea \
 Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
 DevPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"b7ee2dfc-615c-432b-8425-f799bbd35901"]
+"Output",ExpressionUUID->"956e8172-dc58-4454-aaf1-88829ed95a98"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -443,8 +433,8 @@ Cell[BoxData[
   "]"}]], "Input",ExpressionUUID->"b349bffb-e4e1-4bb3-803d-ac64897b3e56"]
 }, Open  ]]
 },
-WindowSize->{1085, 1022},
-WindowMargins->{{240, Automatic}, {Automatic, 0}},
+WindowSize->{1085, 932},
+WindowMargins->{{323, Automatic}, {4, Automatic}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
 FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",

@@ -99,8 +99,14 @@ template :
 (*misc*)
 
 
-$userTemplatesPath = FileNameJoin[{$UserBaseDirectory, "DevTools", "codeTemplates.m"}];
-$templatesCachePath = FileNameJoin[{$UserBaseDirectory, "DevTools", "codeTemplatesCache.mx"}];
+$userTemplatesPath = FileNameJoin[
+  {$UserBaseDirectory, "ApplicationData", "DevTools", "codeTemplates.m"}
+];
+
+$templatesCachePath = FileNameJoin[
+  {$UserBaseDirectory, "ApplicationData", "DevTools", ToString[$VersionNumber], "codeTemplatesCache.mx"}
+];
+
 $minimalTemplatePattern = _?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
 
 
