@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      3599,         95]
-NotebookOptionsPosition[      3220,         83]
-NotebookOutlinePosition[      3492,         96]
-CellTagsIndexPosition[      3449,         93]
+NotebookDataLength[      3611,         95]
+NotebookOptionsPosition[      3232,         83]
+NotebookOutlinePosition[      3504,         96]
+CellTagsIndexPosition[      3461,         93]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,7 +24,7 @@ Cell[StyleData[StyleDefinitions -> FrontEnd`FileName[{
 Cell[StyleData["Notebook"],
  NotebookEventActions->{{"KeyDown", "\t"} :> 
    Block[{$ContextPath}, Needs["DevTools`"]; DevTools`IndentCode[]], {
-    "MenuCommand", "Open"} :> 
+    "MenuCommand", "InsertNewGraphic"} :> 
    Block[{$ContextPath}, Needs["DevTools`"]; 
      DevTools`CodeTemplatesMenuOpen[]], ParentList},
  DockedCells->{
@@ -95,8 +95,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"4cf82c28-7945-494b-82a9-994016520ddb"],
-Cell[658, 23, 2558, 58, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"d10faa8e-8444-4077-8d87-89ec973180c3"]
+Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"8741a577-2270-49d8-8ec9-cd76d8a8acc1"],
+Cell[658, 23, 2570, 58, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"33d334b7-a984-4625-9cd2-ce2c32ddb421"]
 }
 ]
 *)

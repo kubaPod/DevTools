@@ -231,7 +231,7 @@ Cell[BoxData[
 Cell[BoxData["\<\"E:\\\\Idea \
 Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
 DevPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"fcaae422-3906-4115-b80b-d67c495d43cf"]
+"Output",ExpressionUUID->"b7ee2dfc-615c-432b-8425-f799bbd35901"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -301,8 +301,9 @@ Cell[BoxData[
                ",", " ", 
               RowBox[{
                RowBox[{"{", 
-                RowBox[{"\"\<MenuCommand\>\"", ",", " ", "\"\<Open\>\""}], 
-                "}"}], " ", ":>", "  ", 
+                RowBox[{
+                "\"\<MenuCommand\>\"", ",", " ", "\"\<InsertNewGraphic\>\""}],
+                 "}"}], " ", ":>", "  ", 
                RowBox[{"Block", "[", 
                 RowBox[{
                  RowBox[{"{", "$ContextPath", "}"}], ",", " ", 

@@ -117,7 +117,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*$codeTemplates*)
 
 
@@ -428,6 +428,7 @@ ToProperTemplate[ template:$minimalTemplatePattern]:= Module[
           "sel"-> selectionToString[notebook]
         |>
       ]
+      
     ]
   ];
 
