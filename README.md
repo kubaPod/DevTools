@@ -9,18 +9,7 @@
   Templates menu can be open with <kbd>Ctrl</kbd> + <kbd>O</kbd> shortkey.
 
 ![Alt text](Dev/CodeTemplates.gif?raw=true "Title")
-
-
-
-    CurrentValue[
-        $FrontEnd, "DefaultPackageStyleDefinitions"
-    ] = "DeveloperPackageDark.nb"
-
-but if you want the default on back:
-
-    CurrentValue[
-            $FrontEnd, "DefaultPackageStyleDefinitions"
-    ] = "Package.nb"
+    
 
 ### Installation
 
@@ -40,5 +29,40 @@ but if you want the default on back:
   
   ``Needs @ "MPM`"``
    
-  ``MPM`MPMInstall["kubapod", "morestyles"]``
+  ``MPM`MPMInstall["kubapod", "devtools"]``
+  
+### Setup dark stylesheet with code templates
+  
+In order to use the stylesheet as a default one for .m/.wl files, run:
+   
+    CurrentValue[$FrontEnd, "DefaultPackageStyleDefinitions"
+    ] = FrontEnd`FileName[{"DevTools", "DevPackageDark.nb"}]
+      
+And if you don't like it:
+
+    CurrentValue[$FrontEnd, "DefaultPackageStyleDefinitions"
+    ] = "Package.nb"
+    
+### I don't like dark styles but I do like code templates
+    
+Alternatively, if you don't want to use dark styles but code templates you can install ``Shortcuts` `` package and modify the joker.m file. Here's what you have to do:
+    
+- install ``Shortcuts` `` ([mathematica.se.com thread](https://mathematica.stackexchange.com/q/68864/5478))
+    
+      Get["http://www.mertig.com/shortcuts.m"]
+      
+- open `joker.m` <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>
+
+- comment everything and put this snippet at the bottom:
+
+      Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesMenuOpen[] ]
+      
+- save, close and the menu should open on <kbd>Ctrl</kbd>+<kbd>t</kbd>
+
+- to edit user templates run
+
+      Needs["DevTools`"]; CodeTemplatesEdit[]
+
+
+ 
  
