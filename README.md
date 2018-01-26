@@ -7,6 +7,27 @@
 - Code templates
  
   Templates menu can be open with <kbd>Ctrl</kbd> + <kbd>O</kbd> shortkey.
+  
+- Custom code templates
+
+  Hit 'Edit code templates' and add custom entries in opened file.
+  
+      <| "Template" -> _String | _RowBox (*the only one which is reqiired*)
+       , "Label" -> _
+       , "Shortkey" -> _?(StringMatchQ[Character])
+       , "ExpandSelection" -> _boole:True
+       , "Preview" -> _ : None
+      |>
+      
+  - Template
+    - `_RowBox` : whatever PasteButton can handle it should too
+    - `_String` : StringTemplate syntax with `` `sel` `` as a placeholder for a selection data. This needs to be polished as it assumes the selection will be a single token, not a BoxForm.  
+    
+  - Label, menu item label, is optional but for longer templates it is encouraged.
+  - Shortkey, optional, with opened menu it will automatically launch associated template
+  - ExpandSelection: whether to expand selection if nothing is selected
+  - Preview should be automatically generated form "Template" (unless Template was used as a Label). You can use whatever you want as a preview though.
+  
 
 ![Alt text](Dev/CodeTemplates.gif?raw=true "Title")
     
