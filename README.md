@@ -1,11 +1,14 @@
 ### What's there?
 
-Dark stylesheet:
+- A dark stylesheet with code templates menu.
 
-It is based on a built-in ReverseColor.nb but adapted a little for .m .wl files. 
+  It is based on a built-in ReverseColor.nb but adapted a little for .m .wl files. 
 
+- Code templates
+ 
+  Templates menu can be open with <kbd>Ctrl</kbd> + <kbd>O</kbd> shortkey.
 
-![Imgur](http://i.imgur.com/tJLjerWm.png)
+![Alt text](Dev/CodeTemplates.gif?raw=true "Title")
 
 
 
