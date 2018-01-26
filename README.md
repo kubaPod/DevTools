@@ -1,3 +1,5 @@
+(*please consider it beta before it hits 1.0.0*)
+
 ### What's there?
 
 - A dark stylesheet with code templates menu.
