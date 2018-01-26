@@ -1,9 +1,16 @@
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{
   "NotebookDirectory", "[", 
    "]"}]}]], "Input",ExpressionUUID->"c1c1d341-4773-4df0-ac0a-d788322042f0"],
+
+Cell[BoxData[
+ RowBox[{"{", "\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\\"\>", 
+  "}"}]], "Output",ExpressionUUID->"1b414b39-8e96-49e7-8b9d-9e5791e1ce3a"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -57,7 +64,9 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell["release", \
-"Subsubsection",ExpressionUUID->"8627bb23-b02f-458f-915d-48616c414809"],
+"Section",ExpressionUUID->"8627bb23-b02f-458f-915d-48616c414809"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"path", "=", 
@@ -65,23 +74,82 @@ Cell[BoxData[
    RowBox[{"FileNameJoin", "[", 
     RowBox[{"{", 
      RowBox[{
-      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<MoreStyles\>\""}], 
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\""}], 
      "}"}], "]"}]}]}]], \
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools-\
+0.4.0.paclet\"\>"], \
+"Output",ExpressionUUID->"99f9523d-4bdb-4dd6-a339-9bb4f819e6b1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletUninstall", "/@", 
   RowBox[{
-  "PacletFind", "[", "\"\<MoreStyles\>\"", 
+  "PacletFind", "[", "\"\<DevTools\>\"", 
    "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
+
+Cell[BoxData[
+ RowBox[{"{", "Null", 
+  "}"}]], "Output",ExpressionUUID->"266ea84b-d229-40a4-a1bc-5455df7c99c7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["local install test", \
+"Subsection",ExpressionUUID->"60a92c7e-84c6-46fb-b6c5-a8263ee21fc6"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletInstall", "@", 
   "path"}]], "Input",ExpressionUUID->"796c29a9-7abc-4e2a-9b3b-0cd04bfb6433"],
 
 Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.4.0\"\>", ",", "<>", "]"}],
+  PacletManager`Paclet[
+  "Name" -> "DevTools", "Version" -> "0.4.0", "MathematicaVersion" -> "10+", 
+   "Description" -> "DevTools", "Creator" -> 
+   "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
+   "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
+   "Location" -> 
+   "C:\\Users\\Kuba\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
+DevTools-0.4.0"]]], \
+"Output",ExpressionUUID->"0d635ff3-fe68-48f4-bdd7-f55d5e0ec2db"]
+}, Open  ]],
+
+Cell[BoxData[
  RowBox[{"RestartPacletManager", "[", 
   "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CurrentValue", "[", 
+   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
+   "]"}], "=", 
+  RowBox[{"FrontEnd`FileName", "[", 
+   RowBox[{"{", 
+    RowBox[{"\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], 
+   "]"}]}]], "Input",ExpressionUUID->"1ef8b851-6a0b-445d-91a6-f79e8a4bae03"],
+
+Cell[BoxData[
+ RowBox[{"FrontEnd`FileName", "[", 
+  RowBox[{"{", 
+   RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackageDark.nb\"\>"}], "}"}], 
+  "]"}]], "Output",ExpressionUUID->"c2aba769-3f06-4f20-9e88-872dd510cde1"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["mpm install test", \
+"Subsection",ExpressionUUID->"637ea051-b54d-4fd1-9d7d-418af5dc96fb"],
 
 Cell[BoxData[
  RowBox[{"<<", 
@@ -129,7 +197,8 @@ Cell[BoxData[
  RowBox[{"Import", "[", 
   "\"\<https://raw.githubusercontent.com/kubapod/mpm/master/install.m\>\"", 
   "]"}]], "Input",ExpressionUUID->"c21942c5-91e6-4426-a70e-7f34bc7f931b"]
-}, Closed]],
+}, Closed]]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -137,6 +206,8 @@ Cell["DevPackageDark", "Section",
  CellChangeTimes->{{3.725905432931215*^9, 
   3.725905439579215*^9}},ExpressionUUID->"3c1ed785-d1e1-4108-aba0-\
 082985cb2aef"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Block", "[", 
@@ -151,11 +222,16 @@ Cell[BoxData[
        RowBox[{
         RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", 
         ",", "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
-        "\"\<DevPackageDark.nb\>\""}], "}"}], "]"}], "\[IndentingNewLine]", 
-     ",", 
+        "\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], "]"}], 
+     "\[IndentingNewLine]", ",", 
      RowBox[{"DevPackageDark", "[", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]", 
   "]"}]], "Input",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools\
+\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\DevPackageDark.nb\"\>"], \
+"Output",ExpressionUUID->"78767b5a-67ea-499f-89e4-da0ae05e9835"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"SystemOpen", "@", 
@@ -197,9 +273,13 @@ Cell[BoxData[
         RowBox[{
          RowBox[{"Cell", "[", 
           RowBox[{"StyleData", "[", 
-           RowBox[{
-           "StyleDefinitions", " ", "->", " ", 
-            "\"\<ReverseColorPackage.nb\>\""}], "]"}], "]"}], "\n", ",", " ", 
+           RowBox[{"StyleDefinitions", " ", "->", " ", 
+            RowBox[{"FrontEnd`FileName", "[", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<DevTools\>\"", ",", " ", 
+               "\"\<ReverseColorPackage.nb\>\""}], "}"}], "]"}]}], "]"}], 
+          "]"}], "\n", ",", " ", 
          RowBox[{"Cell", "[", "\n", "    ", 
           RowBox[{
            RowBox[{"StyleData", "[", "\"\<Notebook\>\"", "]"}], "\n", "  ", 
@@ -350,8 +430,6 @@ Cell[BoxData[
        "]"}]}], "]"}]}], 
    ";"}]}]], "Code",ExpressionUUID->"cf157824-3cc3-454a-bf90-978fe67c5168"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"CreateDocument", "[", 
   RowBox[{
@@ -359,22 +437,14 @@ Cell[BoxData[
     RowBox[{"CurrentValue", "@", "DockedCells"}]}], ",", 
    RowBox[{"StyleDefinitions", "\[Rule]", 
     RowBox[{"DevPackageDark", "[", "]"}]}]}], 
-  "]"}]], "Input",ExpressionUUID->"b349bffb-e4e1-4bb3-803d-ac64897b3e56"],
-
-Cell[BoxData[
- TemplateBox[{FrontEndObject[
-    LinkObject["zx48g_shm", 3, 1]],176,
-   "FrontEndObject[LinkObject[\"zx48g_shm\", 3, 1]]","176","\"Untitled-40\""},
-  "NotebookObjectUnsaved"]], \
-"Output",ExpressionUUID->"24f2ab5c-a9d2-44e5-9f93-83300f2419cf"]
-}, Open  ]]
+  "]"}]], "Input",ExpressionUUID->"b349bffb-e4e1-4bb3-803d-ac64897b3e56"]
 }, Open  ]]
 },
-WindowSize->{1085, 653},
-WindowMargins->{{258, Automatic}, {133, Automatic}},
+WindowSize->{1085, 932},
+WindowMargins->{{703, Automatic}, {Automatic, 162}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (July 29, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 
