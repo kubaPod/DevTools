@@ -78,9 +78,9 @@ Cell[BoxData[
      "}"}], "]"}]}]}]], \
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
-Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools-\
-0.5.0.paclet\"\>"], \
-"Output",ExpressionUUID->"7bf43380-08c2-4865-83a9-7f3462ec4b39"]
+Cell[BoxData["\<\"E:\\\\Idea \
+Projects\\\\DevTools\\\\DevTools-0.5.0.paclet\"\>"], \
+"Output",ExpressionUUID->"5fe54849-67e9-4dbb-86eb-706ba2c7cb83"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -92,8 +92,8 @@ Cell[BoxData[
    "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
 
 Cell[BoxData[
- RowBox[{"{", "Null", 
-  "}"}]], "Output",ExpressionUUID->"fff7db8e-2237-4138-9e04-888f89bdc8df"]
+ RowBox[{"{", 
+  "}"}]], "Output",ExpressionUUID->"47de7bfe-58b5-4f8d-9004-21f6b5565141"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -112,14 +112,14 @@ Cell[BoxData[
   RowBox[{
   "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.0\"\>", ",", "<>", "]"}],
   PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.5.0", "MathematicaVersion" -> "10+", 
+  "Name" -> "DevTools", "Version" -> "0.5.0", "MathematicaVersion" -> "11+", 
    "Description" -> "DevTools", "Creator" -> 
    "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
    "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
    "Location" -> 
-   "C:\\Users\\Kuba\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
+   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
 DevTools-0.5.0"]]], \
-"Output",ExpressionUUID->"80efb60d-dbac-45dc-9ce9-f6fddda8d896"]
+"Output",ExpressionUUID->"d03b3386-4dae-490d-bd43-6cdda6e835b1"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -142,7 +142,7 @@ Cell[BoxData[
  RowBox[{"FrontEnd`FileName", "[", 
   RowBox[{"{", 
    RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackageDark.nb\"\>"}], "}"}], 
-  "]"}]], "Output",ExpressionUUID->"8c85fe4e-eb76-409b-ac18-151f32ffe769"]
+  "]"}]], "Output",ExpressionUUID->"64830920-e78d-4845-85a2-0bcbf5001c96"]
 }, Open  ]]
 }, Open  ]],
 
@@ -228,9 +228,10 @@ Cell[BoxData[
   "\[IndentingNewLine]", 
   "]"}]], "Input",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
 
-Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools\
-\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\DevPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"78767b5a-67ea-499f-89e4-da0ae05e9835"]
+Cell[BoxData["\<\"E:\\\\Idea \
+Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
+DevPackageDark.nb\"\>"], \
+"Output",ExpressionUUID->"fcaae422-3906-4115-b80b-d67c495d43cf"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -308,7 +309,8 @@ Cell[BoxData[
                  RowBox[{
                   RowBox[{"Needs", "[", "\"\<DevTools`\>\"", "]"}], ";", " ", 
                   RowBox[{"CodeTemplatesMenuOpen", "[", "]"}]}]}], " ", 
-                "]"}]}]}], "\n", "    ", "}"}]}], "\n", "  ", ",", " ", 
+                "]"}]}], "\n", "    ", ",", " ", "ParentList"}], "\n", "    ",
+              "}"}]}], "\n", "  ", ",", " ", 
            RowBox[{"DockedCells", "->", 
             RowBox[{"{", "\n", "     ", 
              RowBox[{
@@ -440,11 +442,11 @@ Cell[BoxData[
   "]"}]], "Input",ExpressionUUID->"b349bffb-e4e1-4bb3-803d-ac64897b3e56"]
 }, Open  ]]
 },
-WindowSize->{1085, 932},
-WindowMargins->{{703, Automatic}, {Automatic, 162}},
+WindowSize->{1085, 1022},
+WindowMargins->{{240, Automatic}, {Automatic, 0}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (July 29, 2017)",
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 
