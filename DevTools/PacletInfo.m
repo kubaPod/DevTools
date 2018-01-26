@@ -3,7 +3,7 @@
 
 Paclet[
     Name -> "DevTools",
-    Version -> "0.5.2",
+    Version -> "0.5.4",
     MathematicaVersion -> "11+",
     Description -> "DevTools",
     Creator -> "
