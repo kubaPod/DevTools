@@ -79,8 +79,8 @@ Cell[BoxData[
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
 Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools-\
-0.4.0.paclet\"\>"], \
-"Output",ExpressionUUID->"99f9523d-4bdb-4dd6-a339-9bb4f819e6b1"]
+0.5.0.paclet\"\>"], \
+"Output",ExpressionUUID->"7bf43380-08c2-4865-83a9-7f3462ec4b39"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -93,7 +93,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", "Null", 
-  "}"}]], "Output",ExpressionUUID->"266ea84b-d229-40a4-a1bc-5455df7c99c7"]
+  "}"}]], "Output",ExpressionUUID->"fff7db8e-2237-4138-9e04-888f89bdc8df"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -110,16 +110,16 @@ Cell[BoxData[
 Cell[BoxData[
  InterpretationBox[
   RowBox[{
-  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.4.0\"\>", ",", "<>", "]"}],
+  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.0\"\>", ",", "<>", "]"}],
   PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.4.0", "MathematicaVersion" -> "10+", 
+  "Name" -> "DevTools", "Version" -> "0.5.0", "MathematicaVersion" -> "10+", 
    "Description" -> "DevTools", "Creator" -> 
    "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
    "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
    "Location" -> 
    "C:\\Users\\Kuba\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-DevTools-0.4.0"]]], \
-"Output",ExpressionUUID->"0d635ff3-fe68-48f4-bdd7-f55d5e0ec2db"]
+DevTools-0.5.0"]]], \
+"Output",ExpressionUUID->"80efb60d-dbac-45dc-9ce9-f6fddda8d896"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -142,7 +142,7 @@ Cell[BoxData[
  RowBox[{"FrontEnd`FileName", "[", 
   RowBox[{"{", 
    RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackageDark.nb\"\>"}], "}"}], 
-  "]"}]], "Output",ExpressionUUID->"c2aba769-3f06-4f20-9e88-872dd510cde1"]
+  "]"}]], "Output",ExpressionUUID->"8c85fe4e-eb76-409b-ac18-151f32ffe769"]
 }, Open  ]]
 }, Open  ]],
 
