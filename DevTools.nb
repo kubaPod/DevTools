@@ -19,7 +19,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", 
-  "}"}]], "Output",ExpressionUUID->"13da633b-3e1a-40e2-a6e9-182ca43ff592"]
+  "}"}]], "Output",ExpressionUUID->"839f9a55-2015-4130-b7c3-194cd0834e08"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -205,23 +205,41 @@ Cell[BoxData[
    RowBox[{"{", "\[IndentingNewLine]", 
     RowBox[{"Internal`$ContextMarks", "=", "True"}], "\[IndentingNewLine]", 
     "}"}], "\[IndentingNewLine]", ",", 
-   RowBox[{"Export", "[", "\[IndentingNewLine]", 
+   RowBox[{"{", 
     RowBox[{
-     RowBox[{"FileNameJoin", "[", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", 
-        ",", "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
-        "\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], "]"}], 
-     "\[IndentingNewLine]", ",", 
-     RowBox[{"DevPackageDark", "[", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]", 
+     RowBox[{"Export", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", 
+          ",", "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
+          "\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], 
+        "]"}], "\[IndentingNewLine]", ",", 
+       RowBox[{"DevPackage", "[", "True", "]"}]}], "\[IndentingNewLine]", 
+      "]"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+     RowBox[{"Export", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", 
+          ",", "\"\<FrontEnd\>\"", ",", "\"\<StyleSheets\>\"", ",", 
+          "\"\<DevTools\>\"", ",", "\"\<DevPackage.nb\>\""}], "}"}], "]"}], 
+       "\[IndentingNewLine]", ",", 
+       RowBox[{"DevPackage", "[", "False", "]"}]}], "\[IndentingNewLine]", 
+      "]"}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
   "]"}]], "Input",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
 
-Cell[BoxData["\<\"E:\\\\Idea \
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"E:\\\\Idea \
 Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
-DevPackageDark.nb\"\>"], \
-"Output",ExpressionUUID->"956e8172-dc58-4454-aaf1-88829ed95a98"]
+DevPackageDark.nb\"\>", 
+   ",", "\<\"E:\\\\Idea \
+Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
+DevPackage.nb\"\>"}], 
+  "}"}]], "Output",ExpressionUUID->"24daa8a2-c470-4d47-b3d9-6f18df5d0fc9"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -237,7 +255,8 @@ Cell[BoxData[
  RowBox[{"\n", "\n", 
   RowBox[{
    RowBox[{
-    RowBox[{"DevPackageDark", "[", "]"}], ":=", 
+    RowBox[{"DevPackage", "[", 
+     RowBox[{"dark", ":", "_", ":", "False"}], "]"}], ":=", 
     RowBox[{"With", "[", 
      RowBox[{
       RowBox[{"{", "\n", "  ", 
@@ -265,12 +284,15 @@ Cell[BoxData[
          RowBox[{"Cell", "[", 
           RowBox[{"StyleData", "[", 
            RowBox[{"StyleDefinitions", " ", "->", " ", 
-            RowBox[{"FrontEnd`FileName", "[", 
-             RowBox[{"{", 
-              RowBox[{
-              "\"\<DevTools\>\"", ",", " ", 
-               "\"\<ReverseColorPackage.nb\>\""}], "}"}], "]"}]}], "]"}], 
-          "]"}], "\n", ",", " ", 
+            RowBox[{"If", "[", 
+             RowBox[{"dark", ",", 
+              RowBox[{"FrontEnd`FileName", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                "\"\<DevTools\>\"", ",", " ", 
+                 "\"\<ReverseColorPackage.nb\>\""}], "}"}], "]"}], ",", 
+              "\"\<Package.nb\>\""}], " ", "]"}]}], "]"}], "]"}], "\n", ",", 
+         " ", 
          RowBox[{"Cell", "[", "\n", "    ", 
           RowBox[{
            RowBox[{"StyleData", "[", "\"\<Notebook\>\"", "]"}], "\n", "  ", 
