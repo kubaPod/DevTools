@@ -9,18 +9,11 @@ Cell[BoxData[
   "\"\<PacletManager`\>\""}]], \
 "Input",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{
   "NotebookDirectory", "[", 
    "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
-
-Cell[BoxData[
- RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", 
-  "}"}]], "Output",ExpressionUUID->"839f9a55-2015-4130-b7c3-194cd0834e08"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"\"\<Location\>\"", "/.", 
@@ -78,8 +71,8 @@ Cell[BoxData[
 "Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
 Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools-0.5.5.paclet\"\>"], \
-"Output",ExpressionUUID->"3e62f86c-cef0-4efd-bbc0-6324178cbbb5"]
+Projects\\\\DevTools\\\\DevTools-0.5.6.paclet\"\>"], \
+"Output",ExpressionUUID->"c6fda673-79d8-4493-90a4-467a0bf94114"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -91,8 +84,8 @@ Cell[BoxData[
    "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  "}"}]], "Output",ExpressionUUID->"fbec6c4e-54b3-4946-bb37-19ee3ae491d8"]
+ RowBox[{"{", "Null", 
+  "}"}]], "Output",ExpressionUUID->"645c37c1-32c5-47d7-a131-6184b5ddf28d"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -109,16 +102,16 @@ Cell[BoxData[
 Cell[BoxData[
  InterpretationBox[
   RowBox[{
-  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.5\"\>", ",", "<>", "]"}],
+  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.6\"\>", ",", "<>", "]"}],
   PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.5.5", "MathematicaVersion" -> "11+", 
+  "Name" -> "DevTools", "Version" -> "0.5.6", "MathematicaVersion" -> "11+", 
    "Description" -> "DevTools", "Creator" -> 
    "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
    "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
    "Location" -> 
    "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-DevTools-0.5.5"]]], \
-"Output",ExpressionUUID->"577013db-ce5c-4544-bf8f-f51765263d0f"]
+DevTools-0.5.6"]]], \
+"Output",ExpressionUUID->"1b570685-e94b-4750-98a0-cf5c43a12209"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -197,8 +190,6 @@ Cell["DevPackageDark", "Section",
   3.725905439579215*^9}},ExpressionUUID->"3c1ed785-d1e1-4108-aba0-\
 082985cb2aef"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"Block", "[", 
   RowBox[{
@@ -230,17 +221,6 @@ Cell[BoxData[
        RowBox[{"DevPackage", "[", "False", "]"}]}], "\[IndentingNewLine]", 
       "]"}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
   "]"}]], "Input",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
-DevPackageDark.nb\"\>", 
-   ",", "\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
-DevPackage.nb\"\>"}], 
-  "}"}]], "Output",ExpressionUUID->"24daa8a2-c470-4d47-b3d9-6f18df5d0fc9"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"SystemOpen", "@", 
