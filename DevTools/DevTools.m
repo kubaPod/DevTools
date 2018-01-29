@@ -95,7 +95,7 @@ template :
 *)
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*misc*)
 
 
@@ -107,7 +107,7 @@ $templatesCachePath = FileNameJoin[
   {$UserBaseDirectory, "ApplicationData", "DevTools", ToString[$VersionNumber], "codeTemplatesCache.mx"}
 ];
 
-$minimalTemplatePattern = _?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
+$minimalTemplatePattern = (_Association)?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
 
 
 StringWrapCommentFrame[str_String]:=Module[
@@ -123,7 +123,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*$codeTemplates*)
 
 
@@ -352,7 +352,7 @@ CodeTemplatesCache[]:=Module[
       cache = ToProperTemplate /@ Join[userTempl, systemTempl ]
     , Throw @ $Failed 
     ]
-  ; If[ Not @ DirectoryQ @ #, CreateDirectory[#,CreateIntermediateDirectories->True]] & @ DirectoryName @  cachePath 
+  ; DirectoryNeed @ DirectoryName @  cachePath
   ; Export[ cachePath, cache, "MX"]  
   ]   
 
@@ -371,7 +371,7 @@ CodeTemplatesReset[]:= (
 )
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*to proper template*)
 
 
@@ -402,12 +402,14 @@ ToProperTemplate[ template:$minimalTemplatePattern]:= Module[
   ]
   
 ; <|$defaultTemplate, temp|>  
-]
+];
+
+ToProperTemplate[___] = ##&[];
 
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*apply*)
 
 
@@ -474,11 +476,18 @@ Example from system templates:
 
 
 CodeTemplatesEdit::usage = "CodeTemplatesEdit[] opens a user templates editor.";
-CodeTemplatesEdit[]:= Module[{path = $userTemplatesPath, nb}
-, If[ Not @ FileExistsQ @ path
-  , Export[$userTemplatesPath, $userTemplatesHeader, "Text"]
+CodeTemplatesEdit[]:= Module[
+  {path = $userTemplatesPath, nb
+  }
+  
+, DirectoryNeed @ DirectoryName @ path
+  
+; If[
+    Not @ FileExistsQ @ path
+  , Export[path, $userTemplatesHeader, "Text"]
   ]
-; nb = NotebookOpen @ $userTemplatesPath
+  
+; nb = NotebookOpen @ path
 ; SetOptions[nb,
    DockedCells -> {Cell @ BoxData @ ToBoxes @ templatesEditorToolbar[]}
    ]
@@ -502,11 +511,15 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
+DirectoryNeed[dir_]:=If[Not @ DirectoryQ @ dir, CreateDirectory[dir, CreateIntermediateDirectories -> True]];
+
+
+
 (* ::Chapter::Closed:: *)
 (*End*)
 
 
-End[]
+End[];
 
 
-EndPackage[]
+EndPackage[];
