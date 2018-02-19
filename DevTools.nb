@@ -8,16 +8,10 @@ Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<PacletManager`\>\""}]], "Input",
  ExpressionUUID -> "83c58c26-59ef-4941-b2f7-442138042837"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
  ExpressionUUID -> "44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
-
-Cell[BoxData[
- RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", "}"}]], "Output"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<DevTools`\>\""}]], "Input"],
@@ -28,8 +22,6 @@ Cell[BoxData[
    RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
    "]"}], "=", "Inherited"}]], "Input",
  ExpressionUUID -> "2213dc04-e2eb-472b-befc-2cc351452d68"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
@@ -43,13 +35,6 @@ Cell[BoxData[
  ExpressionUUID -> "8fc7d430-50d9-4264-b39e-df0c7f9e7a67"],
 
 Cell[BoxData[
- RowBox[{"FrontEnd`FileName", "[", 
-  RowBox[{"{", 
-   RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackage.nb\"\>"}], "}"}], 
-  "]"}]], "Output"]
-}, Open  ]],
-
-Cell[BoxData[
  RowBox[{"Get", "[", 
   RowBox[{"\"\<DevTools`\>\"", ",", 
    RowBox[{"Path", "\[Rule]", 
@@ -61,8 +46,6 @@ Cell[CellGroupData[{
 Cell["release", "Section",
  ExpressionUUID -> "8627bb23-b02f-458f-915d-48616c414809"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"path", "=", 
   RowBox[{"PackPaclet", "@", 
@@ -73,11 +56,6 @@ Cell[BoxData[
      "}"}], "]"}]}]}]], "Input",
  ExpressionUUID -> "1d780812-9a45-4e87-9559-00fc4fe25a82"],
 
-Cell[BoxData["\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools-0.5.6.paclet\"\>"], "Output",
- ExpressionUUID -> "c6fda673-79d8-4493-90a4-467a0bf94114"]
-}, Open  ]],
-
 Cell[CellGroupData[{
 
 Cell[BoxData[
@@ -86,8 +64,7 @@ Cell[BoxData[
  ExpressionUUID -> "142d02c9-8340-45b2-bcc8-bae555929399"],
 
 Cell[BoxData[
- RowBox[{"{", "Null", "}"}]], "Output",
- ExpressionUUID -> "645c37c1-32c5-47d7-a131-6184b5ddf28d"]
+ RowBox[{"{", "}"}]], "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -95,32 +72,13 @@ Cell[CellGroupData[{
 Cell["local install test", "Subsection",
  ExpressionUUID -> "60a92c7e-84c6-46fb-b6c5-a8263ee21fc6"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletInstall", "@", "path"}]], "Input",
  ExpressionUUID -> "796c29a9-7abc-4e2a-9b3b-0cd04bfb6433"],
 
 Cell[BoxData[
- InterpretationBox[
-  RowBox[{
-  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.5.6\"\>", ",", "<>", "]"}],
-  PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.5.6", "MathematicaVersion" -> "11+", 
-   "Description" -> "DevTools", "Creator" -> 
-   "\n\n\t\tJakub (Kuba) Podkalicki\n\n\t\tkuba.pod@gmail.com\n\n\t", 
-   "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
-   "Location" -> 
-   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-DevTools-0.5.6"]]], "Output",
- ExpressionUUID -> "1b570685-e94b-4750-98a0-cf5c43a12209"]
-}, Open  ]],
-
-Cell[BoxData[
  RowBox[{"RestartPacletManager", "[", "]"}]], "Input",
  ExpressionUUID -> "33ac2825-1e86-4359-b5ff-976f05e1a311"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
@@ -131,14 +89,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], 
    "]"}]}]], "Input",
- ExpressionUUID -> "1ef8b851-6a0b-445d-91a6-f79e8a4bae03"],
-
-Cell[BoxData[
- RowBox[{"FrontEnd`FileName", "[", 
-  RowBox[{"{", 
-   RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackageDark.nb\"\>"}], "}"}], 
-  "]"}]], "Output"]
-}, Open  ]]
+ ExpressionUUID -> "1ef8b851-6a0b-445d-91a6-f79e8a4bae03"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -209,8 +160,6 @@ Cell[BoxData[
    RowBox[{"Path", "\[Rule]", 
     RowBox[{"NotebookDirectory", "[", "]"}]}]}], "]"}]], "Input"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"Block", "[", 
   RowBox[{
@@ -245,17 +194,6 @@ Cell[BoxData[
  ExpressionUUID -> "19795f17-8f22-413e-8821-88f5d1236984"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-  "$Failed", 
-   ",", "\<\"E:\\\\Idea \
-Projects\\\\DevTools\\\\DevTools\\\\FrontEnd\\\\StyleSheets\\\\DevTools\\\\\
-DevPackage.nb\"\>"}], "}"}]], "Output"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
  RowBox[{"CreateDocument", "[", 
   RowBox[{
    RowBox[{"Row", "[", 
@@ -270,14 +208,7 @@ Cell[BoxData[
          "FrontEnd`CurrentValue", "[", "\"\<ControlsFontFamily\>\"", 
           "]"}]}]}], "]"}]}], "}"}], "]"}], ",", 
    RowBox[{"StyleDefinitions", "\[Rule]", 
-    RowBox[{"DevPackage", "[", "]"}]}]}], "]"}]], "Input"],
-
-Cell[BoxData[
- TemplateBox[{FrontEndObject[
-    LinkObject["x9rh6_shm", 3, 1]],85,
-   "FrontEndObject[LinkObject[\"x9rh6_shm\", 3, 1]]","85","\"Untitled-24\""},
-  "NotebookObjectUnsaved"]], "Output"]
-}, Open  ]]
+    RowBox[{"DevPackage", "[", "]"}]}]}], "]"}]], "Input"]
 }, Open  ]]
 },
 WindowSize->{1085, 932},
