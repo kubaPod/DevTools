@@ -3,17 +3,17 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 11.2' *)
+(* CreatedBy='Mathematica 10.4' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      3563,         94]
-NotebookOptionsPosition[      3184,         82]
-NotebookOutlinePosition[      3456,         95]
-CellTagsIndexPosition[      3413,         92]
+NotebookDataLength[      4019,        106]
+NotebookOptionsPosition[      3754,         94]
+NotebookOutlinePosition[      4022,        107]
+CellTagsIndexPosition[      3979,        104]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -33,11 +33,18 @@ Cell[StyleData["Notebook"],
       GridBox[{{
          PaneBox[
           ButtonBox["\"Get @ ThisFile\"", ButtonFunction :> Get[
-             NotebookFileName[]], Appearance -> {ParentList}, Method -> 
-           "Queued", Evaluator -> Automatic], ImageSize -> Full], 
+             NotebookFileName[]], Appearance -> 
+           FEPrivate`FrontEndResource[
+            "MUnitExpressions", "ButtonAppearances"], Method -> "Queued", 
+           Evaluator -> Automatic], ImageSize -> Full], 
          ButtonBox[
           TemplateBox[{
-            TemplateBox[{3}, "Spacer1"], 
+            InterpretationBox[
+             StyleBox[
+              
+              GraphicsBox[{}, ImageSize -> {3, 0}, BaselinePosition -> 
+               Baseline], "CacheGraphics" -> False], 
+             Spacer[3]], 
             PaneBox[
              StyleBox[
               DynamicBox[
@@ -47,12 +54,17 @@ Cell[StyleData["Notebook"],
                  "UpdateIcon.png"]]], Magnification -> 0.5], BaselinePosition -> 
              Scaled[0.15]], "\"Highlighting\""}, "RowWithSeparator"], 
           ButtonFunction :> FrontEndExecute[
-            FrontEnd`Private`GetUpdatedSymbolContexts[]], 
-          Appearance -> {ParentList}, Evaluator -> Automatic, Method -> 
-          "Preemptive"], 
+            FrontEnd`Private`GetUpdatedSymbolContexts[]], Appearance -> 
+          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
+           Evaluator -> Automatic, Method -> "Preemptive"], 
          ButtonBox[
           TemplateBox[{
-            TemplateBox[{3}, "Spacer1"], 
+            InterpretationBox[
+             StyleBox[
+              
+              GraphicsBox[{}, ImageSize -> {3, 0}, BaselinePosition -> 
+               Baseline], "CacheGraphics" -> False], 
+             Spacer[3]], 
             PaneBox[
              StyleBox[
               DynamicBox[
@@ -62,25 +74,25 @@ Cell[StyleData["Notebook"],
                  "UpdateIcon.png"]]], Magnification -> 0.5], BaselinePosition -> 
              Scaled[0.15]], "\"Menus\""}, "RowWithSeparator"], ButtonFunction :> 
           MathLink`CallFrontEnd[
-            FrontEnd`ResetMenusPacket[{Automatic, Automatic}]], 
-          Appearance -> {ParentList}, Method -> "Queued", Evaluator -> 
-          Automatic], 
+            FrontEnd`ResetMenusPacket[{Automatic, Automatic}]], Appearance -> 
+          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
+           Method -> "Queued", Evaluator -> Automatic], 
          ButtonBox[
          "\"Edit code templates\"", ButtonFunction :> 
           Block[{$ContextPath}, Needs["DevTools`"]; 
-            DevTools`CodeTemplatesEdit[]], Appearance -> {ParentList}, Method -> 
-          "Queued", Evaluator -> Automatic]}}, AutoDelete -> False, 
-       GridBoxItemSize -> {
+            DevTools`CodeTemplatesEdit[]], Appearance -> 
+          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
+           Method -> "Queued", Evaluator -> Automatic]}}, AutoDelete -> False,
+        GridBoxItemSize -> {
         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
        BaseStyle -> (
         ButtonBoxOptions -> {
-         BaseStyle -> "ControlStyleLightBold", Appearance -> 
-          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
-           FrameMargins -> {{10, 10}, {0, 0}}, 
-          ImageSize -> {Automatic, 28}})], "Grid"]], "DockedCell", 
-    CellFrameMargins -> {{12, 12}, {10, 10}}], Inherited}]
+         FrameMargins -> {{10, 10}, {0, 0}}, ImageSize -> {Automatic, 28}, 
+          FontColor -> GrayLevel[0.2], FontFamily -> 
+          FrontEnd`CurrentValue["ControlsFontFamily"]})], "Grid"]], 
+    "DockedCell", CellFrameMargins -> {{12, 12}, {10, 10}}], Inherited}]
 },
-FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -94,8 +106,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 49, 0, 70, 49, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"73b886a5-b22b-4a77-a5b1-ee5ad8743ca2"],
-Cell[610, 22, 2570, 58, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"c2816bc3-1fa6-4afb-a62c-e530b460e775"]
+Cell[558, 20, 49, 0, 70, 49, 0, "StyleData", "StyleDefinitions", ""],
+Cell[610, 22, 3140, 70, 70, 27, 0, "StyleData", "Notebook", "All"]
 }
 ]
 *)

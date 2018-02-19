@@ -123,7 +123,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*$codeTemplates*)
 
 
@@ -166,7 +166,7 @@ StringWrapCommentFrame[str_String]:=Module[
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*open*)
 
 
@@ -179,20 +179,20 @@ CodeTemplatesMenuOpen[nb_NotebookObject] := MathLink`CallFrontEnd[
   FrontEnd`AttachCell[
       nb
     , CodeTemplatesMenuCell[]
-    , {1, {Right, Top}}
+    , {-1, {Right, Top}}
     , {Right, Top}
     , "ClosingActions"->{ "OutsideMouseClick" }
   ]  
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*cell*)
 
 
 CodeTemplatesMenuCell[]:=  Cell[
   BoxData @ ToBoxes @ CodeTemplatesMenu[]
-, CellSize -> All
+, CellSize -> Automatic
 , Magnification->CurrentValue[Magnification]
 ];
 
@@ -407,7 +407,7 @@ ToProperTemplate[ template:$minimalTemplatePattern]:= Module[
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*apply*)
 
 

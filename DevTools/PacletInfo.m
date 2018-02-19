@@ -3,8 +3,8 @@
 
 Paclet[
     Name -> "DevTools",
-    Version -> "0.5.6",
-    MathematicaVersion -> "11+",
+    Version -> "0.6.0",
+    MathematicaVersion -> "10.4+",
     Description -> "DevTools",
     Creator -> "
 		Jakub (Kuba) Podkalicki
