@@ -186,7 +186,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject] := MathLink`CallFrontEnd[
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*cell*)
 
 
