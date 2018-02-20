@@ -19,6 +19,7 @@ CodeTemplatesMenuOpen;
 CodeTemplatesEdit;
 CodeTemplatesReset;
 
+CenterToParent;
 
 
 
@@ -27,6 +28,55 @@ Begin["`Events`"];
 
 (* ::Chapter:: *)
 (*Content*)
+
+
+(* ::Section:: *)
+(*Utilities*)
+
+
+(* ::Subsection:: *)
+(*CenterToParent*)
+
+
+CenterToParent::usage =  "CenterToParent[DialogInput[...]] etc, will make the dialog centered with respect to the parent notebook";
+
+CenterToParent // Attributes = {HoldFirst};
+
+CenterToParent[ dialog_[whatever__, opts : OptionsPattern[]]  ] := With[
+    {apc = AbsoluteCurrentValue}
+  , With[
+        { parentCenter = Transpose @ {
+              apc[WindowMargins][[;; , 1]] + .5 apc[ WindowSize]
+            , {Automatic, Automatic}
+          }
+        }
+      , dialog[
+            whatever
+          , NotebookDynamicExpression :> Refresh[
+                SetOptions[
+                    EvaluationNotebook[]
+                  , WindowMargins -> (parentCenter - Transpose[{.5 apc[WindowSize], {0, 0}}])
+                  , NotebookDynamicExpression -> None
+                ]
+              , None
+            ]
+          , opts 
+        ]
+     ]
+  ];
+
+
+(* ::Subsection::Closed:: *)
+(*DirectoryNeed*)
+
+
+DirectoryNeed[""]=False; (*because DirectoryQ can't handle this *)
+
+DirectoryNeed[dir_String]:=If[
+  Not @ DirectoryQ @ dir
+, CreateDirectory[dir, CreateIntermediateDirectories -> True]
+];
+
 
 
 (* ::Section::Closed:: *)
@@ -95,7 +145,7 @@ template :
 *)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*misc*)
 
 
@@ -166,19 +216,42 @@ StringWrapCommentFrame[str_String]:=Module[
 
 
 
-(* ::Subsection::Closed:: *)
-(*open*)
+(* ::Subsection:: *)
+(*Menu open*)
+
+
+  (*sets the default value if not present*)
+CurrentValue[
+  $FrontEnd
+, {TaggingRules, "DevTools", "MenuMethod"}
+, If[$VersionNumber < 11, "Notebook", "Cell"]
+]; 
 
 
 CodeTemplatesMenuOpen::usage = "CodeTemplatesMenuOpen[nb:_:EvaluationNotebook[]]"<>
    " creates a templates menu and attaches it to the nb.";
 
-CodeTemplatesMenuOpen[]:= CodeTemplatesMenuOpen @ EvaluationNotebook[];
+CodeTemplatesMenuOpen[]:=CodeTemplatesMenuOpen @ EvaluationNotebook[];
 
-CodeTemplatesMenuOpen[nb_NotebookObject] := MathLink`CallFrontEnd[
+CodeTemplatesMenuOpen[nb_NotebookObject]:=CodeTemplatesMenuOpen[
+  nb
+, CurrentValue[$FrontEnd, {TaggingRules, "DevTools", "MenuMethod"}, "Notebook"]
+];  
+
+
+
+(* ::Subsection::Closed:: *)
+(*Cell menu open*)
+
+
+CodeTemplatesMenuOpen[nb_NotebookObject, "Cell"] := MathLink`CallFrontEnd[
   FrontEnd`AttachCell[
       nb
-    , CodeTemplatesMenuCell[]
+    , Cell[
+        BoxData @ ToBoxes @ CodeTemplatesMenu[nb, "Cell"]
+      , CellSize -> Automatic
+      , Magnification->CurrentValue[Magnification]
+      ]
     , {-1, {Right, Top}}
     , {Right, Top}
     , "ClosingActions"->{ "OutsideMouseClick" }
@@ -187,36 +260,46 @@ CodeTemplatesMenuOpen[nb_NotebookObject] := MathLink`CallFrontEnd[
 
 
 (* ::Subsection:: *)
-(*cell*)
+(*FramelessNotebook menu open*)
 
 
-CodeTemplatesMenuCell[]:=  Cell[
-  BoxData @ ToBoxes @ CodeTemplatesMenu[]
-, CellSize -> Automatic
-, Magnification->CurrentValue[Magnification]
-];
+CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToParent @ Notebook[
+  List @ Cell[
+    BoxData @ ToBoxes @ CodeTemplatesMenu[nb, "Notebook"]
+  , CellFrameMargins->{{0, 0}, {0, 0}}
+  , CellMargins->{{0, 0}, {0, 0}}    
+  ]        
+, StyleDefinitions    -> "Dialog.nb"
+, WindowClickSelect   -> False
+, WindowFloating      -> True
+, WindowFrame         -> "Frameless"
+, WindowSize          -> All
+, Background          -> None
+, WindowElements      -> {}
+, WindowFrameElements -> {}    
+]
 
 
-(* ::Subsection::Closed:: *)
-(*menu*)
+(* ::Subsection:: *)
+(*Menu*)
 
 
 (*TODO: preburn this one day*)
-CodeTemplatesMenu[]:=CodeTemplatesMenu[  EvaluationNotebook[]];
-CodeTemplatesMenu[ parentNotebook_NotebookObject]:= With[
+(*CodeTemplatesMenu[]:=CodeTemplatesMenu[  EvaluationNotebook[]];*)
+
+CodeTemplatesMenu[ parentNotebook_NotebookObject, type_String]:= With[
     { nbEvents := CurrentValue[parentNotebook, NotebookEventActions]   
     , appearances := FrontEndResource["FEExpressions","MoreLeftSetterNinePatchAppearance"]
     , $codeTemplates = CodeTemplatesNeeds[] (* 'proper' templates *)
     , selectedAppearance = FrontEndResource["FEExpressions","OrangeButtonNinePatchAppearance"]
-    , regularAppearance = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"] 
+    , regularAppearance = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]     
     }
    
   , DynamicModule[
-      { cell, closeMenu, n = Length @ $codeTemplates, item       
+      { menuObject, closeMenu, n = Length @ $codeTemplates, item       
       }
-        
     , Grid[{{
-        PaneSelector[ 
+        If[type =!= "Cell", Nothing, PaneSelector[ 
           { True -> Spacer[{0,0}]
           , False -> Dynamic[ ExpressionCell[$codeTemplates[[item, "Preview"]],               
                 "Notebook", "Code", CellFrameMargins->5, CellFrame->True, Magnification-> CurrentValue[Magnification]]
@@ -225,7 +308,7 @@ CodeTemplatesMenu[ parentNotebook_NotebookObject]:= With[
         , Dynamic[$codeTemplates[[item, "Preview"]] === None ]
         , ImageSize -> Automatic
         , FrameMargins->15
-        ]
+        ]]
       , Column[
           Table[ With[{i=i}
           , EventHandler[
@@ -260,10 +343,17 @@ CodeTemplatesMenu[ parentNotebook_NotebookObject]:= With[
       }}, Alignment->{Left, Top}, Spacings->{0,0}]  
     , Initialization :> {
         item = 1;
-        cell = EvaluationCell[];
-        closeMenu[]:= NotebookDelete @ cell;
-        
-        nbEvents = {
+        If[
+           type === "Notebook"
+         ,
+           menuObject = EvaluationNotebook[];
+           closeMenu[]:=NotebookClose @ menuObject
+         , 
+           menuObject = EvaluationCell[];
+           closeMenu[]:=NotebookDelete @ menuObject
+         ];
+              
+         nbEvents = {
           "KeyDown" :> (
             codeTemplateApply[parentNotebook, First @ Select[$codeTemplates, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]]
           ; closeMenu[]
@@ -277,6 +367,7 @@ CodeTemplatesMenu[ parentNotebook_NotebookObject]:= With[
           ; closeMenu[]
           )
         , "EscapeKeyDown" :> closeMenu[]
+        , {"MenuCommand", "InsertNewGraphic"} :> {}
         
        (* , ParentList*)
         , PassEventsUp -> False (*prevents KeyDown if arrow was hit.*)
@@ -371,7 +462,7 @@ CodeTemplatesReset[]:= (
 )
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*to proper template*)
 
 
@@ -447,7 +538,7 @@ selectionToString[nb_NotebookObject]:=First @ FrontEndExecute @ FrontEnd`ExportP
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*user edit*)
 
 
@@ -509,10 +600,6 @@ templatesEditorToolbar[]:=Grid[{{
   , Method->"Queued"]
 }}
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
-
-
-DirectoryNeed[dir_]:=If[Not @ DirectoryQ @ dir, CreateDirectory[dir, CreateIntermediateDirectories -> True]];
-
 
 
 (* ::Chapter::Closed:: *)

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4119,        108]
-NotebookOptionsPosition[      3854,         96]
-NotebookOutlinePosition[      4122,        109]
-CellTagsIndexPosition[      4079,        106]
+NotebookDataLength[      4067,        107]
+NotebookOptionsPosition[      3802,         95]
+NotebookOutlinePosition[      4070,        108]
+CellTagsIndexPosition[      4027,        105]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -89,10 +89,9 @@ Cell[StyleData["Notebook"],
        BaseStyle -> (
         ButtonBoxOptions -> {
          FrameMargins -> {{10, 10}, {0, 0}}, ImageSize -> {Automatic, 28}, 
-          FontColor -> GrayLevel[0.2], FontWeight -> Bold, FontFamily -> 
+          FontColor -> GrayLevel[0.2], FontFamily -> 
           FrontEnd`CurrentValue["ControlsFontFamily"]})], "Grid"]], 
-    "DockedCell", FontColor -> GrayLevel[0], 
-    CellFrameMargins -> {{12, 12}, {10, 10}}], Inherited}]
+    "DockedCell", CellFrameMargins -> {{12, 12}, {10, 10}}], Inherited}]
 },
 FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
 StyleDefinitions->"Default.nb"
@@ -109,7 +108,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", ""],
-Cell[658, 23, 3192, 71, 70, 27, 0, "StyleData", "Notebook", "All"]
+Cell[658, 23, 3140, 70, 70, 27, 0, "StyleData", "Notebook", "All"]
 }
 ]
 *)
