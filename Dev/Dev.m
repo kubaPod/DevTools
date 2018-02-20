@@ -6,6 +6,7 @@ DevPackage[dark:_:False]:=With[{
   , BaselinePosition->Scaled[0.15`]
   ]
 , buttonAppearance = FEPrivate`FrontEndResource["MUnitExpressions","ButtonAppearances"]
+, buttonStyle = {FontColor -> GrayLevel@.2 }
 }, Notebook[{
   Cell[StyleData[StyleDefinitions -> If[dark,FrontEnd`FileName[{"DevTools", "ReverseColorPackage.nb"}],"Package.nb" ]]]
 , Cell[
@@ -24,22 +25,26 @@ DevPackage[dark:_:False]:=With[{
            , Get[NotebookFileName[]]
            , Appearance->buttonAppearance 
            , Method -> "Queued"
+           , BaseStyle-> buttonStyle
            ]
          , Full
          ]
        , Button[ Row[{updateIcon, "Highlighting"}, Spacer[3]]
          , FrontEndExecute@FrontEnd`Private`GetUpdatedSymbolContexts[]
          , Appearance->buttonAppearance 
+         , BaseStyle-> buttonStyle
          ]  
        , Button[ Row[{updateIcon, "Menus"}, Spacer[3]]
          , MathLink`CallFrontEnd[FrontEnd`ResetMenusPacket[{Automatic,Automatic}]]
          , Appearance->buttonAppearance 
          , Method -> "Queued"
+         , BaseStyle-> buttonStyle
          ]
        , Button[ "Edit code templates"
          , Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesEdit[] ]
          , Appearance->buttonAppearance 
          , Method -> "Queued"
+         , BaseStyle-> buttonStyle
          ]
        }}
        , BaseStyle -> ButtonBoxOptions -> {
@@ -48,7 +53,7 @@ DevPackage[dark:_:False]:=With[{
       (* This will not work in 10.4, FE throws an error not being able to resolve Appearance*)
            FrameMargins -> {{10,10},{0,0}}
          , ImageSize -> {Automatic, 28}
-         , FontColor -> GrayLevel@.2
+         (*, FontColor -> GrayLevel@.2*)
          
          , FontFamily -> FrontEnd`CurrentValue["ControlsFontFamily"]
          }
