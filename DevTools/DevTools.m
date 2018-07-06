@@ -34,7 +34,7 @@ Begin["`Events`"];
 (*Utilities*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*CenterToParent*)
 
 
@@ -173,7 +173,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*$codeTemplates*)
 
 
@@ -216,7 +216,7 @@ StringWrapCommentFrame[str_String]:=Module[
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Menu open*)
 
 
@@ -259,7 +259,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Cell"] := MathLink`CallFrontEnd[
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*FramelessNotebook menu open*)
 
 
@@ -280,7 +280,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Menu*)
 
 
@@ -500,7 +500,7 @@ ToProperTemplate[___] = ##&[];
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*apply*)
 
 
@@ -511,6 +511,7 @@ ToProperTemplate[___] = ##&[];
       (*is expanding allowed?*)
       Not @ MatchQ[ Lookup[codeTemplate, "ExpandEmptySelection", True]  , True|Automatic]
     , Nothing  
+    
       (*is expanding needed? that is, coursor is inside a cell but nothing is selected*)
     , MatchQ[Lookup[selInfo, {"CellSelectionType", "SelectionType"}, False], {"ContentSelection", "CursorRight"}]
     , FrontEndExecute @ FrontEndToken[notebook, "ExpandSelection"]
@@ -518,14 +519,14 @@ ToProperTemplate[___] = ##&[];
     
   ; Switch[ codeTemplate["Template"]
     , _RowBox
-    , NotebookApply[notebook, codeTemplate["Template"]]
+    , NotebookApply[notebook
+      , TemplateApply[ codeTemplate["Template"], <|"sel" -> selectionToBoxes @ NotebookRead[notebook]|>]
+      ] (*this was a simple selection placeholder templates can be used but also more advanced utilizing tempaltes *)
     
     , _String
     , NotebookWrite[
         notebook
-      , StringTemplate[codeTemplate @ "Template" ] @  <|
-          "sel"-> selectionToString[notebook]
-        |>
+      , StringTemplate[codeTemplate @ "Template" ] @  <| "sel"-> selectionToString[notebook] |>
       ]
       
     ]
@@ -538,7 +539,13 @@ selectionToString[nb_NotebookObject]:=First @ FrontEndExecute @ FrontEnd`ExportP
 ];
 
 
-(* ::Subsection:: *)
+selectionToBoxes[Cell[data_,___]] := selectionToBoxes @ data;
+selectionToBoxes[BoxData[boxes_]]:= boxes;
+selectionToBoxes[{}]:= ##&[];
+selectionToBoxes[boxes_]:=boxes;
+
+
+(* ::Subsection::Closed:: *)
 (*user edit*)
 
 
