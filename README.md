@@ -34,7 +34,7 @@
 ![Alt text](Dev/CodeTemplates.gif?raw=true "Title")
     
 
-### Installation
+### Installation / Updating
 
 - Manual
 
@@ -53,6 +53,8 @@
   ``Needs @ "MPM`"``
    
   ``MPM`MPMInstall["kubapod", "devtools"]``
+  
+:exclamation: If templates menu is not up to date after an installation, run `CodeTemplatesReset[]`.  
   
 ### Setup dark stylesheet with code templates
   
