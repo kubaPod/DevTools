@@ -214,19 +214,49 @@ StringWrapCommentFrame[str_String]:=Module[
   |>  
 , <|
   "Label" -> "VerificationTest"
-, "Template" -> RowBox[{
-    "VerificationTest[\n  ", TemplateSlot["sel"], 
-    ",\n  ", TemplateExpression @ ToString[ ToExpression @ TemplateSlot["sel"], InputForm], 
-    ",\n  TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm], 
-    "\n]"   
-  }]
+, "Template" -> RowBox[{ 
+      "VerificationTest[\n  ", TemplateSlot["sel"]
+    , "\n, ", TemplateExpression @ ToBoxes @ evaluatedTestTemplate @ TemplateSlot["sel"]
+    , "\n, TestID -> ", ToString[CreateUUID[], InputForm]
+    , "\n]"   
+    }] 
+      
 , "Preview" -> OutputForm@"VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"   
 |>  
 
 };
   
+  (*TODO: get rid of _RowBox selector *)
+  
+  
+  (*TDOD: or should I make templates being applied via the main link by default? *)
+  
   
 
+
+ (*The way NotebookWrite works allows us writing cell expressions mixed with strings that need to be parsed yet. 
+      It is way more readable and easier to write. Don't know how robust it is but I am to lazy to change this ;)
+     *)
+     
+evaluatedTestTemplate[selection_]:= DynamicWrapper[
+  ProgressIndicator[Appearance->"Percolate"]
+, Module[
+    { result =  ToString[ ToExpression @ selection, InputForm] 
+    }
+  , NotebookWrite[EvaluationBox[], RowBox @ List @ result, After]  
+  ; If[ $MessageList =!= {}
+    , NotebookWrite[EvaluationNotebook[], RowBox[{"\n, ", ToBoxes[ RawBoxes @* First @* MakeBoxes @@@ $MessageList]}]]
+    ]
+  ]
+, SynchronousUpdating -> False
+
+]  
+(* I'm not using Dynamic with DestroyAfterEvaluation because returning a sequence / rowbox does not play well with existing structure.
+  And because CachedValues is somehow ignored *)
+
+(*TODO: investigate why CachedValue is not respected when templates are applied, it seems it is not only because it is done via preemptive link *)
+    
+  
 
 
 (* ::Subsection::Closed:: *)
@@ -463,7 +493,7 @@ CodeTemplatesCache[]:=Module[
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*reset*)
 
 
@@ -513,7 +543,7 @@ ToProperTemplate[___] = ##&[];
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*apply*)
 
 
@@ -558,7 +588,7 @@ selectionToBoxes[{}]:= ##&[];
 selectionToBoxes[boxes_]:=boxes;
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*user edit*)
 
 
@@ -606,7 +636,7 @@ CodeTemplatesEdit[]:= Module[
 (*TODO: docked cell with default buttons *)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*templatesEditorToolbar*)
 
 
