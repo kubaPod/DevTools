@@ -1,5 +1,9 @@
 (*please consider it beta before it hits 1.0.0*)
 
+In addition to this README you can find information about this package in:
+
+- [SE: Live code templates](https://mathematica.stackexchange.com/q/164653/5478)
+
 ### What's there?
 
 - A dark stylesheet with code templates menu.
