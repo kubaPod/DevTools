@@ -123,7 +123,7 @@ IndentCode[tab_String:"  "]:= With[
 (*CodeTemplates*)
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*dev notes*)
 
 
@@ -202,13 +202,26 @@ StringWrapCommentFrame[str_String]:=Module[
   
   |>
 , <|"Template" -> RowBox[{"{","\[SelectionPlaceholder]", "}"}],  "ShortKey" -> "{" |>
+
 , <|"Template" -> RowBox[{"(","\[SelectionPlaceholder]", ")"}],  "ShortKey" -> "(" |>
+
 , <|"Template" -> RowBox[{"[","\[SelectionPlaceholder]", "]"}],  "ShortKey" -> "[" |>
+
 , <|"Template" -> RowBox[{"\"","\[SelectionPlaceholder]","\""}]
   , "Label" -> "\"\[SelectionPlaceholder]\""
   , "ShortKey" ->"\"" 
   , "Preview" -> None
   |>  
+, <|
+  "Label" -> "VerificationTest"
+, "Template" -> RowBox[{
+    "VerificationTest[\n  ", TemplateSlot["sel"], 
+    ",\n  ", TemplateExpression @ ToString[ ToExpression @ TemplateSlot["sel"], InputForm], 
+    ",\n  TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm], 
+    "\n]"   
+  }]
+, "Preview" -> OutputForm@"VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"   
+|>  
 
 };
   
