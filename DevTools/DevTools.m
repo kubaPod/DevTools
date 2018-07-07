@@ -217,10 +217,10 @@ StringWrapCommentFrame[str_String]:=Module[
 , "Template" -> RowBox[{ 
       "VerificationTest[\n  ", TemplateSlot["sel"]
     , "\n, ", TemplateExpression @ ToBoxes @ evaluatedTestTemplate @ TemplateSlot["sel"]
-    , "\n, TestID -> ", ToString[CreateUUID[], InputForm]
+    , "\n, TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm]
     , "\n]"   
     }] 
-      
+, "ShortKey" -> "v"
 , "Preview" -> OutputForm@"VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"   
 |>  
 
