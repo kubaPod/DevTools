@@ -245,7 +245,7 @@ evaluatedTestTemplate[selection_]:= DynamicWrapper[
     }
   , NotebookWrite[EvaluationBox[], RowBox @ List @ result, After]  
   ; If[ $MessageList =!= {}
-    , NotebookWrite[EvaluationNotebook[], RowBox[{"\n, ", ToBoxes[ RawBoxes @* First @* MakeBoxes @@@ $MessageList]}]]
+    , NotebookWrite[EvaluationNotebook[], RowBox[{"\n, ", ToBoxes[ RawBoxes @* First /@ (MakeBoxes @@@ $MessageList)]}]]
     ]
   ]
 , SynchronousUpdating -> False
