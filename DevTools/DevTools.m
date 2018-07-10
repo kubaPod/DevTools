@@ -22,6 +22,8 @@ CodeTemplatesReset;
 CenterToParent;
 
 
+PacletVersionIncrement;
+
 
 Begin["`Events`"];
 
@@ -30,7 +32,7 @@ Begin["`Events`"];
 (*Content*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Utilities*)
 
 
@@ -119,7 +121,7 @@ IndentCode[tab_String:"  "]:= With[
 ];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*CodeTemplates*)
 
 
@@ -650,6 +652,85 @@ templatesEditorToolbar[]:=Grid[{{
   , Method->"Queued"]
 }}
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
+
+
+(* ::Section:: *)
+(*Paclets utilities*)
+
+
+(* ::Subsection:: *)
+(*PacletVersionIncrement*)
+
+
+PacletVersionIncrement::noPacletE = "Failed to get _Paclet from ``";
+PacletVersionIncrement::noSemVer = "Paclet Version is not of 'X.Y.Z' form";
+ 
+PacletVersionIncrement[p_Paclet, spec___]:= PacletVersionIncrement[
+  FileNameJoin[{p @ "Location", "PacletInfo.m"}]
+, spec
+];
+
+PacletVersionIncrement[piPath_String?FileExistsQ, versionType:"Major"|"Minor"|"Patch"|"Manual"]:=Module[
+  { pacletE
+  , tag = "PVI"}
+, Catch[
+    pacletE = Get[piPath]
+    
+  ; If[ Head @ pacletE =!= Paclet
+    , Message[PacletVersionIncrement::noPacletE, piPath]
+    ; Throw[$Failed, tag]
+    ]
+    
+  ; If[ 
+      Not @ MemberQ[pacletE, Version -> semVerPattern]
+    , Message[PacletVersionIncrement::noSemVer, pacletE]
+    ; Throw[$Failed, tag]
+    ]
+    
+  ; pacletE = pacletE /. (
+      Version -> version_) :> (
+      Version -> (
+        incrementVersion[versionType, version] /. r:Except[_String]:>Throw[r,tag])
+      )
+      
+  
+  ; Block[{ Internal`$ContextMarks=False }
+    , Export[
+        piPath
+      , pacletE
+      , "Package"
+      , PageWidth->80
+      ]
+    ]
+    
+  ; Version /. List @@ pacletE  
+             
+  , tag
+  ]
+]; 
+
+
+
+incrementVersion["Manual", version_String]:=InputString["Enter next version. (current version - "<>version<>")"];
+incrementVersion[versionType_String, version_String]:=Module[
+  { digits = ToExpression /@ StringSplit[version, "."]
+  , n0 = 1
+  }
+  , Catch[
+      n0 = Switch[versionType
+      , "Major", 1
+      , "Minor", 2  
+      , "Patch", 3 
+        (*maybe add default or msg*)
+      ]
+    ; digits[[n0]]++
+    ; digits[[n0 + 1 ;;]] = 0
+    ; StringRiffle[digits, "."]
+    ]
+]
+
+
+semVerPattern = s_ /; StringMatchQ[s, ( DigitCharacter.. ~~ "."|"" ).. ]
 
 
 (* ::Chapter::Closed:: *)

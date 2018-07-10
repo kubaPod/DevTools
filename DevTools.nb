@@ -6,17 +6,32 @@ Cell["test", \
 
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<PacletManager`\>\""}]], "Input",
- CellLabel->"In[31]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
+ CellLabel->"In[80]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[39]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
+ CellLabel->"In[81]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
+
+Cell[BoxData["\<\"E:\\\\Idea Projects\\\\DevTools\"\>"], "Output",
+ CellLabel->"Out[81]=",ExpressionUUID->"cc3cbbc1-3308-4abf-a026-55533aa08477"]
+}, Open  ]],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[32]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+ CellLabel->"In[82]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"E:\\\\Idea Projects\\\\Meh\\\\\"\>", 
+   ",", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>"}], "}"}]], "Output",
+ CellLabel->"Out[82]=",ExpressionUUID->"2483ab1e-8fff-47c2-a6d8-a7e8f21732a3"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<DevTools`\>\""}]], "Input",
@@ -106,60 +121,6 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"CodeTemplatesReset", "[", "]"}], ";"}]], "Input",
  CellLabel->"In[6]:=",ExpressionUUID->"4f6a379d-d80d-4d4b-b3ad-ba95f776fdce"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["release", \
-"Section",ExpressionUUID->"8627bb23-b02f-458f-915d-48616c414809"],
-
-Cell[BoxData[
- RowBox[{"path", "=", 
-  RowBox[{"PackPaclet", "@", 
-   RowBox[{"FileNameJoin", "[", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\""}], 
-     "}"}], "]"}]}]}]], \
-"Input",ExpressionUUID->"1d780812-9a45-4e87-9559-00fc4fe25a82"],
-
-Cell[BoxData[
- RowBox[{"VerifyPaclet", "@", 
-  "%"}]], "Input",ExpressionUUID->"f084a9c4-a8f1-4d78-8bea-066ea60db040"],
-
-Cell[BoxData[
- RowBox[{"PacletInstall", "@", 
-  "%%"}]], "Input",ExpressionUUID->"ee9a3133-ad4b-4be7-a55a-b86537803381"],
-
-Cell[BoxData[
- RowBox[{"PacletUninstall", "/@", 
-  RowBox[{
-  "PacletFind", "[", "\"\<DevTools\>\"", 
-   "]"}]}]], "Input",ExpressionUUID->"142d02c9-8340-45b2-bcc8-bae555929399"],
-
-Cell[CellGroupData[{
-
-Cell["local install test", \
-"Subsection",ExpressionUUID->"60a92c7e-84c6-46fb-b6c5-a8263ee21fc6"],
-
-Cell[BoxData[
- RowBox[{"PacletInstall", "@", 
-  "path"}]], "Input",ExpressionUUID->"796c29a9-7abc-4e2a-9b3b-0cd04bfb6433"],
-
-Cell[BoxData[
- RowBox[{"RestartPacletManager", "[", 
-  "]"}]], "Input",ExpressionUUID->"33ac2825-1e86-4359-b5ff-976f05e1a311"],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"CurrentValue", "[", 
-   RowBox[{"$FrontEnd", ",", "\"\<DefaultPackageStyleDefinitions\>\""}], 
-   "]"}], "=", 
-  RowBox[{"FrontEnd`FileName", "[", 
-   RowBox[{"{", 
-    RowBox[{"\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], 
-   "]"}]}]], "Input",ExpressionUUID->"1ef8b851-6a0b-445d-91a6-f79e8a4bae03"]
-}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
