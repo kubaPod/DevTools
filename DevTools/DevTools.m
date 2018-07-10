@@ -10,7 +10,7 @@
 
 BeginPackage["DevTools`"];
 
-
+  Needs @  "PacletManager`"
 
 
 IndentCode;
