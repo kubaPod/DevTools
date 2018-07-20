@@ -3,17 +3,17 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 10.4' *)
+(* CreatedBy='Mathematica 11.3' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4254,        111]
-NotebookOptionsPosition[      3989,         99]
-NotebookOutlinePosition[      4257,        112]
-CellTagsIndexPosition[      4214,        109]
+NotebookDataLength[      5233,        126]
+NotebookOptionsPosition[      4859,        114]
+NotebookOutlinePosition[      5126,        127]
+CellTagsIndexPosition[      5083,        124]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -33,20 +33,56 @@ Cell[StyleData["Notebook"],
      TagBox[
       GridBox[{{
          PaneBox[
-          ButtonBox["\"Get @ ThisFile\"", ButtonFunction :> Get[
-             NotebookFileName[]], Appearance -> 
+          ButtonBox["\"Get @ ThisFile\"", ButtonFunction :> (Get[
+              NotebookFileName[]]; FrontEndExecute[
+              FrontEnd`Private`GetUpdatedSymbolContexts[]]), Appearance -> 
            FEPrivate`FrontEndResource[
             "MUnitExpressions", "ButtonAppearances"], Method -> "Queued", 
            BaseStyle -> {FontColor -> GrayLevel[0.2]}, Evaluator -> 
            Automatic], ImageSize -> Full], 
-         ButtonBox[
-          TemplateBox[{
-            InterpretationBox[
-             StyleBox[
-              
-              GraphicsBox[{}, ImageSize -> {3, 0}, BaselinePosition -> 
-               Baseline], "CacheGraphics" -> False], 
-             Spacer[3]], 
+         ActionMenuBox[
+          ButtonBox[
+           TemplateBox[{"  ", "\"  \"", "\"Code templates\"", 
+             PaneBox[
+              StyleBox[
+               DynamicBox[
+                FEPrivate`ImportImage[
+                 FrontEnd`FileName[{"Toolbars", "Package"}, "MenuIcon.png"]]],
+                Magnification -> 0.5], 
+              BaselinePosition -> (Bottom -> Baseline)]}, 
+            "RowWithSeparators"], ButtonFunction :> {}, Evaluator -> None, 
+           Appearance -> 
+           FEPrivate`FrontEndResource[
+            "MUnitExpressions", "ButtonAppearances"], 
+           BaseStyle -> {FontColor -> GrayLevel[0.2]}, Method -> 
+           "Preemptive"], {
+          "\"Edit user templates\"" :> 
+           Block[{$ContextPath}, Needs["DevTools`"]; 
+             DevTools`CodeTemplatesEdit[]], "\"Refresh\"" :> 
+           Block[{$ContextPath}, Needs["DevTools`"]; 
+             DevTools`CodeTemplatesReset[]], TemplateBox[{"\"Open menu  \"", 
+              FrameBox[
+               StyleBox["\"Ctrl\"", 10, StripOnInput -> False], 
+               ImageSize -> {All, 18}, FrameMargins -> {{2, 4}, {4, 2}}, 
+               ImageSize -> {18, 18}, FrameStyle -> Directive[
+                 Thickness[Large], 
+                 GrayLevel[0.7]], ContentPadding -> False, RoundingRadius -> 
+               2, Background -> GrayLevel[0.99], StripOnInput -> False], 
+              "\"+\"", 
+              FrameBox[
+               StyleBox["\"1\"", 10, StripOnInput -> False], 
+               FrameMargins -> {{2, 4}, {4, 2}}, ImageSize -> {18, 18}, 
+               FrameStyle -> Directive[
+                 Thickness[Large], 
+                 GrayLevel[0.7]], ContentPadding -> False, RoundingRadius -> 
+               2, Background -> GrayLevel[0.99], StripOnInput -> False]}, 
+             "RowDefault"] :> 
+           Block[{$ContextPath}, Needs["DevTools`"]; 
+             DevTools`CodeTemplatesMenuOpen[]]}, Method -> "Queued", 
+          Appearance -> None], 
+         TagBox[
+          TooltipBox[
+           ButtonBox[
             PaneBox[
              StyleBox[
               DynamicBox[
@@ -54,40 +90,19 @@ Cell[StyleData["Notebook"],
                 
                 FrontEnd`FileName[{"Toolbars", "Package"}, 
                  "UpdateIcon.png"]]], Magnification -> 0.5], BaselinePosition -> 
-             Scaled[0.15]], "\"Highlighting\""}, "RowWithSeparator"], 
-          ButtonFunction :> FrontEndExecute[
-            FrontEnd`Private`GetUpdatedSymbolContexts[]], Appearance -> 
-          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
-           BaseStyle -> {FontColor -> GrayLevel[0.2]}, Evaluator -> Automatic,
-           Method -> "Preemptive"], 
-         ButtonBox[
-          TemplateBox[{
-            InterpretationBox[
-             StyleBox[
-              
-              GraphicsBox[{}, ImageSize -> {3, 0}, BaselinePosition -> 
-               Baseline], "CacheGraphics" -> False], 
-             Spacer[3]], 
-            PaneBox[
-             StyleBox[
-              DynamicBox[
-               FEPrivate`ImportImage[
-                
-                FrontEnd`FileName[{"Toolbars", "Package"}, 
-                 "UpdateIcon.png"]]], Magnification -> 0.5], BaselinePosition -> 
-             Scaled[0.15]], "\"Menus\""}, "RowWithSeparator"], ButtonFunction :> 
-          MathLink`CallFrontEnd[
-            FrontEnd`ResetMenusPacket[{Automatic, Automatic}]], Appearance -> 
-          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
-           Method -> "Queued", BaseStyle -> {FontColor -> GrayLevel[0.2]}, 
-          Evaluator -> Automatic], 
-         ButtonBox[
-         "\"Edit code templates\"", ButtonFunction :> 
-          Block[{$ContextPath}, Needs["DevTools`"]; 
-            DevTools`CodeTemplatesEdit[]], Appearance -> 
-          FEPrivate`FrontEndResource["MUnitExpressions", "ButtonAppearances"],
-           Method -> "Queued", BaseStyle -> {FontColor -> GrayLevel[0.2]}, 
-          Evaluator -> Automatic]}}, AutoDelete -> False, 
+             Scaled[0.15]], ButtonFunction :> (FrontEndExecute[
+               FrontEnd`Private`GetUpdatedSymbolContexts[]]; 
+             MathLink`CallFrontEnd[
+               FrontEnd`ResetMenusPacket[{Automatic, Automatic}]]), 
+            Appearance -> 
+            FEPrivate`FrontEndResource[
+             "MUnitExpressions", "ButtonAppearances"], 
+            BaseStyle -> {FontColor -> GrayLevel[0.2]}, Method -> "Queued", 
+            Evaluator -> Automatic], 
+           "\"Refresh symbol highlighting and front end menus.\"", LabelStyle -> 
+           "TextStyling"], 
+          Annotation[#, "Refresh symbol highlighting and front end menus.", 
+           "Tooltip"]& ]}}, AutoDelete -> False, 
        GridBoxItemSize -> {
         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
        BaseStyle -> (
@@ -97,7 +112,7 @@ Cell[StyleData["Notebook"],
       "Grid"]], "DockedCell", CellFrameMargins -> {{12, 12}, {10, 10}}], 
    Inherited}]
 },
-FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -111,8 +126,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", ""],
-Cell[658, 23, 3327, 74, 70, 27, 0, "StyleData", "Notebook", "All"]
+Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"6acab5d4-4841-49d7-9376-114bdfd6e9c6"],
+Cell[658, 23, 4197, 89, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"d306da39-ba9b-475b-9ff0-f7f79213e851"]
 }
 ]
 *)

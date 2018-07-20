@@ -13,10 +13,11 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[81]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
+ CellLabel->"In[1]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
 
-Cell[BoxData["\<\"E:\\\\Idea Projects\\\\DevTools\"\>"], "Output",
- CellLabel->"Out[81]=",ExpressionUUID->"cc3cbbc1-3308-4abf-a026-55533aa08477"]
+Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\"\>"], \
+"Output",
+ CellLabel->"Out[1]=",ExpressionUUID->"4c5a3faf-967a-4712-aaf7-e15e34cbf498"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -24,13 +25,12 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[82]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+ CellLabel->"In[2]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"E:\\\\Idea Projects\\\\Meh\\\\\"\>", 
-   ",", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>"}], "}"}]], "Output",
- CellLabel->"Out[82]=",ExpressionUUID->"2483ab1e-8fff-47c2-a6d8-a7e8f21732a3"]
+ RowBox[{"{", "\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\\"\>", 
+  "}"}]], "Output",
+ CellLabel->"Out[2]=",ExpressionUUID->"9239c0d8-268e-4f7d-a4cc-e3cefc0e148c"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -75,43 +75,19 @@ Cell[BoxData[
   "PacletUninstall"}]], \
 "Input",ExpressionUUID->"69244c21-9479-4654-a01c-affd72ef29b0"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletUninstall", "/@", 
   RowBox[{"PacletFind", "[", "\"\<DevTools\>\"", "]"}]}]], "Input",
  CellLabel->"In[1]:=",ExpressionUUID->"76f29339-8f6a-441b-a6b7-294ad52a0424"],
 
 Cell[BoxData[
- RowBox[{"{", "Null", "}"}]], "Output",
- CellLabel->"Out[1]=",ExpressionUUID->"f802a27e-a630-4cf8-ad3f-f14cd2129232"]
-}, Open  ]],
-
-Cell[BoxData[
  RowBox[{"<<", "MPM`"}]], "Input",
  CellLabel->"In[2]:=",ExpressionUUID->"f85edcad-936c-41c9-8b7d-9c1261cbf6e6"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"MPMInstall", "[", 
   RowBox[{"\"\<kubapod\>\"", ",", "\"\<devtools\>\""}], "]"}]], "Input",
  CellLabel->"In[3]:=",ExpressionUUID->"fbf4d0a4-14ef-4f89-87b9-b15b11bf176a"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{
-  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.8.1\"\>", ",", "<>", "]"}],
-  PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.8.1", "WolframVersion" -> "10.4+", 
-   "Description" -> "DevTools", "Creator" -> 
-   "Jakub (Kuba) Podkalicki\tkuba.pod@gmail.com", 
-   "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
-   "Location" -> 
-   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-DevTools-0.8.1"]]], "Output",
- CellLabel->"Out[3]=",ExpressionUUID->"a648356e-8909-44e5-a6c0-ec70186de5e3"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"<<", "DevTools`"}]], "Input",
@@ -133,8 +109,10 @@ Cell[BoxData[{
  RowBox[{"Get", "[", 
   RowBox[{"\"\<Dev`\>\"", ",", 
    RowBox[{"Path", "\[Rule]", 
-    RowBox[{"NotebookDirectory", "[", "]"}]}]}], 
-  "]"}]}], "Input",ExpressionUUID->"8487fcae-96b1-4543-93f1-e5f354f37a05"],
+    RowBox[{"NotebookDirectory", "[", "]"}]}]}], "]"}]}], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"8487fcae-96b1-4543-93f1-e5f354f37a05"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Block", "[", 
@@ -166,29 +144,42 @@ Cell[BoxData[
        "\[IndentingNewLine]", ",", 
        RowBox[{"DevPackage", "[", "False", "]"}]}], "\[IndentingNewLine]", 
       "]"}]}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
+  "]"}]], "Input",
+ CellLabel->"In[38]:=",ExpressionUUID->"19795f17-8f22-413e-8821-88f5d1236984"],
 
 Cell[BoxData[
- RowBox[{"CreateDocument", "[", 
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools\\\\\
+FrontEnd\\\\StyleSheets\\\\DevTools\\\\DevPackageDark.nb\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\DevTools\\\\\
+FrontEnd\\\\StyleSheets\\\\DevTools\\\\DevPackage.nb\"\>"}], "}"}]], "Output",
+ CellLabel->"Out[38]=",ExpressionUUID->"f6b4c6fc-0e22-45b0-a67b-64c7ca48185c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CreateDocument", "[", "\[IndentingNewLine]", "  ", 
   RowBox[{
-   RowBox[{"Row", "[", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"Style", "[", 
-       RowBox[{"\"\<test\>\"", ",", "60"}], "]"}], ",", "\"\< \>\"", ",", 
-      RowBox[{"Style", "[", 
-       RowBox[{"\"\<test\>\"", ",", "15", ",", "Bold", ",", 
-        RowBox[{"FontFamily", " ", "\[Rule]", " ", 
-         RowBox[{
-         "FrontEnd`CurrentValue", "[", "\"\<ControlsFontFamily\>\"", 
-          "]"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"ExpressionCell", "[", 
+    RowBox[{"\"\<test\>\"", ",", "\"\<Code\>\""}], "]"}], 
+   "\[IndentingNewLine]", ",", 
    RowBox[{"StyleDefinitions", "\[Rule]", 
-    RowBox[{"DevPackage", "[", "True", "]"}]}]}], 
-  "]"}]], "Input",ExpressionUUID->"4cc35c6f-ccf9-44c0-91bf-ed550c0b57a7"]
+    RowBox[{"DevPackage", "[", "True", "]"}]}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellLabel->"In[37]:=",ExpressionUUID->"4cc35c6f-ccf9-44c0-91bf-ed550c0b57a7"],
+
+Cell[BoxData[
+ TemplateBox[{FrontEndObject[
+    LinkObject["g2sxq_shm", 3, 1]],78,
+   "FrontEndObject[LinkObject[\"g2sxq_shm\", 3, 1]]","78","\"Untitled-12\""},
+  "NotebookObjectUnsaved"]], "Output",
+ CellLabel->"Out[37]=",ExpressionUUID->"ddfc0659-3b3e-4f09-b611-e6ae2e97507d"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1085, 932},
-WindowMargins->{{Automatic, 0}, {38, Automatic}},
+WindowMargins->{{Automatic, 701}, {Automatic, 156}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
 FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",

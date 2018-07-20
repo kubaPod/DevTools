@@ -25,6 +25,9 @@ CenterToParent;
 PacletVersionIncrement;
 
 
+KeyFrame;
+
+
 Begin["`Events`"];
 
 
@@ -121,11 +124,11 @@ IndentCode[tab_String:"  "]:= With[
 ];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*CodeTemplates*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*dev notes*)
 
 
@@ -175,7 +178,7 @@ StringWrapCommentFrame[str_String]:=Module[
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*$codeTemplates*)
 
 
@@ -325,7 +328,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Menu*)
 
 
@@ -433,17 +436,21 @@ codeTemplateItemLabel[temp_Association]:= If[
 , Pane[temp["Label"], {130+18, All}]  
 , Grid[ {{
       Pane[temp["Label"], ImageSize -> {130, All}]    
-    , Framed[ Style[ToUpperCase @ temp["ShortKey"],10]
+    , KeyFrame @ ToUpperCase @ temp["ShortKey"] 
+  }}, Alignment->{Right,Center},Spacings->{0,0}]
+];
+ 
+
+
+KeyFrame[key_, opts___]:=Framed[ Style[key,10]
+      , opts
       , FrameMargins -> {{2, 4}, {4, 2}}
       , ImageSize -> {18,18}
       , FrameStyle -> Directive[Thick, GrayLevel[0.7]]
       , ContentPadding -> False
       , RoundingRadius -> 2
       , Background -> GrayLevel[0.99]
-      ] 
-  }}, Alignment->{Right,Center},Spacings->{0,0}]
-];
- 
+      ]
 
 
 (* ::Subsection::Closed:: *)
@@ -654,7 +661,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Paclets utilities*)
 
 
