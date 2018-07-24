@@ -154,17 +154,6 @@ template :
 (*misc*)
 
 
-$userTemplatesPath = FileNameJoin[
-  {$UserBaseDirectory, "ApplicationData", "DevTools", "codeTemplates.m"}
-];
-
-$templatesCachePath = FileNameJoin[
-  {$UserBaseDirectory, "ApplicationData", "DevTools", ToString[$VersionNumber], "codeTemplatesCache.mx"}
-];
-
-$minimalTemplatePattern = (_Association)?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
-
-
 StringWrapCommentFrame[str_String]:=Module[
   {temp, max}
 , temp = StringSplit[str,"\n"] 
@@ -176,92 +165,6 @@ StringWrapCommentFrame[str_String]:=Module[
   ] @ temp 
   
 ];
-
-
-(* ::Subsection::Closed:: *)
-(*$codeTemplates*)
-
-
-  
-  $codeTemplates = {    
-    <|
-      "Label" -> "New function"
-    , "ShortKey" -> "n"    
-    , "Template" -> StringRiffle[
-        { "`sel` // ClearAll"
-        , "`sel` // Options = {};"
-        , "`sel` // Attributes = {};"
-        , "`sel`[]:=Module[
-  {tag = \"`sel`\"}
-, Catch[
-    Check[
-      code
-    , Throw[$Failed, tag]  
-    ]
-  , tag
-  ]
-]"
-      }
-    , "\n"
-    ]
-  
-  |>
-, <|"Template" -> RowBox[{"{","\[SelectionPlaceholder]", "}"}],  "ShortKey" -> "{" |>
-
-, <|"Template" -> RowBox[{"(","\[SelectionPlaceholder]", ")"}],  "ShortKey" -> "(" |>
-
-, <|"Template" -> RowBox[{"[","\[SelectionPlaceholder]", "]"}],  "ShortKey" -> "[" |>
-
-, <|"Template" -> RowBox[{"\"","\[SelectionPlaceholder]","\""}]
-  , "Label" -> "\"\[SelectionPlaceholder]\""
-  , "ShortKey" ->"\"" 
-  , "Preview" -> None
-  |>  
-, <|
-  "Label" -> "VerificationTest"
-, "Template" -> RowBox[{ 
-      "VerificationTest[\n  ", TemplateSlot["sel"]
-    , "\n, ", TemplateExpression @ ToBoxes @ evaluatedTestTemplate @ TemplateSlot["sel"]
-    , "\n, TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm]
-    , "\n]"   
-    }] 
-, "ShortKey" -> "v"
-, "Preview" -> OutputForm@"VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"   
-|>  
-
-};
-  
-  (*TODO: get rid of _RowBox selector *)
-  
-  
-  (*TDOD: or should I make templates being applied via the main link by default? *)
-  
-  
-
-
- (*The way NotebookWrite works allows us writing cell expressions mixed with strings that need to be parsed yet. 
-      It is way more readable and easier to write. Don't know how robust it is but I am to lazy to change this ;)
-     *)
-     
-evaluatedTestTemplate[selection_]:= DynamicWrapper[
-  ProgressIndicator[Appearance->"Percolate"]
-, Module[
-    { result =  ToString[ ToExpression @ selection, InputForm] 
-    }
-  , NotebookWrite[EvaluationBox[], RowBox @ List @ result, After]  
-  ; If[ $MessageList =!= {}
-    , NotebookWrite[EvaluationNotebook[], RowBox[{"\n, ", ToBoxes[ RawBoxes @* First /@ (MakeBoxes @@@ $MessageList)]}]]
-    ]
-  ]
-, SynchronousUpdating -> False
-
-]  
-(* I'm not using Dynamic with DestroyAfterEvaluation because returning a sequence / rowbox does not play well with existing structure.
-  And because CachedValues is somehow ignored *)
-
-(*TODO: investigate why CachedValue is not respected when templates are applied, it seems it is not only because it is done via preemptive link *)
-    
-  
 
 
 (* ::Subsection::Closed:: *)
@@ -328,7 +231,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Menu*)
 
 
@@ -453,11 +356,153 @@ KeyFrame[key_, opts___]:=Framed[ Style[key,10]
       ]
 
 
+(* ::Section:: *)
+(*Resource*)
+
+
 (* ::Subsection::Closed:: *)
+(*$codeTemplates*)
+
+
+  
+  $codeTemplates = {    
+    <|
+      "Label" -> "New function"
+    , "ShortKey" -> "n"    
+    , "Template" -> StringRiffle[
+        { "`sel` // ClearAll"
+        , "`sel` // Options = {};"
+        , "`sel` // Attributes = {};"
+        , "`sel`[]:=Module[
+  {tag = \"`sel`\"}
+, Catch[
+    Check[
+      code
+    , Throw[$Failed, tag]  
+    ]
+  , tag
+  ]
+]"
+      }
+    , "\n"
+    ]
+  
+  |>
+, <|"Template" -> RowBox[{"{","\[SelectionPlaceholder]", "}"}],  "ShortKey" -> "{" |>
+
+, <|"Template" -> RowBox[{"(","\[SelectionPlaceholder]", ")"}],  "ShortKey" -> "(" |>
+
+, <|"Template" -> RowBox[{"[","\[SelectionPlaceholder]", "]"}],  "ShortKey" -> "[" |>
+
+, <|"Template" -> RowBox[{"\"","\[SelectionPlaceholder]","\""}]
+  , "Label" -> "\"\[SelectionPlaceholder]\""
+  , "ShortKey" ->"\"" 
+  , "Preview" -> None
+  |>  
+, <|
+  "Label" -> "VerificationTest"
+, "Template" -> RowBox[{ 
+      "VerificationTest[\n  ", TemplateSlot["sel"]
+    , "\n, ", TemplateExpression @ ToBoxes @ evaluatedTestTemplate @ TemplateSlot["sel"]
+    , "\n, TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm]
+    , "\n]"   
+    }] 
+, "ShortKey" -> "v"
+, "Preview" -> OutputForm@"VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"   
+|>  
+
+};
+  
+  (*TODO: get rid of _RowBox selector *)
+  
+  
+  (*TDOD: or should I make templates being applied via the main link by default? *)
+  
+  
+
+
+ (*The way NotebookWrite works allows us writing cell expressions mixed with strings that need to be parsed yet. 
+      It is way more readable and easier to write. Don't know how robust it is but I am to lazy to change this ;)
+     *)
+     
+evaluatedTestTemplate[selection_]:= DynamicWrapper[
+  ProgressIndicator[Appearance->"Percolate"]
+, Module[
+    { result =  ToString[ ToExpression @ selection, InputForm] 
+    }
+  , NotebookWrite[EvaluationBox[], RowBox @ List @ result, After]  
+  ; If[ $MessageList =!= {}
+    , NotebookWrite[EvaluationNotebook[], RowBox[{"\n, ", ToBoxes[ RawBoxes @* First /@ (MakeBoxes @@@ $MessageList)]}]]
+    ]
+  ]
+, SynchronousUpdating -> False
+
+]  
+(* I'm not using Dynamic with DestroyAfterEvaluation because returning a sequence / rowbox does not play well with existing structure.
+  And because CachedValues is somehow ignored *)
+
+(*TODO: investigate why CachedValue is not respected when templates are applied, it seems it is not only because it is done via preemptive link *)
+    
+  
+
+
+(* ::Subsection:: *)
 (*needs*)
 
 
 CodeTemplatesNeeds[]:= CodeTemplatesNeeds[] =  CodeTemplatesLoad[];
+
+
+$systemResource["codeTemplates"]:=$codeTemplates;
+
+$minimalTemplatePattern = (_Association)?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
+
+
+$userResourePath[res_String]:=FileNameJoin[
+  {$UserBaseDirectory, "ApplicationData", "DevTools", ToString[$VersionNumber], res <> "Cache.mx"}
+]
+
+
+$cachedResourePath[res_String]:=FileNameJoin[
+  {$UserBaseDirectory, "ApplicationData", "DevTools", ToString[$VersionNumber], res <> "Cache.mx"}
+]
+
+
+ResourceNeeds[res_]:= ResourceNeeds[res] = ResourceLoad[res]; (*once per session*)
+
+ResourceLoad[res_]:= With[
+  {path = $cachedResourePath[res]}
+,  If[
+    FileExistsQ @ path
+  , Check[ 
+      Import[ path, "MX" ]
+    , DeleteFile @ path
+    ; ResourceLoad[res]
+    ]  
+  , ResourceCache[res] /. _String :> ResourceLoad[res]
+  ]
+];
+
+ResourceCache[res_]:=Module[
+  { userTempl, cache 
+  , userPath = $userResourePath @ res  
+  , systemTempl = $systemResource @ res
+  , cachePath = $cachedResourcePath @ res
+  }
+, Catch[
+    userTempl = Check[
+        If[ FileExistsQ @ userPath, Import[userPath, {"Package","ExpressionList"}], {}]
+      , {}
+      ]
+  ; Check[
+      cache = ToProperTemplate /@ Join[userTempl, systemTempl ]
+    , Throw @ $Failed 
+    ]
+  ; DirectoryNeed @ DirectoryName @  cachePath
+  ; Export[ cachePath, cache, "MX"]  
+  ]   
+
+]
 
 
 (* ::Subsection::Closed:: *)
@@ -502,7 +547,7 @@ CodeTemplatesCache[]:=Module[
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*reset*)
 
 
