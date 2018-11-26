@@ -32,7 +32,10 @@ Begin["`Events`"];
 (*Content*)
 
 
-(* ::Section::Closed:: *)
+$paclet = CreatePaclet @ DirectoryName[ $InputFileName /. "" :> NotebookFileName[] ];
+
+
+(* ::Section:: *)
 (*Utilities*)
 
 
@@ -81,6 +84,123 @@ DirectoryNeed[dir_String]:=If[
 
 
 
+(* ::Section:: *)
+(*Resources*)
+
+
+(* ::Subsection:: *)
+(*aux*)
+
+
+$throwOnFailed[$Failed]:=Throw @ $Failed;
+$throwOnFailed[x_]:=x;
+
+
+(* ::Subsection::Closed:: *)
+(*Needs*)
+
+
+NeedResource[paclet_Paclet, res_String]:= Catch[
+  NeedResource[paclet, res] = $throwOnFailed @ GetResource[paclet, res]
+];
+ 
+
+
+(* ::Subsection::Closed:: *)
+(*Get*)
+
+
+GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
+, cachePath = ResourceCachePath[paclet, res] 
+; If[
+    FileExistsQ @ cachePath
+  , Import[ cachePath, "MX" ] // $throwOnFailed    
+  , CacheResource[paclet, res] // $throwOnFailed   
+  ; GetResource[paclet, res]
+  ]  
+]
+  
+
+
+(* ::Subsection::Closed:: *)
+(*Cache*)
+
+
+CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, pacletResPath, cachePath, standardizer}
+, pacletResPath =  ResourcePath[paclet, res]
+; cachePath = ResourceCachePath[paclet, res]
+; standardizer = StandardizeResource[paclet, res]
+
+; userRes = standardizer @ GetUserResource[paclet, res]
+; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed
+
+; If[Not @ DirectoryQ @ #, CreateDirectory[#, CreateIntermediateDirectories->True]]& @ DirectoryName @ cachePath
+; res = MergeResource[userRes, pacletRes] 
+
+; Export[cachePath, res, "MX"]
+]  
+  
+
+
+(* ::Subsection::Closed:: *)
+(*GetUsersRes*)
+
+
+GetUserResource[paclet_Paclet, res_String]:=Module[{path}
+, path = UserResourcePath[paclet, res]
+; If[ 
+    Not @ FileExistsQ @ path
+  , {}
+  , Check[ImportResource[paclet, res, path], {}] (*TODO: msg?*)
+  ]
+
+
+]
+
+
+(* ::Subsection::Closed:: *)
+(*Import // Standardize // Merge*)
+
+
+StandardizeResource[paclet_Paclet, res_String]:= Identity;
+
+
+MergeResource[userRes_, pacletRes_]:=Join[userRes, pacletRes];
+
+
+ImportResource[path_String]:=Import[path, {"Package","ExpressionList"}];
+ImportResource[_, _, path_String]:= Import[path, {"Package","ExpressionList"}];
+  
+
+
+(* ::Subsection::Closed:: *)
+(*Reset*)
+
+
+ResetResource[paclet_Paclet, res_String]:= (
+  ResourceCachePath[paclet, res] // If[FileExistsQ[#], DeleteFile[#]]&
+; NeedResource[paclet, res] =.
+; NeedResource[paclet, res]
+);
+
+
+(* ::Subsection::Closed:: *)
+(*paths*)
+
+
+UserResourcePath[paclet_Paclet, res_String]:= FileNameJoin[{
+  $UserBaseDirectory, "ApplicationData", paclet @ "Name", res <> ".m"
+}];
+
+ResourceCachePath[paclet_Paclet, res_String]:= FileNameJoin[{
+  $UserBaseDirectory, "ApplicationData", paclet @ "Name", paclet @ "Version", res <> ".m"
+}]
+
+ResourcePath[paclet_Paclet, res_String]:= FileNameJoin[{
+  paclet @ "Location", "Resources", res <> ".m"
+}]
+
+
 (* ::Section::Closed:: *)
 (*IndentCode*)
 
@@ -121,11 +241,18 @@ IndentCode[tab_String:"  "]:= With[
 ];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*CodeTemplates*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
+(*Resource config*)
+
+
+StandardizeResource[$paclet, "CodeTemplates"]:= Map[ToProperTemplate];
+
+
+(* ::Subsection::Closed:: *)
 (*dev notes*)
 
 
@@ -148,92 +275,7 @@ template :
 
 
 (* ::Subsection::Closed:: *)
-(*misc*)
-
-
-$userTemplatesPath = FileNameJoin[
-  {$UserBaseDirectory, "ApplicationData", "DevTools", "codeTemplates.m"}
-];
-
-$templatesCachePath = FileNameJoin[
-  {$UserBaseDirectory, "ApplicationData", "DevTools", ToString[$VersionNumber], "codeTemplatesCache.mx"}
-];
-
-$minimalTemplatePattern = (_Association)?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
-
-
-StringWrapCommentFrame[str_String]:=Module[
-  {temp, max}
-, temp = StringSplit[str,"\n"] 
-; max = Max @ StringLength @ temp
-; Composition[
-    StringJoin
-  , Map[StringJoin[{"(* ",#," *)\n"}]&] 
-  , StringPadRight[#, max , " "]&
-  ] @ temp 
-  
-];
-
-
-(* ::Subsection:: *)
-(*$codeTemplates*)
-
-
-  
-  $codeTemplates = {    
-    <|
-      "Label" -> "New function"
-    , "ShortKey" -> "n"    
-    , "Template" -> StringRiffle[
-        { "`sel` // ClearAll"
-        , "`sel` // Options = {};"
-        , "`sel` // Attributes = {};"
-        , "`sel`[]:=Module[
-  {tag = \"`sel`\"}
-, Catch[
-    Check[
-      code
-    , Throw[$Failed, tag]  
-    ]
-  , tag
-  ]
-]"
-      }
-    , "\n"
-    ]
-  
-  |>
-, <|"Template" -> RowBox[{"{","\[SelectionPlaceholder]", "}"}],  "ShortKey" -> "{" |>
-
-, <|"Template" -> RowBox[{"(","\[SelectionPlaceholder]", ")"}],  "ShortKey" -> "(" |>
-
-, <|"Template" -> RowBox[{"[","\[SelectionPlaceholder]", "]"}],  "ShortKey" -> "[" |>
-
-, <|"Template" -> RowBox[{"\"","\[SelectionPlaceholder]","\""}]
-  , "Label" -> "\"\[SelectionPlaceholder]\""
-  , "ShortKey" ->"\"" 
-  , "Preview" -> None
-  |>  
-, <|
-  "Label" -> "VerificationTest"
-, "Template" -> RowBox[{ 
-      "VerificationTest[\n  ", TemplateSlot["sel"]
-    , "\n, ", TemplateExpression @ ToBoxes @ evaluatedTestTemplate @ TemplateSlot["sel"]
-    , "\n, TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm]
-    , "\n]"   
-    }] 
-, "ShortKey" -> "v"
-, "Preview" -> OutputForm@"VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"   
-|>  
-
-};
-  
-  (*TODO: get rid of _RowBox selector *)
-  
-  
-  (*TDOD: or should I make templates being applied via the main link by default? *)
-  
-  
+(*default templates' utilities*)
 
 
  (*The way NotebookWrite works allows us writing cell expressions mixed with strings that need to be parsed yet. 
@@ -333,11 +375,11 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 (*CodeTemplatesMenu[]:=CodeTemplatesMenu[  EvaluationNotebook[]];*)
 
 CodeTemplatesMenu[ parentNotebook_NotebookObject, type_String]:= With[
-    { nbEvents := CurrentValue[parentNotebook, NotebookEventActions]   
-    , appearances := FrontEndResource["FEExpressions","MoreLeftSetterNinePatchAppearance"]
-    , $codeTemplates = CodeTemplatesNeeds[] (* 'proper' templates *)
+    { nbEvents          := CurrentValue[parentNotebook, NotebookEventActions]   
+    , appearances       := FrontEndResource["FEExpressions","MoreLeftSetterNinePatchAppearance"]
     , selectedAppearance = FrontEndResource["FEExpressions","OrangeButtonNinePatchAppearance"]
-    , regularAppearance = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]     
+    , regularAppearance  = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]     
+    , $codeTemplates     = ResourceNeeds[$paclet, "CodeTemplates"] (* 'proper' templates *)
     }
    
   , DynamicModule[
@@ -447,68 +489,7 @@ codeTemplateItemLabel[temp_Association]:= If[
 
 
 (* ::Subsection::Closed:: *)
-(*needs*)
-
-
-CodeTemplatesNeeds[]:= CodeTemplatesNeeds[] =  CodeTemplatesLoad[];
-
-
-(* ::Subsection::Closed:: *)
-(*load*)
-
-
-CodeTemplatesLoad[]:= With[
-  {path = $templatesCachePath}
-,  If[
-    FileExistsQ @ path
-  , Check[ Import[ path, "MX" ]
-    , DeleteFile @ path; CodeTemplatesLoad[]
-    ]  
-  , CodeTemplatesCache[] /. _String :> CodeTemplatesLoad[]
-  ]
-];
-
-
-(* ::Subsection::Closed:: *)
-(*cache*)
-
-
-CodeTemplatesCache[]:=Module[
-  { userTempl, cache 
-  , userPath = $userTemplatesPath  
-  , systemTempl = $codeTemplates
-  , cachePath = $templatesCachePath
-  }
-, Catch[
-    userTempl = Check[
-        If[ FileExistsQ @ userPath, Import[userPath, {"Package","ExpressionList"}], {}]
-      , {}
-      ]
-  ; Check[
-      cache = ToProperTemplate /@ Join[userTempl, systemTempl ]
-    , Throw @ $Failed 
-    ]
-  ; DirectoryNeed @ DirectoryName @  cachePath
-  ; Export[ cachePath, cache, "MX"]  
-  ]   
-
-];
-
-
-(* ::Subsection:: *)
-(*reset*)
-
-
-CodeTemplatesReset::usage = "CodeTemplatesReset[] reloads system and user templates. Should not be needed if evertyhing goes well."
-
-CodeTemplatesReset[]:= (
-  If[FileExistsQ[#], DeleteFile[#]]& @ $templatesCachePath
-; CodeTemplatesNeeds[] = CodeTemplatesLoad[]
-)
-
-
-(* ::Subsection::Closed:: *)
-(*to proper template*)
+(*ToProperTemplate*)
 
 
 $defaultTemplate = <| 
@@ -517,6 +498,9 @@ $defaultTemplate = <|
 , "ExpandEmptySelection" -> True
 
 |>;
+
+
+$minimalTemplatePattern = (_Association)?(KeyExistsQ["Template"]); (*earlier than KeyValuePattern*)
 
 
 ToProperTemplate[ template:$minimalTemplatePattern]:= Module[
@@ -546,7 +530,7 @@ ToProperTemplate[___] = ##&[];
 
 
 (* ::Subsection::Closed:: *)
-(*apply*)
+(*CodeTemplateApply*)
 
 
   
@@ -598,6 +582,19 @@ selectionToBoxes[boxes_]:=boxes;
 (*$userTemplatesHeader*)
 
 
+StringWrapCommentFrame[str_String]:=Module[
+  {temp, max}
+, temp = StringSplit[str,"\n"] 
+; max = Max @ StringLength @ temp
+; Composition[
+    StringJoin
+  , Map[StringJoin[{"(* ",#," *)\n"}]&] 
+  , StringPadRight[#, max , " "]&
+  ] @ temp 
+  
+];
+
+
 $userTemplatesHeader = StringWrapCommentFrame @ "
                                USER CODE TEMPLATES FILE
 Enter your templates delimited by a newline 
@@ -620,7 +617,9 @@ Example from system templates:
 
 CodeTemplatesEdit::usage = "CodeTemplatesEdit[] opens a user templates editor.";
 CodeTemplatesEdit[]:= Module[
-  {path = $userTemplatesPath, nb
+  {
+    path = UserResourcePath[$paclet, "CodeTemplates"]
+  , nb
   }
   
 , DirectoryNeed @ DirectoryName @ path
@@ -638,7 +637,7 @@ CodeTemplatesEdit[]:= Module[
 (*TODO: docked cell with default buttons *)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*templatesEditorToolbar*)
 
 
@@ -658,7 +657,7 @@ templatesEditorToolbar[]:=Grid[{{
 (*Paclets utilities*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*PacletVersionIncrement*)
 
 

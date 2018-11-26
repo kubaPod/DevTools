@@ -6,32 +6,46 @@ Cell["test", \
 
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<PacletManager`\>\""}]], "Input",
- CellLabel->"In[80]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
-
-Cell[CellGroupData[{
+ CellLabel->"In[1]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
 
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[81]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
-
-Cell[BoxData["\<\"E:\\\\Idea Projects\\\\DevTools\"\>"], "Output",
- CellLabel->"Out[81]=",ExpressionUUID->"cc3cbbc1-3308-4abf-a026-55533aa08477"]
-}, Open  ]],
-
-Cell[CellGroupData[{
+ CellLabel->"In[2]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
 
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[82]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+ CellLabel->"In[3]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"E:\\\\Idea Projects\\\\Meh\\\\\"\>", 
-   ",", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>"}], "}"}]], "Output",
- CellLabel->"Out[82]=",ExpressionUUID->"2483ab1e-8fff-47c2-a6d8-a7e8f21732a3"]
-}, Open  ]],
+ RowBox[{
+  RowBox[{
+   RowBox[{"PacletFind", "[", "\"\<DevTools\>\"", "]"}], "[", 
+   RowBox[{"[", "1", "]"}], "]"}], "@", "\"\<Version\>\""}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"aed2e14b-4cd8-4f11-892d-e679e8225159"],
+
+Cell[BoxData[
+ RowBox[{"PacletFind", "[", 
+  RowBox[{"\"\<DevTools\>\"", ",", 
+   RowBox[{"\"\<Location\>\"", "\[Rule]", 
+    RowBox[{"NotebookDirectory", "[", "]"}]}]}], "]"}]], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"bde6be10-e423-4680-a66b-e52df4585670"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CreatePaclet", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<DevTools\>\"", ",", 
+      "\"\<PacletInfo.m\>\""}], "}"}], "]"}], "]"}], "@", 
+  "\"\<Version\>\""}]], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"dfb51c75-1399-41fa-afa4-c8399ed59032"],
+
+Cell[BoxData[
+ RowBox[{"PacletFind", "//", "PrintDefinitions"}]], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"ad645e49-247f-446c-9222-b30cf7c3cfdc"],
 
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<DevTools`\>\""}]], "Input",
@@ -75,43 +89,19 @@ Cell[BoxData[
   "PacletUninstall"}]], \
 "Input",ExpressionUUID->"69244c21-9479-4654-a01c-affd72ef29b0"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"PacletUninstall", "/@", 
   RowBox[{"PacletFind", "[", "\"\<DevTools\>\"", "]"}]}]], "Input",
  CellLabel->"In[1]:=",ExpressionUUID->"76f29339-8f6a-441b-a6b7-294ad52a0424"],
 
 Cell[BoxData[
- RowBox[{"{", "Null", "}"}]], "Output",
- CellLabel->"Out[1]=",ExpressionUUID->"f802a27e-a630-4cf8-ad3f-f14cd2129232"]
-}, Open  ]],
-
-Cell[BoxData[
  RowBox[{"<<", "MPM`"}]], "Input",
  CellLabel->"In[2]:=",ExpressionUUID->"f85edcad-936c-41c9-8b7d-9c1261cbf6e6"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"MPMInstall", "[", 
   RowBox[{"\"\<kubapod\>\"", ",", "\"\<devtools\>\""}], "]"}]], "Input",
  CellLabel->"In[3]:=",ExpressionUUID->"fbf4d0a4-14ef-4f89-87b9-b15b11bf176a"],
-
-Cell[BoxData[
- InterpretationBox[
-  RowBox[{
-  "Paclet", "[", "\<\"DevTools\"\>", ",", "\<\"0.8.1\"\>", ",", "<>", "]"}],
-  PacletManager`Paclet[
-  "Name" -> "DevTools", "Version" -> "0.8.1", "WolframVersion" -> "10.4+", 
-   "Description" -> "DevTools", "Creator" -> 
-   "Jakub (Kuba) Podkalicki\tkuba.pod@gmail.com", 
-   "Extensions" -> {{"FrontEnd"}, {"Kernel", "Context" -> "DevTools`"}}, 
-   "Location" -> 
-   "C:\\Users\\user\\AppData\\Roaming\\Mathematica\\Paclets\\Repository\\\
-DevTools-0.8.1"]]], "Output",
- CellLabel->"Out[3]=",ExpressionUUID->"a648356e-8909-44e5-a6c0-ec70186de5e3"]
-}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"<<", "DevTools`"}]], "Input",
@@ -185,13 +175,54 @@ Cell[BoxData[
    RowBox[{"StyleDefinitions", "\[Rule]", 
     RowBox[{"DevPackage", "[", "True", "]"}]}]}], 
   "]"}]], "Input",ExpressionUUID->"4cc35c6f-ccf9-44c0-91bf-ed550c0b57a7"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["resources dev", \
+"Section",ExpressionUUID->"78c2e4f5-1016-42e5-88e0-6d09daca6ec7"],
+
+Cell[BoxData[
+ RowBox[{"PacletDirectoryAdd", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellLabel->
+  "In[254]:=",ExpressionUUID->"170df755-0bf1-40c2-b754-5f2dde9cbe6c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"#", "[", "\"\<Version\>\"", "]"}], "&"}], "/@", 
+   RowBox[{"PacletFind", "@", "\"\<DevTools\>\""}]}], "//", 
+  "Column"}]], "Input",
+ CellLabel->
+  "In[258]:=",ExpressionUUID->"c8dd4620-4590-44d8-91ea-d07b02c72867"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"$paclet", " ", "=", " ", 
+    RowBox[{"CreatePaclet", " ", "@", " ", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", " ", 
+        "\"\<DevTools\>\""}], "}"}], "]"}]}]}], ";"}], "\n"}], "\n", 
+ RowBox[{"NeedResource", "[", 
+  RowBox[{"$paclet", ",", " ", "\"\<LiveTemplates\>\""}], "]"}]}], "Code",
+ CellLabel->"In[73]:=",ExpressionUUID->"8f696cd0-bda1-4e72-ae10-a171523d5557"],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "@", "$UserBaseDirectory"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"adf91a0c-0e57-4cfb-9124-b6021a2ff0b2"]
 }, Open  ]]
 },
 WindowSize->{1085, 932},
-WindowMargins->{{Automatic, 0}, {38, Automatic}},
+WindowMargins->{{Automatic, 50}, {Automatic, 35}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+AutoMultiplicationSymbol->True,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (November 13, 2018)",
 StyleDefinitions->"Default.nb"
 ]
 
