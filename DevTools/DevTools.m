@@ -91,7 +91,7 @@ DirectoryNeed[dir_String]:=If[
 (*Resources*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*aux*)
 
 
@@ -99,17 +99,17 @@ $throwOnFailed[$Failed]:=Throw @ $Failed;
 $throwOnFailed[x_]:=x;
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Needs*)
 
 
-NeedResource[paclet_Paclet, res_String]:= Catch[
-  NeedResource[paclet, res] = $throwOnFailed @ GetResource[paclet, res]
+NeedsResource[paclet_Paclet, res_String]:= Catch[
+  NeedsResource[paclet, res] = $throwOnFailed @ GetResource[paclet, res]
 ];
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Get*)
 
 
@@ -125,22 +125,22 @@ GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Cache*)
 
 
-CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, pacletResPath, cachePath, standardizer}
+CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, pacletResPath, cachePath, standardizer, resource}
 , pacletResPath =  ResourcePath[paclet, res]
 ; cachePath = ResourceCachePath[paclet, res]
 ; standardizer = StandardizeResource[paclet, res]
 
-; userRes = standardizer @ GetUserResource[paclet, res]
-; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed
+; userRes = standardizer @ GetUserResource[paclet, res] //Echo
+; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed // Echo
 
 ; If[Not @ DirectoryQ @ #, CreateDirectory[#, CreateIntermediateDirectories->True]]& @ DirectoryName @ cachePath
-; res = MergeResource[userRes, pacletRes]
+; resource = MergeResource[userRes, pacletRes]
 
-; Export[cachePath, res, "MX"]
+; Export[cachePath, resource, "MX"]
 ]
 
 
@@ -176,18 +176,18 @@ ImportResource[_, _, path_String]:= Import[path, {"Package","ExpressionList"}];
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Reset*)
 
 
 ResetResource[paclet_Paclet, res_String]:= (
   ResourceCachePath[paclet, res] // If[FileExistsQ[#], DeleteFile[#]]&
-; NeedResource[paclet, res] =.
-; NeedResource[paclet, res]
+; NeedsResource[paclet, res] =.
+; NeedsResource[paclet, res]
 );
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*paths*)
 
 
@@ -306,7 +306,7 @@ evaluatedTestTemplate[selection_]:= DynamicWrapper[
   
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Menu open*)
 
 
@@ -330,7 +330,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject]:=CodeTemplatesMenuOpen[
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Cell menu open*)
 
 
@@ -370,19 +370,19 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Menu*)
 
 
 (*TODO: preburn this one day*)
 (*CodeTemplatesMenu[]:=CodeTemplatesMenu[  EvaluationNotebook[]];*)
 
-CodeTemplatesMenu[ parentNotebook_NotebookObject, type_String]:= With[
+CodeTemplatesMenu[ parentNotebook_NotebookObject, type_String]:= Catch @ With[
     { nbEvents          := CurrentValue[parentNotebook, NotebookEventActions]
     , appearances       := FrontEndResource["FEExpressions","MoreLeftSetterNinePatchAppearance"]
     , selectedAppearance = FrontEndResource["FEExpressions","OrangeButtonNinePatchAppearance"]
     , regularAppearance  = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]
-    , $codeTemplates     = ResourceNeeds[$paclet, "CodeTemplates"] (* 'proper' templates *)
+    , $codeTemplates     = NeedsResource[$paclet, "CodeTemplates"] // If[! ListQ@#, Beep[];Throw @ $Failed, #]& (* 'proper' templates *)
     }
    
   , DynamicModule[
