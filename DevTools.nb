@@ -4,20 +4,30 @@ Cell[CellGroupData[{
 Cell["test", \
 "Subsubsection",ExpressionUUID->"c37b4342-abe7-4c9a-abab-9cc1ba45b03f"],
 
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PacletFind", "[", "\"\<DevTools\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"5e42e6f1-d125-4f09-91b2-b2a1bde0fe8c"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellLabel->"Out[1]=",ExpressionUUID->"0d6b13fa-e402-4de0-9b9d-0f10055c41c4"]
+}, Open  ]],
+
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<PacletManager`\>\""}]], "Input",
- CellLabel->"In[80]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
+ CellLabel->"In[2]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
+ CellLabel->"In[3]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
 
-Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\"\>"], \
-"Output",
- CellLabel->"Out[1]=",ExpressionUUID->"4c5a3faf-967a-4712-aaf7-e15e34cbf498"]
+Cell[BoxData["\<\"E:\\\\Idea Projects\\\\DevTools\"\>"], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"2a2016f7-52ed-466c-bf5c-02730e8c75fe"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -25,17 +35,16 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[2]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+ CellLabel->"In[4]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
 
 Cell[BoxData[
- RowBox[{"{", "\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\\\\\"\>", 
-  "}"}]], "Output",
- CellLabel->"Out[2]=",ExpressionUUID->"9239c0d8-268e-4f7d-a4cc-e3cefc0e148c"]
+ RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", "}"}]], "Output",
+ CellLabel->"Out[4]=",ExpressionUUID->"a89d2d28-dc71-43dc-a313-ebd7eeaf35ed"]
 }, Open  ]],
 
 Cell[BoxData[
  RowBox[{"Needs", "@", "\"\<DevTools`\>\""}]], "Input",
- CellLabel->"In[33]:=",ExpressionUUID->"a5b2a260-a612-4ea1-b216-0916bbde9e9a"],
+ CellLabel->"In[5]:=",ExpressionUUID->"a5b2a260-a612-4ea1-b216-0916bbde9e9a"],
 
 Cell[BoxData[
  RowBox[{
@@ -50,6 +59,8 @@ Cell[BoxData[
   "Inherited"}]], \
 "Input",ExpressionUUID->"2213dc04-e2eb-472b-befc-2cc351452d68"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"CurrentValue", "[", 
@@ -58,7 +69,16 @@ Cell[BoxData[
   RowBox[{"FrontEnd`FileName", "[", 
    RowBox[{"{", 
     RowBox[{"\"\<DevTools\>\"", ",", "\"\<DevPackageDark.nb\>\""}], "}"}], 
-   "]"}]}]], "Input",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"],
+   "]"}]}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"8fc7d430-50d9-4264-b39e-df0c7f9e7a67"],
+
+Cell[BoxData[
+ RowBox[{"FrontEnd`FileName", "[", 
+  RowBox[{"{", 
+   RowBox[{"\<\"DevTools\"\>", ",", "\<\"DevPackageDark.nb\"\>"}], "}"}], 
+  "]"}]], "Output",
+ CellLabel->"Out[6]=",ExpressionUUID->"af82e0de-0362-42f7-beb5-e372a5a8776b"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"Get", "[", 
@@ -179,10 +199,10 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{1085, 932},
-WindowMargins->{{Automatic, 701}, {Automatic, 156}},
+WindowMargins->{{Automatic, 79}, {-1, Automatic}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (November 13, 2018)",
 StyleDefinitions->"Default.nb"
 ]
 

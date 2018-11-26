@@ -88,7 +88,7 @@ DirectoryNeed[dir_String]:=If[
 
 
 (* ::Section:: *)
-(*Resources*)
+(*Resource management*)
 
 
 (* ::Subsection::Closed:: *)
@@ -99,7 +99,7 @@ $throwOnFailed[$Failed]:=Throw @ $Failed;
 $throwOnFailed[x_]:=x;
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Needs*)
 
 
@@ -109,7 +109,7 @@ NeedsResource[paclet_Paclet, res_String]:= Catch[
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Get*)
 
 
@@ -125,7 +125,7 @@ GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Cache*)
 
 
@@ -134,8 +134,8 @@ CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, p
 ; cachePath = ResourceCachePath[paclet, res]
 ; standardizer = StandardizeResource[paclet, res]
 
-; userRes = standardizer @ GetUserResource[paclet, res] //Echo
-; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed // Echo
+; userRes = standardizer @ GetUserResource[paclet, res] 
+; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed 
 
 ; If[Not @ DirectoryQ @ #, CreateDirectory[#, CreateIntermediateDirectories->True]]& @ DirectoryName @ cachePath
 ; resource = MergeResource[userRes, pacletRes]
@@ -176,7 +176,7 @@ ImportResource[_, _, path_String]:= Import[path, {"Package","ExpressionList"}];
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Reset*)
 
 
@@ -187,7 +187,7 @@ ResetResource[paclet_Paclet, res_String]:= (
 );
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*paths*)
 
 
@@ -330,7 +330,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject]:=CodeTemplatesMenuOpen[
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Cell menu open*)
 
 
@@ -370,7 +370,7 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Menu*)
 
 
@@ -644,14 +644,14 @@ CodeTemplatesEdit[]:= Module[
 (*TODO: docked cell with default buttons *)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*templatesEditorToolbar*)
 
 
 templatesEditorToolbar[]:=Grid[{{
   Button["Save and test"
   , NotebookSave[]
-  ; CodeTemplatesReset[]
+  ; ResetResource[$paclet, "CodeTemplates"]
   ; CodeTemplatesMenuOpen[]
   , Appearance->Inherited
   , FrameMargins->{{15,15},{5,5}}
