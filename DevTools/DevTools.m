@@ -25,6 +25,9 @@ CenterToParent;
 PacletVersionIncrement;
 
 
+KeyFrame;
+
+
 Begin["`Events`"];
 
 
@@ -103,7 +106,7 @@ $throwOnFailed[x_]:=x;
 NeedResource[paclet_Paclet, res_String]:= Catch[
   NeedResource[paclet, res] = $throwOnFailed @ GetResource[paclet, res]
 ];
- 
+
 
 
 (* ::Subsection::Closed:: *)
@@ -111,15 +114,15 @@ NeedResource[paclet_Paclet, res_String]:= Catch[
 
 
 GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
-, cachePath = ResourceCachePath[paclet, res] 
+, cachePath = ResourceCachePath[paclet, res]
 ; If[
     FileExistsQ @ cachePath
-  , Import[ cachePath, "MX" ] // $throwOnFailed    
-  , CacheResource[paclet, res] // $throwOnFailed   
+  , Import[ cachePath, "MX" ] // $throwOnFailed
+  , CacheResource[paclet, res] // $throwOnFailed
   ; GetResource[paclet, res]
-  ]  
+  ]
 ]
-  
+
 
 
 (* ::Subsection::Closed:: *)
@@ -135,11 +138,11 @@ CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, p
 ; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed
 
 ; If[Not @ DirectoryQ @ #, CreateDirectory[#, CreateIntermediateDirectories->True]]& @ DirectoryName @ cachePath
-; res = MergeResource[userRes, pacletRes] 
+; res = MergeResource[userRes, pacletRes]
 
 ; Export[cachePath, res, "MX"]
-]  
-  
+]
+
 
 
 (* ::Subsection::Closed:: *)
@@ -148,7 +151,7 @@ CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, p
 
 GetUserResource[paclet_Paclet, res_String]:=Module[{path}
 , path = UserResourcePath[paclet, res]
-; If[ 
+; If[
     Not @ FileExistsQ @ path
   , {}
   , Check[ImportResource[paclet, res, path], {}] (*TODO: msg?*)
@@ -170,7 +173,7 @@ MergeResource[userRes_, pacletRes_]:=Join[userRes, pacletRes];
 
 ImportResource[path_String]:=Import[path, {"Package","ExpressionList"}];
 ImportResource[_, _, path_String]:= Import[path, {"Package","ExpressionList"}];
-  
+
 
 
 (* ::Subsection::Closed:: *)
@@ -375,10 +378,10 @@ CodeTemplatesMenuOpen[nb_NotebookObject, "Notebook"]:=NotebookPut @ CenterToPare
 (*CodeTemplatesMenu[]:=CodeTemplatesMenu[  EvaluationNotebook[]];*)
 
 CodeTemplatesMenu[ parentNotebook_NotebookObject, type_String]:= With[
-    { nbEvents          := CurrentValue[parentNotebook, NotebookEventActions]   
+    { nbEvents          := CurrentValue[parentNotebook, NotebookEventActions]
     , appearances       := FrontEndResource["FEExpressions","MoreLeftSetterNinePatchAppearance"]
     , selectedAppearance = FrontEndResource["FEExpressions","OrangeButtonNinePatchAppearance"]
-    , regularAppearance  = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]     
+    , regularAppearance  = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]
     , $codeTemplates     = ResourceNeeds[$paclet, "CodeTemplates"] (* 'proper' templates *)
     }
    
@@ -475,17 +478,21 @@ codeTemplateItemLabel[temp_Association]:= If[
 , Pane[temp["Label"], {130+18, All}]  
 , Grid[ {{
       Pane[temp["Label"], ImageSize -> {130, All}]    
-    , Framed[ Style[ToUpperCase @ temp["ShortKey"],10]
+    , KeyFrame @ ToUpperCase @ temp["ShortKey"]
+  }}, Alignment->{Right,Center},Spacings->{0,0}]
+];
+
+
+
+KeyFrame[key_, opts___]:=Framed[ Style[key,10]
+      , opts
       , FrameMargins -> {{2, 4}, {4, 2}}
       , ImageSize -> {18,18}
       , FrameStyle -> Directive[Thick, GrayLevel[0.7]]
       , ContentPadding -> False
       , RoundingRadius -> 2
       , Background -> GrayLevel[0.99]
-      ] 
-  }}, Alignment->{Right,Center},Spacings->{0,0}]
-];
- 
+      ]
 
 
 (* ::Subsection::Closed:: *)
@@ -584,14 +591,14 @@ selectionToBoxes[boxes_]:=boxes;
 
 StringWrapCommentFrame[str_String]:=Module[
   {temp, max}
-, temp = StringSplit[str,"\n"] 
+, temp = StringSplit[str,"\n"]
 ; max = Max @ StringLength @ temp
 ; Composition[
     StringJoin
-  , Map[StringJoin[{"(* ",#," *)\n"}]&] 
+  , Map[StringJoin[{"(* ",#," *)\n"}]&]
   , StringPadRight[#, max , " "]&
-  ] @ temp 
-  
+  ] @ temp
+
 ];
 
 
@@ -653,7 +660,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Paclets utilities*)
 
 
