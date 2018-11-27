@@ -87,7 +87,7 @@ DirectoryNeed[dir_String]:=If[
 
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Resource management*)
 
 
@@ -248,11 +248,19 @@ IndentCode[tab_String:"  "]:= With[
 (*CodeTemplates*)
 
 
-(* ::Subsection::Closed:: *)
-(*Resource config*)
+(* ::Subsection:: *)
+(*Config*)
 
 
 StandardizeResource[$paclet, "CodeTemplates"]:= Map[ToProperTemplate];
+
+
+  (*sets the default value if not present*)
+CurrentValue[
+  $FrontEnd
+, {TaggingRules, "DevTools", "MenuMethod"}
+, If[$VersionNumber < 11, "Notebook", "Cell"]
+]; 
 
 
 (* ::Subsection::Closed:: *)
@@ -288,8 +296,7 @@ template :
 evaluatedTestTemplate[selection_]:= DynamicWrapper[
   ProgressIndicator[Appearance->"Percolate"]
 , Module[
-    { result =  ToString[ ToExpression @ selection, InputForm] 
-    }
+    { result =  ToString[ ToExpression @ selection, InputForm]  }
   , NotebookWrite[EvaluationBox[], RowBox @ List @ result, After]  
   ; If[ $MessageList =!= {}
     , NotebookWrite[EvaluationNotebook[], RowBox[{"\n, ", ToBoxes[ RawBoxes @* First /@ (MakeBoxes @@@ $MessageList)]}]]
@@ -308,14 +315,6 @@ evaluatedTestTemplate[selection_]:= DynamicWrapper[
 
 (* ::Subsection:: *)
 (*Menu open*)
-
-
-  (*sets the default value if not present*)
-CurrentValue[
-  $FrontEnd
-, {TaggingRules, "DevTools", "MenuMethod"}
-, If[$VersionNumber < 11, "Notebook", "Cell"]
-]; 
 
 
 CodeTemplatesMenuOpen::usage = "CodeTemplatesMenuOpen[nb:_:EvaluationNotebook[]]"<>
@@ -581,7 +580,7 @@ selectionToBoxes[{}]:= ##&[];
 selectionToBoxes[boxes_]:=boxes;
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*user edit*)
 
 
