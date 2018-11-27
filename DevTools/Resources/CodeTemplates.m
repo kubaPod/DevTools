@@ -36,8 +36,15 @@
   "Label" -> "VerificationTest"
 , "Template" -> RowBox[{
     "VerificationTest[\n  ", TemplateSlot["sel"]
-  , "\n, ", TemplateExpression @ ToBoxes @ evaluatedTestTemplate @ TemplateSlot["sel"]
-  , "\n, TestID -> ", TemplateExpression @ ToString[CreateUUID[], InputForm]
+  , "\n, ", TemplateExpression @ ToBoxes @ DevTools`Events`evaluatedTestTemplate @ TemplateSlot["sel"]
+  , "\n, TestID -> ", TemplateExpression[
+        ToBoxes @
+        If[StringLength[#]>32, StringTake[#, 64]<>"...", #]& @
+        First @
+        FrontEndExecute @
+        FrontEnd`ExportPacket[StripBoxes @ TemplateSlot["sel"], "PlainText"]
+    ]
+    
   , "\n]"
   }]
 , "ShortKey" -> "v"
