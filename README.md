@@ -84,7 +84,7 @@ Alternatively, if you don't want to use dark styles but code templates you can i
 
 - comment everything and put this snippet at the bottom:
 
-      Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesMenuOpen[] ]
+      Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["CodeTemplates"] ]
       
 - save, close and the menu should open on <kbd>Ctrl</kbd>+<kbd>t</kbd>
 

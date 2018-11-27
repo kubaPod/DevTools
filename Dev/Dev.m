@@ -38,7 +38,8 @@ menuIcon[]:=Pane[
 
 notebookActions[]:={
   {"KeyDown", "\t"} :> Block[{$ContextPath}, Needs["DevTools`"]; IndentCode[]]
-, {"MenuCommand", "InsertNewGraphic"} :>  Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesMenuOpen[] ]
+, {"MenuCommand", "InsertNewGraphic"} :>  Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["CodeTemplates"] ]
+, {"MenuCommand", "PrintDialog"} :>  Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["NotebookActions"] ]
 , ParentList
 }
 
@@ -61,21 +62,32 @@ devNotebookToolbar[]:=With[
            ]
          , Full
          ]
-       (*, Button[ Row[{updateIcon, "Menus"}, Spacer[3]]
-         , MathLink`CallFrontEnd[FrontEnd`ResetMenusPacket[{Automatic,Automatic}]]
-         , Appearance->buttonAppearance 
-         , Method -> "Queued"
-         , BaseStyle-> buttonStyle
-         ]*)
+
        , ActionMenu[
            Button[ 
-             Row[{"Code templates", menuIcon}, "  "]
+             Row[{"Templates & Actions", menuIcon}, "  "]
            , Appearance->buttonAppearance 
            , BaseStyle-> buttonStyle 
            ]
-         , { "Edit user templates" :> Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesEdit[] ]
-           , "Refresh" :> Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesReset[] ]
-           , Row[{"Open menu  ", KeyFrame["Ctrl", ImageSize->{All, 18}], "+", KeyFrame["1"] }]:> Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesMenuOpen[] ]
+         , { "Edit code templates" :> Block[{$ContextPath}, Needs["DevTools`"]; CodeTemplatesEdit[] ]
+           , Row[{"Open templates menu  ", KeyFrame["Ctrl", ImageSize->{All, 18}], "+", KeyFrame["1"] }]:>
+               Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["CodeTemplates"] ]
+
+           , Delimiter
+
+           , "Edit notebook actions" :> Block[{$ContextPath}, Needs["DevTools`"]; EditNotebookActions[] ]
+           , Row[{"Open actions menu  ", KeyFrame["Ctrl", ImageSize->{All, 18}], "+", KeyFrame["p"] }]:>
+               Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["NotebookActions"] ]
+
+
+           , Delimiter
+
+           , "Refresh All" :> Block[{$ContextPath},
+               Needs["DevTools`"];
+               ResetResource[$paclet, "NotebookActions"];
+               ResetResource[$paclet, "CodeTemplates"];
+             ]
+
            }
          , Method->"Queued"
          , Appearance->None    

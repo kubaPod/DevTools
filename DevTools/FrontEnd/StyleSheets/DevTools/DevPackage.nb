@@ -3,17 +3,17 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 11.3' *)
+(* CreatedBy='Mathematica 12.0' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5185,        125]
-NotebookOptionsPosition[      4811,        113]
-NotebookOutlinePosition[      5078,        126]
-CellTagsIndexPosition[      5035,        123]
+NotebookDataLength[      6760,        156]
+NotebookOptionsPosition[      6381,        144]
+NotebookOutlinePosition[      6652,        157]
+CellTagsIndexPosition[      6609,        154]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -25,7 +25,10 @@ Cell[StyleData["Notebook"],
    Block[{$ContextPath}, Needs["DevTools`"]; DevTools`IndentCode[]], {
     "MenuCommand", "InsertNewGraphic"} :> 
    Block[{$ContextPath}, Needs["DevTools`"]; 
-     DevTools`CodeTemplatesMenuOpen[]], ParentList},
+     DevTools`OpenNotebookMenu["CodeTemplates"]], {
+    "MenuCommand", "PrintDialog"} :> 
+   Block[{$ContextPath}, Needs["DevTools`"]; 
+     DevTools`OpenNotebookMenu["NotebookActions"]], ParentList},
  DockedCells->{
    Cell[
     BoxData[
@@ -41,7 +44,7 @@ Cell[StyleData["Notebook"],
            Automatic], ImageSize -> Full], 
          ActionMenuBox[
           ButtonBox[
-           TemplateBox[{"  ", "\"  \"", "\"Code templates\"", 
+           TemplateBox[{"  ", "\"  \"", "\"Templates & Actions\"", 
              PaneBox[
               StyleBox[
                DynamicBox[
@@ -55,11 +58,10 @@ Cell[StyleData["Notebook"],
             "MUnitExpressions", "ButtonAppearances"], 
            BaseStyle -> {FontColor -> GrayLevel[0.2]}, Method -> 
            "Preemptive"], {
-          "\"Edit user templates\"" :> 
+          "\"Edit code templates\"" :> 
            Block[{$ContextPath}, Needs["DevTools`"]; 
-             DevTools`CodeTemplatesEdit[]], "\"Refresh\"" :> 
-           Block[{$ContextPath}, Needs["DevTools`"]; 
-             DevTools`CodeTemplatesReset[]], TemplateBox[{"\"Open menu  \"", 
+             DevTools`CodeTemplatesEdit[]], 
+           TemplateBox[{"\"Open templates menu  \"", 
               FrameBox[
                StyleBox["\"Ctrl\"", 10, StripOnInput -> False], 
                ImageSize -> {All, 18}, FrameMargins -> {{2, 4}, {4, 2}}, 
@@ -77,8 +79,37 @@ Cell[StyleData["Notebook"],
                2, Background -> GrayLevel[0.99], StripOnInput -> False]}, 
              "RowDefault"] :> 
            Block[{$ContextPath}, Needs["DevTools`"]; 
-             DevTools`CodeTemplatesMenuOpen[]]}, Method -> "Queued", 
-          Appearance -> None], 
+             DevTools`OpenNotebookMenu["CodeTemplates"]], Delimiter, 
+           "\"Edit notebook actions\"" :> 
+           Block[{$ContextPath}, Needs["DevTools`"]; 
+             DevTools`EditNotebookActions[]], 
+           TemplateBox[{"\"Open actions menu  \"", 
+              FrameBox[
+               StyleBox["\"Ctrl\"", 10, StripOnInput -> False], 
+               ImageSize -> {All, 18}, FrameMargins -> {{2, 4}, {4, 2}}, 
+               ImageSize -> {18, 18}, FrameStyle -> Directive[
+                 Thickness[Large], 
+                 GrayLevel[0.7]], ContentPadding -> False, RoundingRadius -> 
+               2, Background -> GrayLevel[0.99], StripOnInput -> False], 
+              "\"+\"", 
+              FrameBox[
+               StyleBox["\"p\"", 10, StripOnInput -> False], 
+               FrameMargins -> {{2, 4}, {4, 2}}, ImageSize -> {18, 18}, 
+               FrameStyle -> Directive[
+                 Thickness[Large], 
+                 GrayLevel[0.7]], ContentPadding -> False, RoundingRadius -> 
+               2, Background -> GrayLevel[0.99], StripOnInput -> False]}, 
+             "RowDefault"] :> 
+           Block[{$ContextPath}, Needs["DevTools`"]; 
+             DevTools`OpenNotebookMenu["NotebookActions"]], Delimiter, 
+           "\"Refresh All\"" :> 
+           Block[{$ContextPath}, 
+             Needs["DevTools`"]; \
+$CellContext`Private`ResetResource[$CellContext`Private`$paclet, 
+               "NotebookActions"]; \
+$CellContext`Private`ResetResource[$CellContext`Private`$paclet, 
+               "CodeTemplates"]; Null]}, Method -> "Queued", Appearance -> 
+          None], 
          TagBox[
           TooltipBox[
            ButtonBox[
@@ -111,7 +142,7 @@ Cell[StyleData["Notebook"],
       "Grid"]], "DockedCell", CellFrameMargins -> {{12, 12}, {10, 10}}], 
    Inherited}]
 },
-FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (November 13, 2018)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -125,8 +156,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 49, 0, 70, 49, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"806fc2de-8357-4200-a31e-1b057eb245f6"],
-Cell[610, 22, 4197, 89, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"ab52ebfe-1eb0-4470-8cfe-28b1396b0a4f"]
+Cell[558, 20, 49, 0, 70, 49, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"50a5813e-5f88-4624-b30a-cb1b747c6775"],
+Cell[610, 22, 5767, 120, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"76f52f30-6fd2-4372-9076-3626641c6c8d"]
 }
 ]
 *)

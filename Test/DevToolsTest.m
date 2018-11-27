@@ -1,8 +1,5 @@
 (* ::Package:: *)
 
-
-
-
 VerificationTest[
   MatchQ[
     List @@ DevTools`Events`$paclet
@@ -42,4 +39,10 @@ VerificationTest[
 ] // MatchQ[{DevTools`Events`$minimalTemplatePattern..}]
 , True
 , TestID -> "reset code templates"
+]
+
+
+DevTools`Events`ResetResource[
+  DevTools`Events`$paclet
+, "NotebookActions" 
 ]
