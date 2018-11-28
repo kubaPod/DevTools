@@ -19,7 +19,7 @@
   
 - via MPM
   
-      (*If you don't have ``MPM` `` yet*)
+      (*If you don't have MPM` yet*)
       Import["https://raw.githubusercontent.com/kubapod/mpm/master/install.m"] 
   
       Needs @ "MPM`"   
@@ -31,6 +31,8 @@
       DeleteDirectory[FileNameJoin[{$UserBaseDirectory, "AppliactionData", "DevTools"}], 
         DeleteContents -> True
       ];
+      
+      (* now see 'Setup dark stylesheet with all features' section below*)
   
 ## Quick Guide  
   
