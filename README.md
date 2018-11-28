@@ -32,7 +32,7 @@
         DeleteContents -> True
       ];
   
-##Quick Guide  
+## Quick Guide  
   
 ### Setup dark stylesheet with all features
     
