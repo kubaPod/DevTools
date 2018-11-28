@@ -1,21 +1,59 @@
 (*please consider it beta before it hits 1.0.0*)
 
-In addition to this README you can find information about this package in:
-
-- [SE: Live code templates](https://mathematica.stackexchange.com/q/164653/5478)
-
 ### What's there?
 
-- A dark stylesheet with code templates menu.
+- Dark theme for .m/.wl files 
 
-  It is based on a built-in ReverseColor.nb but adapted a little for .m .wl files. 
+- Customizable Code Templates (see below and [SE: Live code templates](https://mathematica.stackexchange.com/q/164653/5478))
 
-- Code templates
- 
-  Templates menu can be opened with <kbd>Ctrl</kbd> + <kbd>1</kbd> shortkey.
+- Customizable Notebook Actions (see below and [SE: custom un/comment](https://mathematica.stackexchange.com/q/184562/5478))
   
-- Custom code templates
 
+### Installation / Updating
+
+- Manual way
+
+  Go to 'releases' tab and download appropriate .paclet file.
+   
+  Run `PacletInstall @ path/to/the.paclet` file
+  
+- via MPM
+  
+      (*If you don't have ``MPM` `` yet*)
+      Import["https://raw.githubusercontent.com/kubapod/mpm/master/install.m"] 
+  
+      Needs @ "MPM`"   
+      MPM`MPMInstall["kubapod", "devtools"]
+
+### Uninstall
+  
+      PacletUninstall /@ PacletFind["DevTools"];
+      DeleteDirectory[FileNameJoin[{$UserBaseDirectory, "AppliactionData", "DevTools"}], 
+        DeleteContents -> True
+      ];
+  
+##Quick Guide  
+  
+### Setup dark stylesheet with all features
+    
+  In order to use the stylesheet as a default one for .m/.wl files, run:
+     
+      CurrentValue[$FrontEnd, "DefaultPackageStyleDefinitions"
+      ] = FrontEnd`FileName[{"DevTools", "DevPackageDark.nb"}]
+        
+  And if you don't like it:
+  
+      CurrentValue[$FrontEnd, "DefaultPackageStyleDefinitions"
+      ] = "Package.nb"
+  
+
+
+### Code templates  
+  
+  Templates menu can be opened with <kbd>Ctrl</kbd> + <kbd>1</kbd> shortkey.
+    
+  Custom code templates
+  
   Hit 'Edit code templates' and add custom entries in opened file.
   
       <| "Template" -> _String | _RowBox (*the only one which is reqiired*)
@@ -37,61 +75,18 @@ In addition to this README you can find information about this package in:
 
 ![Alt text](Dev/CodeTemplates.gif?raw=true "Title")
     
+  
+### Notebook actions
 
-### Installation / Updating
+They are very similar to templates feature. 
 
-- Manual
+Difference is that the menu with actions is invoked by <kbd>Ctrl</kbd> + <kbd>p</kbd> and an action item should look like this:
 
-  Go to 'releases' tab and download appropriate .paclet file.
-   
-  Run `PacletInstall @ path/to/the.paclet` file
-  
-- via MPM
-  
-  If you don't have ``MPM` `` yet, run:
-  
-  `Import["https://raw.githubusercontent.com/kubapod/mpm/master/install.m"]`
-  
-  and then:
-  
-  ``Needs @ "MPM`"``
-   
-  ``MPM`MPMInstall["kubapod", "devtools"]``
-  
-:exclamation: If templates menu is not up to date after an installation, run `CodeTemplatesReset[]`.  
-  
-### Setup dark stylesheet with code templates
-  
-In order to use the stylesheet as a default one for .m/.wl files, run:
-   
-    CurrentValue[$FrontEnd, "DefaultPackageStyleDefinitions"
-    ] = FrontEnd`FileName[{"DevTools", "DevPackageDark.nb"}]
-      
-And if you don't like it:
-
-    CurrentValue[$FrontEnd, "DefaultPackageStyleDefinitions"
-    ] = "Package.nb"
+     <|                        (*!!!   DON'T FORGET ABOUT :> FOR THE ACTION !!! *)       
+     "Label"    -> _String,
+     "ShortKey" -> _String,
+     "Action"   :> foo[]   
+     |>   
     
-### I don't like dark styles but I do like code templates
-    
-Alternatively, if you don't want to use dark styles but code templates you can install ``Shortcuts` `` package and modify the joker.m file. Here's what you have to do:
-    
-- install ``Shortcuts` `` ([mathematica.se.com thread](https://mathematica.stackexchange.com/q/68864/5478))
-    
-      Get["http://www.mertig.com/shortcuts.m"]
-      
-- open `joker.m` <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>
 
-- comment everything and put this snippet at the bottom:
-
-      Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["CodeTemplates"] ]
-      
-- save, close and the menu should open on <kbd>Ctrl</kbd>+<kbd>t</kbd>
-
-- to edit user templates run
-
-      Needs["DevTools`"]; CodeTemplatesEdit[]
-
-
- 
  
