@@ -24,6 +24,8 @@
   
       Needs @ "MPM`"   
       MPM`MPMInstall["kubapod", "devtools"]
+      
+      (* now see 'Setup dark stylesheet with all features' section below*)      
 
 ### Uninstall
   
@@ -32,7 +34,7 @@
         DeleteContents -> True
       ];
       
-      (* now see 'Setup dark stylesheet with all features' section below*)
+
   
 ## Quick Guide  
   
