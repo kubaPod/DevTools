@@ -53,12 +53,20 @@
 
 
 ### Code templates  
+
+  Templates menu is available in DevPackageDark.nb stylesheet mentioned above. 
+  This stylesheet is not tested for regular notebooks yet but if you want to enable templates menu for any notebook you can run:
+  
+  ```Mathematica
+  SetOptions[$FrontEnd, NotebookEventActions -> {
+     {"MenuCommand", "InsertNewGraphic"} :> Block[{$ContextPath}, Needs["DevTools`"]; DevTools`OpenNotebookMenu["CodeTemplates"] ]
+     , ParentList}
+  ]  (*This hijacks Ctrl+1 shortkey*)
+  ```
   
   Templates menu can be opened with <kbd>Ctrl</kbd> + <kbd>1</kbd> shortkey.
     
-  Custom code templates
-  
-  Hit 'Edit code templates' and add custom entries in opened file.
+  Custom code templates can be added via package toolbar / Templates&Actions / EditCodeTemplates item.
   
       <| "Template" -> _String | _RowBox (*the only one which is reqiired*)
        , "Label" -> _
@@ -82,7 +90,20 @@
   
 ### Notebook actions
 
-They are very similar to templates feature. 
+They are very similar to templates feature.
+ 
+ Actions menu is available in DevPackageDark.nb stylesheet mentioned above. 
+   This stylesheet is not tested for regular notebooks yet but if you want to enable actions menu for any notebook you can run:
+   
+   ```Mathematica
+   SetOptions[$FrontEnd, NotebookEventActions -> {
+      {"MenuCommand", "Print"} :> Block[{$ContextPath}, Needs["DevTools`"]; DevTools`OpenNotebookMenu["CodeTemplates"] ]
+      , ParentList}
+   ]  (*This highjacks Ctrl+1 shortkey*)
+   ```
+
+! Important note is that it hijacks print event, which for packages does not matter but can be annoying for regular notebooks.
+Feel free to replace `"Print"` with whatever you find convenient.
 
 Difference is that the menu with actions is invoked by <kbd>Ctrl</kbd> + <kbd>p</kbd> and an action item should look like this:
 
