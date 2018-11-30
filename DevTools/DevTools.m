@@ -481,7 +481,7 @@ NotebookMenu[ "CodeTemplates", parentNotebook_NotebookObject, type_String]:= Cat
 
 codeTemplateItemLabel// ClearAll
 codeTemplateItemLabel[temp_Association]:= If[
-  Lookup[temp, "ShortKey", {}]==="NA"
+  Lookup[temp, "ShortKey", "NA"] === "NA"
 , Pane[temp["Label"], {130+18, All}]  
 , Grid[ {{
       Pane[temp["Label"], ImageSize -> {130, All}]    

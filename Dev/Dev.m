@@ -35,6 +35,8 @@ menuIcon[]:=Pane[
      					BaselinePosition -> (Bottom -> Baseline)
      				];
 
+(*menuIcon[] /; $VersionNumber < 11 := "\[DownPointer]";*)
+
 
 notebookActions[]:={
   {"KeyDown", "\t"} :> Block[{$ContextPath}, Needs["DevTools`"]; IndentCode[]]
