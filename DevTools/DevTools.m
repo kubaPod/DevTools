@@ -129,16 +129,16 @@ GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Cache*)
 
 
 CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, pacletResPath, cachePath, standardizer, resource}
-, pacletResPath =  ResourcePath[paclet, res]
-; cachePath = ResourceCachePath[paclet, res]
-; standardizer = StandardizeResource[paclet, res]
+, pacletResPath =        ResourcePath[paclet, res]
+; cachePath     =   ResourceCachePath[paclet, res]
+; standardizer  = StandardizeResource[paclet, res] (*Comment*)
 
-; userRes = standardizer @ GetUserResource[paclet, res] 
+; userRes   = standardizer @ GetUserResource[paclet, res] 
 ; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed 
 
 ; If[Not @ DirectoryQ @ #, CreateDirectory[#, CreateIntermediateDirectories->True]]& @ DirectoryName @ cachePath
@@ -588,7 +588,7 @@ selectionToBoxes[{}]:= ##&[];
 selectionToBoxes[boxes_]:=boxes;
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*user edit*)
 
 
@@ -667,7 +667,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*NotebookActions*)
 
 
@@ -756,7 +756,7 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
           ; closeMenu[]
           )
         , "EscapeKeyDown" :> closeMenu[]
-        , {"MenuCommand", "PrintDialog"} :> {}
+        , {"MenuCommand", "NewColumn"} :> {}
         
        (* , ParentList*)
         , PassEventsUp -> False (*prevents KeyDown if arrow was hit.*)
@@ -842,11 +842,11 @@ eventsEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Paclets utilities*)
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*PacletVersionIncrement*)
 
 

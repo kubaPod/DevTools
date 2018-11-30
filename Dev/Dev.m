@@ -39,7 +39,7 @@ menuIcon[]:=Pane[
 notebookActions[]:={
   {"KeyDown", "\t"} :> Block[{$ContextPath}, Needs["DevTools`"]; IndentCode[]]
 , {"MenuCommand", "InsertNewGraphic"} :>  Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["CodeTemplates"] ]
-, {"MenuCommand", "PrintDialog"} :>  Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["NotebookActions"] ]
+, {"MenuCommand", "NewColumn"} :>  Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["NotebookActions"] ]
 , ParentList
 }
 
