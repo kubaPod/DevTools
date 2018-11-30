@@ -3,17 +3,17 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 12.0' *)
+(* CreatedBy='Mathematica 10.4' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      6760,        156]
-NotebookOptionsPosition[      6381,        144]
-NotebookOutlinePosition[      6652,        157]
-CellTagsIndexPosition[      6609,        154]
+NotebookDataLength[      6645,        156]
+NotebookOptionsPosition[      6379,        144]
+NotebookOutlinePosition[      6647,        157]
+CellTagsIndexPosition[      6604,        154]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,7 +26,7 @@ Cell[StyleData["Notebook"],
     "MenuCommand", "InsertNewGraphic"} :> 
    Block[{$ContextPath}, Needs["DevTools`"]; 
      DevTools`OpenNotebookMenu["CodeTemplates"]], {
-    "MenuCommand", "PrintDialog"} :> 
+    "MenuCommand", "NewColumn"} :> 
    Block[{$ContextPath}, Needs["DevTools`"]; 
      DevTools`OpenNotebookMenu["NotebookActions"]], ParentList},
  DockedCells->{
@@ -142,7 +142,7 @@ $CellContext`Private`ResetResource[$CellContext`Private`$paclet,
       "Grid"]], "DockedCell", CellFrameMargins -> {{12, 12}, {10, 10}}], 
    Inherited}]
 },
-FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (November 13, 2018)",
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -156,8 +156,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 49, 0, 70, 49, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"50a5813e-5f88-4624-b30a-cb1b747c6775"],
-Cell[610, 22, 5767, 120, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"76f52f30-6fd2-4372-9076-3626641c6c8d"]
+Cell[558, 20, 49, 0, 70, 49, 0, "StyleData", "StyleDefinitions", ""],
+Cell[610, 22, 5765, 120, 70, 27, 0, "StyleData", "Notebook", "All"]
 }
 ]
 *)
