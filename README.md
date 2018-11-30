@@ -97,15 +97,14 @@ They are very similar to templates feature.
    
    ```Mathematica
    SetOptions[$FrontEnd, NotebookEventActions -> {
-      {"MenuCommand", "Print"} :> Block[{$ContextPath}, Needs["DevTools`"]; DevTools`OpenNotebookMenu["CodeTemplates"] ]
+      {"MenuCommand", "NewColumn"} :> Block[{$ContextPath}, Needs["DevTools`"]; DevTools`OpenNotebookMenu["NotebookActions"] ]
       , ParentList}
-   ]  (*This highjacks Ctrl+1 shortkey*)
+   ]
    ```
 
-! Important note is that it hijacks print event, which for packages does not matter but can be annoying for regular notebooks.
-Feel free to replace `"Print"` with whatever you find convenient.
 
-Difference is that the menu with actions is invoked by <kbd>Ctrl</kbd> + <kbd>p</kbd> and an action item should look like this:
+
+Difference is that the menu with actions is invoked by <kbd>Ctrl</kbd> + <kbd>,</kbd> and an action item should look like this:
 
      <|                        (*!!!   DON'T FORGET ABOUT :> FOR THE ACTION !!! *)       
      "Label"    -> _String,
