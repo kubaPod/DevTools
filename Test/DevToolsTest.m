@@ -19,6 +19,26 @@ VerificationTest[
 
 
 (* ::Section:: *)
+(*Utilities*)
+
+
+VerificationTest[
+  DevTools`Events`AddToCurrentValue[$FrontEnd, NotebookEventActions, "new" -> 1 ];
+  CurrentValue[$FrontEnd, NotebookEventActions] // KeyExistsQ["new"]
+, True
+, TestID -> "DevTools`Events`AddToCurrentValue[$FrontEnd,NotebookEventActions..."
+]
+
+
+VerificationTest[
+  DevTools`Events`DropFromCurrentValue[$FrontEnd, NotebookEventActions, "new" ];
+CurrentValue[$FrontEnd, NotebookEventActions]//KeyExistsQ["new"]
+, False
+, TestID -> "DevTools`Events`DropFromCurrentValue[$FrontEnd,NotebookEventActi..."
+]
+
+
+(* ::Section:: *)
 (*templates*)
 
 

@@ -18,6 +18,9 @@ BeginPackage["DevTools`"];
 
 IndentCode;
 
+CodeTemplatesEnable; CodeTemplatesDisable;
+NotebookActionsEnable; NotebookActionsDisable;
+
 OpenNotebookMenu;
 CodeTemplatesEdit;
 EditNotebookActions;
@@ -89,6 +92,21 @@ DirectoryNeed[dir_String]:=If[
 , CreateDirectory[dir, CreateIntermediateDirectories -> True]
 ];
 
+
+
+(* ::Subsection::Closed:: *)
+(*CurrentValue*)
+
+
+AddToCurrentValue[parent_, path_, rule:(_Rule|_RuleDelayed)] := Switch[ CurrentValue[parent, path]
+, KeyValuePattern[{}], CurrentValue[parent, path] = Normal @ <|CurrentValue[parent, path], rule|>
+, _                  , CurrentValue[parent, path] = {rule}
+];
+
+DropFromCurrentValue[parent_, path_, key_]:= Switch[ CurrentValue[parent, path]
+, KeyValuePattern[{}], CurrentValue[parent, path] = CurrentValue[parent, path] // KeyDrop[key] // Normal
+, _                  , CurrentValue[parent, path] 
+];
 
 
 (* ::Section::Closed:: *)
@@ -308,11 +326,11 @@ OpenNotebookMenu[content_String, nb_NotebookObject, "Notebook"]:=NotebookPut @ C
 ]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*CodeTemplates*)
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Config*)
 
 
@@ -325,6 +343,14 @@ CurrentValue[
 , {TaggingRules, "DevTools", "MenuMethod"}
 , If[$VersionNumber < 11, "Notebook", "Cell"]
 ]; 
+
+
+CodeTemplatesEnable[]:= AddToCurrentValue[$FrontEnd, NotebookEventActions, 
+  {"MenuCommand", "InsertNewGraphic"} :> Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["CodeTemplates"] ]
+] 
+
+
+CodeTemplatesDisable[]:= DropFromCurrentValue[$FrontEnd, NotebookEventActions, {"MenuCommand", "InsertNewGraphic"} ]
 
 
 (* ::Subsection::Closed:: *)
@@ -667,8 +693,16 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*NotebookActions*)
+
+
+NotebookActionsEnable[]:= AddToCurrentValue[$FrontEnd, NotebookEventActions, 
+  {"MenuCommand", "NewColumn"} :> Block[{$ContextPath}, Needs["DevTools`"]; OpenNotebookMenu["NotebookActions"] ]
+] 
+
+
+NotebookActionsDisable[]:= DropFromCurrentValue[$FrontEnd, NotebookEventActions, {"MenuCommand", "NewColumn"}] 
 
 
 (* ::Subsection::Closed:: *)
@@ -682,7 +716,7 @@ OpenNotebookMenu["NotebookActions", nb_NotebookObject, "Cell"]:=OpenNotebookMenu
 ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*NotebookMenu*)
 
 
@@ -771,7 +805,7 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
   ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*user edit*)
 
 
@@ -826,7 +860,7 @@ EditNotebookActions[]:= Module[
 (*TODO: docked cell with default buttons *)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*templatesEditorToolbar*)
 
 
@@ -846,7 +880,7 @@ eventsEditorToolbar[]:=Grid[{{
 (*Paclets utilities*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*PacletVersionIncrement*)
 
 
