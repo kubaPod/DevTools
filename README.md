@@ -58,10 +58,8 @@
   This stylesheet is not tested for regular notebooks yet but if you want to enable templates menu for any notebook you can run:
   
   ```Mathematica
-  SetOptions[$FrontEnd, NotebookEventActions -> {
-     {"MenuCommand", "InsertNewGraphic"} :> Block[{$ContextPath}, Needs["DevTools`"]; DevTools`OpenNotebookMenu["CodeTemplates"] ]
-     , ParentList}
-  ]  (*This hijacks Ctrl+1 shortkey*)
+  Needs @ "DevTools`";
+  CodeTemplatesEnable[];
   ```
   
   Templates menu can be opened with <kbd>Ctrl</kbd> + <kbd>1</kbd> shortkey.
@@ -96,10 +94,8 @@ They are very similar to templates feature.
    This stylesheet is not tested for regular notebooks yet but if you want to enable actions menu for any notebook you can run:
    
    ```Mathematica
-   SetOptions[$FrontEnd, NotebookEventActions -> {
-      {"MenuCommand", "NewColumn"} :> Block[{$ContextPath}, Needs["DevTools`"]; DevTools`OpenNotebookMenu["NotebookActions"] ]
-      , ParentList}
-   ]
+   Needs @ "DevTools`";
+   NotebookActionsEnable[];  (*NotebookActionsDisable[] to revert changes*)
    ```
 
 
