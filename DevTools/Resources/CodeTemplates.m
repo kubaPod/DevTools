@@ -1,35 +1,22 @@
 <|
-  "Label"    -> "New function"
-, "ShortKey" -> "n"
-, "Template" -> StringRiffle[
-    { "`sel` // ClearAll"
-    , "`sel` // Options = {};"
-    , "`sel` // Attributes = {};"
-    , ""
-    , "`sel`[]:=Module["
-    , "  {tag = \"`sel`\"}"
-    , ", Catch["
-    , "    Check[ code Throw[$Failed, tag] ]"
-    , "  , tag"
-    , "  ]"
-    , "]"
-    }
-  , "\n"
-  ]
+  "ShortKey" -> "m",
+  "Label" -> "Module",
+  "Template" ->
+"Module[{\[Placeholder]}
+, Null
+; `sel`
+]"
 |>
 
-
-<|"Template" -> RowBox[{"{","\[SelectionPlaceholder]", "}"}],  "ShortKey" -> "{" |>
-
-<|"Template" -> RowBox[{"(","\[SelectionPlaceholder]", ")"}],  "ShortKey" -> "(" |>
-
-<|"Template" -> RowBox[{"[","\[SelectionPlaceholder]", "]"}],  "ShortKey" -> "[" |>
-
 <|
-  "Template" -> RowBox[{"\"","\[SelectionPlaceholder]","\""}]
-, "Label"    -> "\"\[SelectionPlaceholder]\""
-, "ShortKey" ->"\""
-, "Preview"  -> None
+  "ShortKey" -> "c",
+  "Label" -> "Test CloudDeploy",
+  "Template" ->
+"CloudDeploy[
+  `sel`
+, CreateUUID[\"temp/\"]
+, Permissions \[Rule] \"Public\"
+]"
 |>
 
 <|
@@ -51,6 +38,19 @@
   }]
 , "ShortKey" -> "v"
 , "Preview" -> OutputForm @ "VerificationTest[ selection, evaluatedSelection, TestID -> uuid]"
+|>
+
+<|"Template" -> RowBox[{"{","\[SelectionPlaceholder]", "}"}],  "ShortKey" -> "{" |>
+
+<|"Template" -> RowBox[{"(","\[SelectionPlaceholder]", ")"}],  "ShortKey" -> "(" |>
+
+<|"Template" -> RowBox[{"[","\[SelectionPlaceholder]", "]"}],  "ShortKey" -> "[" |>
+
+<|
+  "Template" -> RowBox[{"\"","\[SelectionPlaceholder]","\""}]
+  , "Label"    -> "\"\[SelectionPlaceholder]\""
+  , "ShortKey" ->"\""
+  , "Preview"  -> None
 |>
 
 
