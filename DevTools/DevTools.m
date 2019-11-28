@@ -125,7 +125,7 @@ $throwOnFailed[x_]:=x;
 (*Needs*)
 
 
-NeedsResource[paclet_Paclet, res_String]:= Catch[
+NeedsResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch[
   NeedsResource[paclet, res] = $throwOnFailed @ GetResource[paclet, res]
 ];
 
@@ -135,7 +135,7 @@ NeedsResource[paclet_Paclet, res_String]:= Catch[
 (*Get*)
 
 
-GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
+GetResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch @ Module[{cachePath}
 , cachePath = ResourceCachePath[paclet, res]
 ; If[
     FileExistsQ @ cachePath
@@ -151,7 +151,7 @@ GetResource[paclet_Paclet, res_String]:= Catch @ Module[{cachePath}
 (*Cache*)
 
 
-CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, pacletResPath, cachePath, standardizer, resource}
+CacheResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch @ Module[{userRes, pacletRes, pacletResPath, cachePath, standardizer, resource}
 , pacletResPath =        ResourcePath[paclet, res]
 ; cachePath     =   ResourceCachePath[paclet, res]
 ; standardizer  = StandardizeResource[paclet, res] (*Comment*)
@@ -171,7 +171,7 @@ CacheResource[paclet_Paclet, res_String]:= Catch @ Module[{userRes, pacletRes, p
 (*GetUsersRes*)
 
 
-GetUserResource[paclet_Paclet, res_String]:=Module[{path}
+GetUserResource[paclet:(_Paclet|_PacletObject), res_String]:=Module[{path}
 , path = UserResourcePath[paclet, res]
 ; If[
     Not @ FileExistsQ @ path
@@ -187,7 +187,7 @@ GetUserResource[paclet_Paclet, res_String]:=Module[{path}
 (*Import // Standardize // Merge*)
 
 
-StandardizeResource[paclet_Paclet, res_String]:= Identity;
+StandardizeResource[paclet:(_Paclet|_PacletObject), res_String]:= Identity;
 
 
 MergeResource[userRes_, pacletRes_]:=Join[userRes, pacletRes];
@@ -202,7 +202,7 @@ ImportResource[_, _, path_String]:= Import[path, {"Package","ExpressionList"}];
 (*Reset*)
 
 
-ResetResource[paclet_Paclet, res_String]:= (
+ResetResource[paclet:(_Paclet|_PacletObject), res_String]:= (
   ResourceCachePath[paclet, res] // If[FileExistsQ[#], DeleteFile[#]]&
 ; NeedsResource[paclet, res] =.
 ; NeedsResource[paclet, res]
@@ -213,15 +213,15 @@ ResetResource[paclet_Paclet, res_String]:= (
 (*paths*)
 
 
-UserResourcePath[paclet_Paclet, res_String]:= FileNameJoin[{
+UserResourcePath[paclet:(_Paclet|_PacletObject), res_String]:= FileNameJoin[{
   $UserBaseDirectory, "ApplicationData", paclet @ "Name", res <> ".m"
 }];
 
-ResourceCachePath[paclet_Paclet, res_String]:= FileNameJoin[{
+ResourceCachePath[paclet:(_Paclet|_PacletObject), res_String]:= FileNameJoin[{
   $UserBaseDirectory, "ApplicationData", paclet @ "Name", paclet @ "Version", res <> ".m"
 }]
 
-ResourcePath[paclet_Paclet, res_String]:= FileNameJoin[{
+ResourcePath[paclet:(_Paclet|_PacletObject), res_String]:= FileNameJoin[{
   paclet @ "Location", "Resources", res <> ".m"
 }]
 
@@ -884,10 +884,10 @@ eventsEditorToolbar[]:=Grid[{{
 (*PacletVersionIncrement*)
 
 
-PacletVersionIncrement::noPacletE = "Failed to get _Paclet from ``";
+PacletVersionIncrement::noPacletE = "Failed to get :(_Paclet|_PacletObject) from ``";
 PacletVersionIncrement::noSemVer = "Paclet Version is not of 'X.Y.Z' form";
  
-PacletVersionIncrement[p_Paclet, spec___]:= PacletVersionIncrement[
+PacletVersionIncrement[p:(_Paclet|_PacletObject), spec___]:= PacletVersionIncrement[
   FileNameJoin[{p @ "Location", "PacletInfo.m"}]
 , spec
 ];
