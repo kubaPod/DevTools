@@ -892,7 +892,7 @@ PacletVersionIncrement[p:(_Paclet|_PacletObject), spec___]:= PacletVersionIncrem
 , spec
 ];
 
-PacletVersionIncrement[piPath_String?FileExistsQ, versionType:"Major"|"Minor"|"Patch"|"Manual"]:=Module[
+PacletVersionIncrement[piPath_String?FileExistsQ, versionType:"Major"|"Minor"|"Patch"|"Manual"|"Date"|"Date&Hour"]:=Module[
   { pacletE
   , tag = "PVI"}
 , Catch[
@@ -933,6 +933,8 @@ PacletVersionIncrement[piPath_String?FileExistsQ, versionType:"Major"|"Minor"|"P
 
 
 
+incrementVersion["Date", version_String]:=StringRiffle[Date[][[;;3]],"."];
+incrementVersion["Date&Hour", version_String]:=StringRiffle[Date[][[;;4]],"."];
 incrementVersion["Manual", version_String]:=InputString["Enter next version. (current version - "<>version<>")"];
 incrementVersion[versionType_String, version_String]:=Module[
   { digits = ToExpression /@ StringSplit[version, "."]
