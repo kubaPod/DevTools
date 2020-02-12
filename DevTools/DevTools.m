@@ -4,9 +4,6 @@
 (* :Date: 2017-04-23 *)
 
 
-asd
-
-
 (* ::Chapter:: *)
 (*Begin*)
 
@@ -26,6 +23,8 @@ CodeTemplatesEdit;
 EditNotebookActions;
 CodeTemplatesReset;
 
+
+LocalizeVariable;
 CenterToParent;
 
 
@@ -109,6 +108,85 @@ DropFromCurrentValue[parent_, path_, key_]:= Switch[ CurrentValue[parent, path]
 ];
 
 
+(* ::Subsection:: *)
+(*LocalizeVariable*)
+
+
+LocalizeVariable::usage = "LocalizeVariable[] adds selected symbol to a parent scoping construct spec.";
+
+
+LocalizeVariable[] /; $Notebooks := Catch @ Module[
+        {emptyListQ, finalSelectionLength, finalSelectionStart,  insertion,  initialCaretPosition, symbol, selection
+        , nb = FrontEnd`InputNotebook[]
+        
+        }
+        
+      , symbol = selection = CurrentValue[nb, "SelectionData"] 
+      ; If[ ! SymbolNameQ @ symbol, Beep[]; Throw @ $Failed]
+      
+      ; initialCaretPosition = "CharacterRange" /. FrontEndExecute @ FrontEnd`UndocumentedGetSelectionPacket[nb]
+      ; finalSelectionStart  = First @ initialCaretPosition
+      ; finalSelectionLength = initialCaretPosition[[2]] - initialCaretPosition[[1]]
+      ; insertion            = symbol
+                     
+      ; While[
+            True
+            
+          , If[selection === $Failed, Beep[]; Break[]]
+          
+          ; If[
+                Not @ StandardScopingBoxesQ @ selection
+              , selection = Last @ FrontEndCall[
+                  { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
+                , { "Get", "SelectionData"}                  
+                ]
+              ; Continue[]
+            ]   
+          
+          ; emptyListQ = MatchQ[ BoxData @ {_, "[", "{", "}", ___} ] @ Block[{RowBox=Apply[Sequence]}, StripBoxes @ selection ]
+          
+          ; If[ Not @ emptyListQ, insertion = insertion<>"," ]      
+          
+          ; finalSelectionStart += StringLength @ insertion        
+            
+          ; FrontEndCall[
+              {"SilentMove" , Before, Word}, (*before Module *)
+              {"SilentMove" , After , Word, 3}, (*after Module[{ *)
+              {"SilentWrite", insertion},
+              {"SilentMove", Before, CellContents},
+              {"SilentMove", Next  , Character, finalSelectionStart},
+              {"SilentMove", All   , Character, finalSelectionLength}
+            ]
+                   
+          ; Throw @ True
+        ]
+     
+     ; FrontEndCall[
+         {"SilentMove", Before, CellContents},
+         {"SilentMove", Next  , Character, finalSelectionStart},
+         {"SilentMove", All   , Character, finalSelectionLength}
+       ]
+      
+      
+    ]
+
+
+SymbolNameQ = MatchQ[ _String ? (StringMatchQ[LetterCharacter~~(LetterCharacter|DigitCharacter|"$")...] )]
+StandardScopingBoxesQ = MatchQ[ RowBox[{"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[",___}] ]
+
+
+FrontEndCall[args___]:= FrontEndCall @ {args}
+FrontEndCall[list_]:= FrontEndExecute @ Map[ToFrontEndExpression] @ list;
+
+ToFrontEndExpression::invArg = "Unknown action: ``";
+
+ToFrontEndExpression[{"SilentMove", args__}]:= FrontEnd`SelectionMove[FrontEnd`InputNotebook[], args, AutoScroll -> False]
+ToFrontEndExpression[{"SilentWrite", args__}]:= FrontEnd`NotebookWrite[FrontEnd`InputNotebook[], args, AutoScroll -> False]
+ToFrontEndExpression[{"Get", args__}]:= FrontEnd`Value[FrontEnd`CurrentValue[FrontEnd`InputNotebook[], args], True];
+
+ToFrontEndExpression[args___]:= Message[ToFrontEndExpression::invArg, args]
+
+
 (* ::Section::Closed:: *)
 (*Resource management*)
 
@@ -121,7 +199,7 @@ $throwOnFailed[$Failed]:=Throw @ $Failed;
 $throwOnFailed[x_]:=x;
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Needs*)
 
 
@@ -131,7 +209,7 @@ NeedsResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch[
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Get*)
 
 
@@ -139,8 +217,10 @@ GetResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch @ Module[{cacheP
 , cachePath = ResourceCachePath[paclet, res]
 ; If[
     FileExistsQ @ cachePath
+    
   , Import[ cachePath, "MX" ] // $throwOnFailed
-  , CacheResource[paclet, res] // $throwOnFailed
+  
+  , CacheResource[paclet, res] // MatchQ[_String?FileExistsQ] // TrueQ // Replace[False :> Throw @ $Failed]
   ; GetResource[paclet, res]
   ]
 ]
@@ -159,7 +239,7 @@ CacheResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch @ Module[{user
 ; userRes   = standardizer @ GetUserResource[paclet, res] 
 ; pacletRes = standardizer @ ImportResource @ pacletResPath // $throwOnFailed 
 
-; If[Not @ DirectoryQ @ #, CreateDirectory[#, CreateIntermediateDirectories->True]]& @ DirectoryName @ cachePath
+; DirectoryNeed @ DirectoryName @ cachePath
 ; resource = MergeResource[userRes, pacletRes]
 
 ; Export[cachePath, resource, "MX"]
@@ -167,7 +247,7 @@ CacheResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch @ Module[{user
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*GetUsersRes*)
 
 
@@ -209,7 +289,7 @@ ResetResource[paclet:(_Paclet|_PacletObject), res_String]:= (
 );
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*paths*)
 
 
@@ -326,11 +406,11 @@ OpenNotebookMenu[content_String, nb_NotebookObject, "Notebook"]:=NotebookPut @ C
 ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*CodeTemplates*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Config*)
 
 
@@ -693,7 +773,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*NotebookActions*)
 
 
@@ -876,7 +956,7 @@ eventsEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Paclets utilities*)
 
 

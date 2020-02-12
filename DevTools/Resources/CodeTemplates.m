@@ -30,7 +30,7 @@
         First @
         FrontEndExecute @
         FrontEnd`ExportPacket[#, "PlainText"]& @
-        # /. s_String ? (StringMatchQ[#, "*`*"]&) :> Last @ StringSplit[s, "`"]
+        (# /. s_String ? (StringMatchQ[#, "*`*"]&) :> Last @ StringSplit[s, "`"]) & @
         StripBoxes @ TemplateSlot["sel"]
     ]
     
