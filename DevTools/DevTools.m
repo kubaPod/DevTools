@@ -124,7 +124,7 @@ LocalizeVariable::usage = "LocalizeVariable[] adds selected symbol to a parent s
 
 LocalizeVariable[] /; $Notebooks := Catch @ Module[
         {emptyListQ, finalEnd, finalStart,  insertion,   symbol, selection
-        , selectionTokens, abort
+        , selectionTokens, abort, new
         , nb = FrontEnd`InputNotebook[]
         
         }
@@ -135,7 +135,7 @@ LocalizeVariable[] /; $Notebooks := Catch @ Module[
         ; Throw @ $Failed
         ]
       
-      ; symbol = selection = CurrentValue[nb, "SelectionData"] 
+      ; symbol = selection = FrontEndCall[{"Get", "SelectionData"}] 
       
       ; If[ ! SymbolNameQ @ symbol , abort[$Failed, False]  ]
       
@@ -143,18 +143,18 @@ LocalizeVariable[] /; $Notebooks := Catch @ Module[
       ; insertion            = symbol
                    
       ; While[
-          True
+          Not @ ScopingBoxTokens @ selectionTokens
           
-        , selection = Last @ FrontEndCall[
+        , new = Last @ FrontEndCall[
             { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
           , { "Get", "SelectionData"}                  
           ]
+        ; If[ new // MatchQ[ $Failed | selection ] ,  abort[$Failed, True]  ]
           
-        ; If[ selection === $Failed  ,  abort[$Failed, True]  ]
-          
+        ; selection = new  
         ; selectionTokens = StripBoxes @ selection /. RowBox | BoxData -> List // Flatten
           
-        ; If[ ScopingBoxTokens @ selectionTokens, Break[] ]
+        
         ]  
           
       ; emptyListQ = MatchQ[ {_, "[", "{", "}", ___} ] @ selectionTokens
@@ -188,7 +188,8 @@ StandardScopingBoxesQ = MatchQ[ RowBox[{"Module"|"With"|"Block"|"DynamicModule"|
 
 
 FrontEndCall[args___]:= FrontEndCall @ {args}
-FrontEndCall[list_]:= FrontEndExecute @ Map[ToFrontEndExpression] @ list;
+FrontEndCall[list:{__List}]:= FrontEndExecute @ Map[ToFrontEndExpression] @ list;
+FrontEndCall[call_List]:= FrontEndCall[{call}]
 
 ToFrontEndExpression::invArg = "Unknown action: ``";
 
@@ -221,7 +222,7 @@ NeedsResource[paclet:(_Paclet|_PacletObject), res_String]:= Catch[
 
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Get*)
 
 
@@ -785,7 +786,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*NotebookActions*)
 
 
@@ -808,7 +809,7 @@ OpenNotebookMenu["NotebookActions", nb_NotebookObject, "Cell"]:=OpenNotebookMenu
 ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*NotebookMenu*)
 
 
