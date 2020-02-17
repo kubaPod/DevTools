@@ -25,6 +25,9 @@ CodeTemplatesReset;
 
 
 LocalizeVariable;
+RenameLocal;
+
+
 CenterToParent;
 
 
@@ -109,6 +112,10 @@ DropFromCurrentValue[parent_, path_, key_]:= Switch[ CurrentValue[parent, path]
 
 
 (* ::Subsection:: *)
+(*RenameLocal*)
+
+
+(* ::Subsection:: *)
 (*LocalizeVariable*)
 
 
@@ -116,62 +123,67 @@ LocalizeVariable::usage = "LocalizeVariable[] adds selected symbol to a parent s
 
 
 LocalizeVariable[] /; $Notebooks := Catch @ Module[
-        {emptyListQ, finalSelectionLength, finalSelectionStart,  insertion,  initialCaretPosition, symbol, selection
+        {emptyListQ, finalEnd, finalStart,  insertion,   symbol, selection
+        , selectionTokens, abort
         , nb = FrontEnd`InputNotebook[]
         
         }
         
-      , symbol = selection = CurrentValue[nb, "SelectionData"] 
-      ; If[ ! SymbolNameQ @ symbol, Beep[]; Throw @ $Failed]
+      , abort = Function[{what, restoreSelectionQ}
+        , Beep[]
+        ; If[restoreSelectionQ, SelectionMoveRange[finalStart, finalEnd] ]
+        ; Throw @ $Failed
+        ]
       
-      ; initialCaretPosition = "CharacterRange" /. FrontEndExecute @ FrontEnd`UndocumentedGetSelectionPacket[nb]
-      ; finalSelectionStart  = First @ initialCaretPosition
-      ; finalSelectionLength = initialCaretPosition[[2]] - initialCaretPosition[[1]]
+      ; symbol = selection = CurrentValue[nb, "SelectionData"] 
+      
+      ; If[ ! SymbolNameQ @ symbol , abort[$Failed, False]  ]
+      
+      ; {finalStart, finalEnd} = "CharacterRange" /. FrontEndExecute @ FrontEnd`UndocumentedGetSelectionPacket[nb]
       ; insertion            = symbol
-                     
+                   
       ; While[
-            True
+          True
+          
+        , selection = Last @ FrontEndCall[
+            { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
+          , { "Get", "SelectionData"}                  
+          ]
+          
+        ; If[ selection === $Failed  ,  abort[$Failed, True]  ]
+          
+        ; selectionTokens = StripBoxes @ selection /. RowBox | BoxData -> List // Flatten
+          
+        ; If[ ScopingBoxTokens @ selectionTokens, Break[] ]
+        ]  
+          
+      ; emptyListQ = MatchQ[ {_, "[", "{", "}", ___} ] @ selectionTokens
+          
+      ; If[ Not @ emptyListQ, insertion = insertion<>"," ]      
+          
+      ; finalStart += StringLength @ insertion        
+      ; finalEnd   += StringLength @ insertion        
             
-          , If[selection === $Failed, Beep[]; Break[]]
-          
-          ; If[
-                Not @ StandardScopingBoxesQ @ selection
-              , selection = Last @ FrontEndCall[
-                  { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
-                , { "Get", "SelectionData"}                  
-                ]
-              ; Continue[]
-            ]   
-          
-          ; emptyListQ = MatchQ[ BoxData @ {_, "[", "{", "}", ___} ] @ Block[{RowBox=Apply[Sequence]}, StripBoxes @ selection ]
-          
-          ; If[ Not @ emptyListQ, insertion = insertion<>"," ]      
-          
-          ; finalSelectionStart += StringLength @ insertion        
-            
-          ; FrontEndCall[
+      ; FrontEndCall[
               {"SilentMove" , Before, Word}, (*before Module *)
               {"SilentMove" , After , Word, 3}, (*after Module[{ *)
               {"SilentWrite", insertion},
               {"SilentMove", Before, CellContents},
-              {"SilentMove", Next  , Character, finalSelectionStart},
-              {"SilentMove", All   , Character, finalSelectionLength}
-            ]
-                   
-          ; Throw @ True
+              {"SilentMove", Next  , Character, finalStart},
+              {"SilentMove", All   , Character, finalEnd - finalStart}
         ]
-     
-     ; FrontEndCall[
-         {"SilentMove", Before, CellContents},
-         {"SilentMove", Next  , Character, finalSelectionStart},
-         {"SilentMove", All   , Character, finalSelectionLength}
-       ]
-      
-      
     ]
 
 
+SelectionMoveRange[start_Integer, end_Integer]:=FrontEndCall[
+         {"SilentMove", Before, CellContents},
+         {"SilentMove", Next  , Character, start},
+         {"SilentMove", All   , Character, end-start}
+       ]
+
+
 SymbolNameQ = MatchQ[ _String ? (StringMatchQ[LetterCharacter~~(LetterCharacter|DigitCharacter|"$")...] )]
+ScopingBoxTokens = MatchQ[ {"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[", ___} ]
 StandardScopingBoxesQ = MatchQ[ RowBox[{"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[",___}] ]
 
 
