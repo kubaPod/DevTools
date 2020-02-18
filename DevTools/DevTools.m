@@ -111,11 +111,55 @@ DropFromCurrentValue[parent_, path_, key_]:= Switch[ CurrentValue[parent, path]
 ];
 
 
+(* ::Subsection::Closed:: *)
+(*FrontEndCall*)
+
+
+SymbolNameQ = MatchQ[ _String ? (StringMatchQ[LetterCharacter~~(LetterCharacter|DigitCharacter|"$")...] )]
+ScopingBoxTokens = MatchQ[ {"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[", ___} ]
+StandardScopingBoxesQ = MatchQ[ RowBox[{"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[",___}] ]
+
+
+FrontEndCall[args___]:= FrontEndCall @ {args}
+FrontEndCall[list:{__List}]:= FrontEndExecute @ Map[ToFrontEndExpression] @ list;
+FrontEndCall[call_List]:= FrontEndCall[{call}]
+
+ToFrontEndExpression::invArg = "Unknown action: ``";
+
+ToFrontEndExpression[{"SilentMove", args__}]:= FrontEnd`SelectionMove[FrontEnd`InputNotebook[], args, AutoScroll -> False]
+ToFrontEndExpression[{"SilentWrite", args__}]:= FrontEnd`NotebookWrite[FrontEnd`InputNotebook[], args, AutoScroll -> False]
+ToFrontEndExpression[{"Get", args__}]:= FrontEnd`Value[FrontEnd`CurrentValue[FrontEnd`InputNotebook[], args], True];
+
+ToFrontEndExpression[args___]:= Message[ToFrontEndExpression::invArg, args]
+
+
+(* ::Subsection::Closed:: *)
+(*SelectionMove**)
+
+
+SelectionMoveField[nb_ : FrontEnd`InputNotebook[], id_String] /; $Notebooks := MathLink`CallFrontEnd[
+ FrontEnd`BoxReferenceFind[ 
+   FE`BoxReference[
+     nb, {{id}}, 
+     FE`BoxOffset -> {FE`BoxChild[1]},   
+     FE`SearchStart -> "StartFromBeginning"
+   ]
+ ]
+]
+
+
+SelectionMoveRange[start_Integer, end_Integer]:=FrontEndCall[
+         {"SilentMove", Before, CellContents},
+         {"SilentMove", Next  , Character, start},
+         {"SilentMove", All   , Character, end-start}
+       ]
+
+
 (* ::Subsection:: *)
 (*RenameLocal*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*LocalizeVariable*)
 
 
@@ -175,29 +219,31 @@ LocalizeVariable[] /; $Notebooks := Catch @ Module[
     ]
 
 
-SelectionMoveRange[start_Integer, end_Integer]:=FrontEndCall[
-         {"SilentMove", Before, CellContents},
-         {"SilentMove", Next  , Character, start},
-         {"SilentMove", All   , Character, end-start}
-       ]
+(* ::Subsection:: *)
+(*MainLinkSubmit*)
 
 
-SymbolNameQ = MatchQ[ _String ? (StringMatchQ[LetterCharacter~~(LetterCharacter|DigitCharacter|"$")...] )]
-ScopingBoxTokens = MatchQ[ {"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[", ___} ]
-StandardScopingBoxesQ = MatchQ[ RowBox[{"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[",___}] ]
+(*TODO: this procedure is from github/kubapod/meh, make it a dependency instead of copying*)
+
+MainLinkSubmit::usage = "MainLinkKSubmit[procedure] allows you to submit a non preemptive call from a preemptive one "<>
+    "(e.g. from scheduled task). Notebooks based front end environment is required.";
+
+MainLinkSubmit::noFE = "MainLinkSubmit can only be used with a notebook-based front end.";
+
+MainLinkSubmit // Attributes = {HoldAll};
+
+MainLinkSubmit[procedure_] /; TrueQ @ $Notebooks := MessageDialog[
+  Dynamic[
+    NotebookClose[]; procedure
+    , SynchronousUpdating->False
+  ]
+  , CellContext -> $Context
+  , Visible     -> False
+];
 
 
-FrontEndCall[args___]:= FrontEndCall @ {args}
-FrontEndCall[list:{__List}]:= FrontEndExecute @ Map[ToFrontEndExpression] @ list;
-FrontEndCall[call_List]:= FrontEndCall[{call}]
+MainLinkSubmit[procedure_] /; Not @ TrueQ @ $Notebooks := MGenerateAll[MainLinkSubmit::noFE];
 
-ToFrontEndExpression::invArg = "Unknown action: ``";
-
-ToFrontEndExpression[{"SilentMove", args__}]:= FrontEnd`SelectionMove[FrontEnd`InputNotebook[], args, AutoScroll -> False]
-ToFrontEndExpression[{"SilentWrite", args__}]:= FrontEnd`NotebookWrite[FrontEnd`InputNotebook[], args, AutoScroll -> False]
-ToFrontEndExpression[{"Get", args__}]:= FrontEnd`Value[FrontEnd`CurrentValue[FrontEnd`InputNotebook[], args], True];
-
-ToFrontEndExpression[args___]:= Message[ToFrontEndExpression::invArg, args]
 
 
 (* ::Section::Closed:: *)
@@ -809,7 +855,7 @@ OpenNotebookMenu["NotebookActions", nb_NotebookObject, "Cell"]:=OpenNotebookMenu
 ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*NotebookMenu*)
 
 
@@ -837,10 +883,10 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
                ]& @
               Button[ 
                 codeTemplateItemLabel @ $action
-              , $action["Action"]
-              ; closeMenu[]
+              , closeMenu[]
+              ; $action["Action"]              
               , ImageSize -> {All, All}
-              
+              , Method -> Lookup[$action, "Method", "Preemptive"]
               , FrameMargins-> {{15,15},{2,2}}
               , BaseStyle->{ 
                   "Item"
@@ -874,18 +920,20 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
             Lookup["Action"] @ First @ Select[$actions, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]
           ; closeMenu[]
           )
-        , "UpArrowKeyDown" :> (item = Mod[item -1, n, 1])
-        , "DownArrowKeyDown" :> (item = Mod[item +1, n, 1])
-        , "LeftArrowKeyDown" :> {}
-        , "RightArrowKeyDown" :> {}
-        , "ReturnKeyDown" :> (
-            $actions[[item, "Action"]]
-          ; closeMenu[]
+        , "UpArrowKeyDown"             :> (item = Mod[item -1, n, 1])
+        , "DownArrowKeyDown"           :> (item = Mod[item +1, n, 1])
+        , "LeftArrowKeyDown"           :> {}
+        , "RightArrowKeyDown"          :> {}
+        , "EscapeKeyDown"              :> closeMenu[]
+        , {"MenuCommand", "NewColumn"} :> {}        
+        , "ReturnKeyDown"              :> (
+              closeMenu[]
+            ; If[
+                  Lookup[$actions[[item]], "Method"] === "Queued"
+                , Unevaluated[MainLinkSubmit["Action"]] /. $actions[[item]]  
+                , $actions[[item, "Action"]]
+              ]
           )
-        , "EscapeKeyDown" :> closeMenu[]
-        , {"MenuCommand", "NewColumn"} :> {}
-        
-       (* , ParentList*)
         , PassEventsUp -> False (*prevents KeyDown if arrow was hit.*)
         
         }    
@@ -898,7 +946,7 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
   ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*user edit*)
 
 
