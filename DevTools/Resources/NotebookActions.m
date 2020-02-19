@@ -6,6 +6,12 @@
 , "Action" :> (If[Length[#] > 0 , SelectionMove[First @ # ,All,Cell]]& @ SelectedCells @ EvaluationNotebook[])
 |>
 
+<|
+  "Label" -> "RenameLocal"
+  , "ShortKey" -> "r"
+  , "Action" :> DevTools`RenameLocal
+  , "Method" -> "Queued"
+|>
 
 <|
   "Label" -> "Localize variable"
