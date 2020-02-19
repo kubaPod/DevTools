@@ -120,15 +120,23 @@ ScopingBoxTokens = MatchQ[ {"Module"|"With"|"Block"|"DynamicModule"|"Internal`In
 StandardScopingBoxesQ = MatchQ[ RowBox[{"Module"|"With"|"Block"|"DynamicModule"|"Internal`InheritedBlock","[",___}] ]
 
 
-FrontEndCall[args___]:= FrontEndCall @ {args}
-FrontEndCall[list:{__List}]:= FrontEndExecute @ Map[ToFrontEndExpression] @ list;
-FrontEndCall[call_List]:= FrontEndCall[{call}]
+$NotebookPattern = Apply[Alternatives] @ Map[Blank] @ {
+  NotebookObject, FrontEnd`InputNotebook, FrontEnd`EvaluationNotebook
+, FrontEnd`MessagesNotebook, FrontEnd`ButtonNotebook, FrontEnd`ParentNotebook
+, FrontEnd`SelectedNotebook
+}
+
+
+FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], args___]:= FrontEndCall[nb, {args}]
+FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], list:{__List}]:= FrontEndExecute @ Map[ ToFrontEndExpression @ nb ] @ list;
+FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], call_List]:= FrontEndCall[nb, {call}]
 
 ToFrontEndExpression::invArg = "Unknown action: ``";
 
-ToFrontEndExpression[{"SilentMove", args__}]:= FrontEnd`SelectionMove[FrontEnd`InputNotebook[], args, AutoScroll -> False]
-ToFrontEndExpression[{"SilentWrite", args__}]:= FrontEnd`NotebookWrite[FrontEnd`InputNotebook[], args, AutoScroll -> False]
-ToFrontEndExpression[{"Get", args__}]:= FrontEnd`Value[FrontEnd`CurrentValue[FrontEnd`InputNotebook[], args], True];
+ToFrontEndExpression[ nb : $NotebookPattern ]:= Function[spec, ToFrontEndExpression[nb, spec] ]
+ToFrontEndExpression[nb_, {"SilentMove", args__}]:= FrontEnd`SelectionMove[nb, args, AutoScroll -> False]
+ToFrontEndExpression[nb_, {"SilentWrite", args__}]:= FrontEnd`NotebookWrite[nb, args, AutoScroll -> False]
+ToFrontEndExpression[nb_, {"Get", args__}]:= FrontEnd`Value[FrontEnd`CurrentValue[nb, args], True];
 
 ToFrontEndExpression[args___]:= Message[ToFrontEndExpression::invArg, args]
 
@@ -155,8 +163,74 @@ SelectionMoveRange[start_Integer, end_Integer]:=FrontEndCall[
        ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*RenameLocal*)
+
+
+RenameLocal[parent_ : FrontEnd`InputNotebook[]] /; $Notebooks := Catch @ Module[
+        {result,emptyListQ, finalEnd, finalStart,  insertion,   symbol, selection
+        , selectionTokens, abort, new
+        , nb = parent
+        
+        }
+        
+      , abort = Function[{what, restoreSelectionQ}
+        , Beep[]
+        ; If[restoreSelectionQ, SelectionMoveRange[finalStart, finalEnd] ]
+        ; Throw @ $Failed
+        ]
+      
+      ; symbol = selection = FrontEndCall[nb, {"Get", "SelectionData"}] 
+      
+      ; If[ ! SymbolNameQ @ symbol , abort[$Failed, False]  ]
+      
+      ; {finalStart, finalEnd} = "CharacterRange" /. FrontEndExecute @ FrontEnd`UndocumentedGetSelectionPacket[nb]
+      ; insertion            = symbol
+                   
+      ; While[
+          Not @ ScopingBoxTokens @ selectionTokens
+          
+        , new =  FrontEndCall[nb
+          , { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
+          , { "Get", "SelectionData"}                  
+          ]
+        ; If[ new // MatchQ[ $Failed | selection ] ,  abort[$Failed, True]  ]
+          
+        ; selection = new  
+        ; selectionTokens = StripBoxes @ selection /. RowBox | BoxData -> List // Flatten          
+        
+        ]  
+          
+      ; result = renameSymbolDialog[symbol, selection]  
+      ; If[ Not @ ListQ @ result, SelectionMoveRange[finalStart, finalEnd]; Throw @ $Failed]
+      ; FrontEndCall[nb
+        , { "SilentWrite", Last @ result }
+        ]
+    ]
+
+
+renameSymbolDialog[symbol_String, selectionData_]:=DialogInput[
+  { data = selectionData
+  , name = symbol
+  }
+, Column[{
+    InputField[Dynamic@name, String, ContinuousAction->True, BoxID -> "symbolName"],
+    Pane[#, ImageSize->{ {All, Full}, {All, 500}}, Scrollbars->Automatic, AppearanceElements->All]& @  
+    Style[
+      RawBoxes @ data /. symbol -> ToBoxes @ Framed[Dynamic[RawBoxes@name], FrameStyle -> Directive[Thin,Red], Background->White,FrameMargins->1]
+    , "Notebook", "Input"
+    ]
+  , ChoiceButtons[{
+      DialogReturn[{name, data /. symbol -> name}]
+    }]  
+  }]
+  
+, Initialization :> (
+    
+    SelectionMoveField[#, "symbolName"]&
+  ) 
+, WindowTitle-> "Rename local symbol"  
+]
 
 
 (* ::Subsection::Closed:: *)
@@ -219,7 +293,7 @@ LocalizeVariable[] /; $Notebooks := Catch @ Module[
     ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*MainLinkSubmit*)
 
 
@@ -234,7 +308,7 @@ MainLinkSubmit // Attributes = {HoldAll};
 
 MainLinkSubmit[procedure_] /; TrueQ @ $Notebooks := MessageDialog[
   Dynamic[
-    NotebookClose[]; procedure
+      NotebookClose[]; procedure
     , SynchronousUpdating->False
   ]
   , CellContext -> $Context
@@ -242,7 +316,7 @@ MainLinkSubmit[procedure_] /; TrueQ @ $Notebooks := MessageDialog[
 ];
 
 
-MainLinkSubmit[procedure_] /; Not @ TrueQ @ $Notebooks := MGenerateAll[MainLinkSubmit::noFE];
+MainLinkSubmit[procedure_] /; Not @ TrueQ @ $Notebooks := (Message[MainLinkSubmit::noFE];$Failed)
 
 
 
@@ -883,15 +957,11 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
                ]& @
               Button[ 
                 codeTemplateItemLabel @ $action
-              , closeMenu[]
-              ; $action["Action"]              
-              , ImageSize -> {All, All}
-              , Method -> Lookup[$action, "Method", "Preemptive"]
-              , FrameMargins-> {{15,15},{2,2}}
-              , BaseStyle->{ 
-                  "Item"
-                , FontColor -> Black 
-                }
+              , closeMenu[]; $action["Action"] @ parentNotebook             
+              , ImageSize    -> {All, All}
+              , Method       -> Lookup[$action, "Method", "Preemptive"]
+              , FrameMargins -> {{15,15},{2,2}}
+              , BaseStyle    ->{ "Item", FontColor -> Black }
               ]
             , {"MouseEntered" :> (item = i)  }
             
@@ -929,9 +999,9 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
         , "ReturnKeyDown"              :> (
               closeMenu[]
             ; If[
-                  Lookup[$actions[[item]], "Method"] === "Queued"
-                , Unevaluated[MainLinkSubmit["Action"]] /. $actions[[item]]  
-                , $actions[[item, "Action"]]
+                  $actions[[item, "Method"]] === "Queued"
+                , Unevaluated[MainLinkSubmit["Action" @ parentNotebook]] /. $actions[[item]]  
+                , $actions[[item, "Action"]] @ parentNotebook
               ]
           )
         , PassEventsUp -> False (*prevents KeyDown if arrow was hit.*)
