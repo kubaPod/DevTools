@@ -163,18 +163,18 @@ SelectionMoveRange[start_Integer, end_Integer]:=FrontEndCall[
        ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*RenameLocal*)
 
 
 RenameLocal[parent_ : FrontEnd`InputNotebook[]] /; $Notebooks := Catch @ Module[
         {result,emptyListQ, finalEnd, finalStart,  insertion,   symbol, selection
-        , selectionTokens, abort, new
+        , selectionTokens, ABORT, new
         , nb = parent
         
         }
         
-      , abort = Function[{what, restoreSelectionQ}
+      , ABORT = Function[{what, restoreSelectionQ}
         , Beep[]
         ; If[restoreSelectionQ, SelectionMoveRange[finalStart, finalEnd] ]
         ; Throw @ $Failed
@@ -182,7 +182,7 @@ RenameLocal[parent_ : FrontEnd`InputNotebook[]] /; $Notebooks := Catch @ Module[
       
       ; symbol = selection = FrontEndCall[nb, {"Get", "SelectionData"}] 
       
-      ; If[ ! SymbolNameQ @ symbol , abort[$Failed, False]  ]
+      ; If[ ! SymbolNameQ @ symbol , ABORT[$Failed, False]  ]
       
       ; {finalStart, finalEnd} = "CharacterRange" /. FrontEndExecute @ FrontEnd`UndocumentedGetSelectionPacket[nb]
       ; insertion            = symbol
@@ -194,7 +194,7 @@ RenameLocal[parent_ : FrontEnd`InputNotebook[]] /; $Notebooks := Catch @ Module[
           , { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
           , { "Get", "SelectionData"}                  
           ]
-        ; If[ new // MatchQ[ $Failed | selection ] ,  abort[$Failed, True]  ]
+        ; If[ new // MatchQ[ $Failed | selection ] ,  ABORT[$Failed, True]  ]
           
         ; selection = new  
         ; selectionTokens = StripBoxes @ selection /. RowBox | BoxData -> List // Flatten          
@@ -984,10 +984,12 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
            menuObject = EvaluationCell[];
            closeMenu[]:=NotebookDelete @ menuObject
          ];
+         
+         evaluateAction[i_]:=
               
          nbEvents = {
           "KeyDown" :> ((*TODO what if select \[Rule] {} *)
-            Lookup["Action"] @ First @ Select[$actions, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]
+            "Action"[parentNotebook] /. First @ Select[$actions, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]
           ; closeMenu[]
           )
         , "UpArrowKeyDown"             :> (item = Mod[item -1, n, 1])
