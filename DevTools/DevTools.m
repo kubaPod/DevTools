@@ -37,6 +37,10 @@ PacletVersionIncrement;
 KeyFrame;
 
 
+DependencyGraph;
+  Dependencies;
+
+
 Begin["`Events`"];
 
 
@@ -111,7 +115,7 @@ DropFromCurrentValue[parent_, path_, key_]:= Switch[ CurrentValue[parent, path]
 ];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*FrontEndCall*)
 
 
@@ -127,16 +131,16 @@ $NotebookPattern = Apply[Alternatives] @ Map[Blank] @ {
 }
 
 
-FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], args___]:= FrontEndCall[nb, {args}]
-FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], list:{__List}]:= FrontEndExecute @ Map[ ToFrontEndExpression @ nb ] @ list;
-FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], call_List]:= FrontEndCall[nb, {call}]
+FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], args___]      := FrontEndExecute @ Map[ ToFrontEndExpression @ nb ] @ {args}
+(*FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], list:{__List}]:= FrontEndExecute @ Map[ ToFrontEndExpression @ nb ] @ list;*)
+FrontEndCall[nb : $NotebookPattern : FrontEnd`InputNotebook[], call_List]     := FrontEndExecute @ ToFrontEndExpression[nb, call]
 
 ToFrontEndExpression::invArg = "Unknown action: ``";
 
-ToFrontEndExpression[ nb : $NotebookPattern ]:= Function[spec, ToFrontEndExpression[nb, spec] ]
-ToFrontEndExpression[nb_, {"SilentMove", args__}]:= FrontEnd`SelectionMove[nb, args, AutoScroll -> False]
+ToFrontEndExpression[ nb : $NotebookPattern ]      := Function[spec, ToFrontEndExpression[nb, spec] ]
+ToFrontEndExpression[nb_, {"SilentMove", args__}] := FrontEnd`SelectionMove[nb, args, AutoScroll -> False]
 ToFrontEndExpression[nb_, {"SilentWrite", args__}]:= FrontEnd`NotebookWrite[nb, args, AutoScroll -> False]
-ToFrontEndExpression[nb_, {"Get", args__}]:= FrontEnd`Value[FrontEnd`CurrentValue[nb, args], True];
+ToFrontEndExpression[nb_, {"Get", args__}]        := FrontEnd`Value[FrontEnd`CurrentValue[nb, args], True];
 
 ToFrontEndExpression[args___]:= Message[ToFrontEndExpression::invArg, args]
 
@@ -163,7 +167,7 @@ SelectionMoveRange[start_Integer, end_Integer]:=FrontEndCall[
        ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*RenameLocal*)
 
 
@@ -233,7 +237,7 @@ renameSymbolDialog[symbol_String, selectionData_]:=DialogInput[
 ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*LocalizeVariable*)
 
 
@@ -255,7 +259,7 @@ LocalizeVariable[] /; $Notebooks := Catch @ Module[
       
       ; symbol = selection = FrontEndCall[{"Get", "SelectionData"}] 
       
-      ; If[ ! SymbolNameQ @ symbol , abort[$Failed, False]  ]
+      ; If[ ! SymbolNameQ @ Echo@symbol , abort[$Failed, False]  ]
       
       ; {finalStart, finalEnd} = "CharacterRange" /. FrontEndExecute @ FrontEnd`UndocumentedGetSelectionPacket[nb]
       ; insertion            = symbol
@@ -317,6 +321,121 @@ MainLinkSubmit[procedure_] /; TrueQ @ $Notebooks := MessageDialog[
 
 
 MainLinkSubmit[procedure_] /; Not @ TrueQ @ $Notebooks := (Message[MainLinkSubmit::noFE];$Failed)
+
+
+
+(* ::Subsection::Closed:: *)
+(*DependencyGraph*)
+
+
+DependencyGraph // Attributes={ HoldFirst};
+
+
+DependencyGraph // Options = {
+  "Dependents" -> False
+};
+
+
+DependencyGraph[symbol_Symbol, opts:OptionsPattern[{DependencyGraph, Dependencies, Graph}]]:=Module[
+    {edges, dependents = OptionValue["Dependents"]}
+    
+  , edges = Dependencies[symbol, Sequence @@ FilterRules[{opts},Options@Dependencies]]
+  
+  ; If[
+      dependents // MatchQ[{__String}]
+    , edges = Join[
+        edges, 
+        Dependents[symbol, dependents] //Replace[Except[{___Rule}] -> {}]
+      ]
+    ]
+  ; Graph[
+      edges, 
+      Sequence @@ FilterRules[{opts}, Options@Graph],
+      VertexShapeFunction -> expressionVertexFunction
+    ]
+  ]
+
+
+
+Dependents[symbol_Symbol, {contexts___String}]:= Module[{names, edges}
+, names = Names @ Alternatives[contexts]
+; edges = Flatten @ ToExpression[ names , InputForm, Dependencies ]
+; Cases[edges, Verbatim[Rule][dependent_, _[symbol]] ] 
+] 
+
+
+  expressionVertexFunction[pos_, name_, size_]:= With[
+    { label = Block[{Internal`$ContextMarks = False}, RawBoxes @ ToBoxes @ Apply[HoldForm] @ name]
+    , tooltip = Block[{Internal`$ContextMarks = True}, RawBoxes @ ToBoxes @ Apply[HoldForm] @ name]
+    }
+  , Inset[Tooltip[Rotate[Framed[Style[label, Black,Bold,15],FrameStyle->None,Background->White],25 Degree], tooltip], pos ]
+  ]
+
+
+  Dependencies//Attributes={HoldFirst};
+
+
+  Dependencies//Options={
+    "MaxDepth"     -> 1,
+    "SymbolGuard"  -> Function[sym, Length[DownValues[sym]] > 0, HoldFirst],    
+    "NameGuard"    -> Function[True],
+    "ContextGuard" -> Function[True],
+    "Alternatives" -> PatternSequence[],
+    "DefinitionFunction" -> DownValues    
+  };
+
+
+  Dependencies[symbol_Symbol, OptionsPattern[]]:=
+  Internal`InheritedBlock[
+    {dependencyCollector},    
+  Block[
+    { $maxDepth          = OptionValue["MaxDepth"]
+    , $additionalPattern = OptionValue["Alternatives"] 
+    , $symbolCheck       = OptionValue["SymbolGuard"]
+    , $nameCheck         = OptionValue["NameGuard"] 
+    , $contextCheck      = OptionValue["ContextGuard"]
+    , $values            = OptionValue["DefinitionFunction"]
+    , $symbolPattern
+    }
+
+  , $symbolPattern = (s_Symbol /; $contextCheck[ Context @ Unevaluated @ s ] && $symbolCheck[ s ] && $nameCheck[ SymbolName @ Unevaluated @ s ] )
+
+  ; DeleteCases[n_->n_] @
+    DeleteDuplicates @ 
+    Flatten @ 
+    Last @ 
+    Reap @ 
+    dependencyCollector[symbol, 0]
+  ]];
+
+
+
+dependencyCollector// Attributes = {HoldFirst}
+
+  dependencyCollector[symbol_Symbol, lvl_]:= dependencyCollector[symbol, lvl] = Module[
+    {collector,cases}
+
+  , cases = Cases[
+      $values[symbol]
+    , (found : $additionalPattern | Except[Verbatim[Symbol][_] , _Symbol]) :> HoldComplete[found]
+    , Infinity
+    , Heads->True
+    ]
+
+  ; cases = DeleteCases[ HoldComplete[symbol] ] @ DeleteDuplicates @ cases
+
+  ; cases = Cases[ cases, Verbatim[HoldComplete][$additionalPattern | $symbolPattern]]
+  ; Sow[ HoldComplete[symbol] -> #]& /@ cases
+
+  ; If[lvl + 1 >= $maxDepth, Return[Null,Module]]
+
+  ; ReleaseHold @ 
+    Map[Function[expr, dependencyCollector[expr, lvl+1],HoldFirst]] @
+    Apply[Join] @ 
+    Cases[cases,HoldComplete[_Symbol] ]
+
+  ; Null
+  ];
 
 
 
@@ -906,7 +1025,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*NotebookActions*)
 
 
@@ -984,9 +1103,7 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
            menuObject = EvaluationCell[];
            closeMenu[]:=NotebookDelete @ menuObject
          ];
-         
-         evaluateAction[i_]:=
-              
+             
          nbEvents = {
           "KeyDown" :> ((*TODO what if select \[Rule] {} *)
             "Action"[parentNotebook] /. First @ Select[$actions, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]
