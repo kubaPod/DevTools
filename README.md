@@ -34,7 +34,7 @@
 ### Uninstall
   
       PacletUninstall /@ PacletFind["DevTools"];
-      DeleteDirectory[FileNameJoin[{$UserBaseDirectory, "AppliactionData", "DevTools"}], 
+      DeleteDirectory[FileNameJoin[{$UserBaseDirectory, "ApplicationData", "DevTools"}], 
         DeleteContents -> True
       ];
       
