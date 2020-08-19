@@ -11,6 +11,10 @@
 
 ### Installation / Updating
 
+- via Wolfram Function Repository: GitHubInstall
+
+  `ResourceFunction["GitHubInstall"]["kubapod", "devtools"]`
+
 - Manual way
 
   Go to 'releases' tab and download appropriate .paclet file.
