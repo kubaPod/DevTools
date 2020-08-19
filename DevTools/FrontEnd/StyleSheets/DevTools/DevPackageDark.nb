@@ -3,17 +3,17 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 10.4' *)
+(* CreatedBy='Mathematica 12.1' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      6693,        157]
-NotebookOptionsPosition[      6427,        145]
-NotebookOutlinePosition[      6695,        158]
-CellTagsIndexPosition[      6652,        155]
+NotebookDataLength[      6873,        159]
+NotebookOptionsPosition[      6498,        147]
+NotebookOutlinePosition[      6765,        160]
+CellTagsIndexPosition[      6722,        157]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -37,7 +37,9 @@ Cell[StyleData["Notebook"],
       GridBox[{{
          PaneBox[
           ButtonBox["\"Get @ ThisFile\"", ButtonFunction :> (Get[
-              NotebookFileName[]]; FrontEndExecute[
+              ReplaceAll[
+               NotebookFileName[], $Failed :> (Beep[]; Abort[])]]; 
+            FrontEndExecute[
               FrontEnd`Private`GetUpdatedSymbolContexts[]]), Appearance -> 
            FEPrivate`FrontEndResource[
             "MUnitExpressions", "ButtonAppearances"], Method -> "Queued", 
@@ -143,7 +145,7 @@ $CellContext`Private`ResetResource[$CellContext`Private`$paclet,
       "Grid"]], "DockedCell", CellFrameMargins -> {{12, 12}, {10, 10}}], 
    Inherited}]
 },
-FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (June 19, 2020)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -157,8 +159,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", ""],
-Cell[658, 23, 5765, 120, 70, 27, 0, "StyleData", "Notebook", "All"]
+Cell[558, 20, 97, 1, 70, 97, 1, "StyleData", "StyleDefinitions", "",ExpressionUUID->"65d57cdf-d696-4b84-8cff-8123b4ae9c87"],
+Cell[658, 23, 5836, 122, 70, 27, 0, "StyleData", "Notebook", "All",ExpressionUUID->"25bedfab-71ec-49e6-873f-1f1d734aca7b"]
 }
 ]
 *)

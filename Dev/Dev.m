@@ -57,7 +57,7 @@ devNotebookToolbar[]:=With[
          Pane[
            Button[
              "Get @ ThisFile"
-           , Get[NotebookFileName[]]; FrontEndExecute@FrontEnd`Private`GetUpdatedSymbolContexts[]
+           , Get[NotebookFileName[]/.$Failed:>(Beep[];Abort[])]; FrontEndExecute@FrontEnd`Private`GetUpdatedSymbolContexts[]
            , Appearance->buttonAppearance 
            , Method -> "Queued"
            , BaseStyle-> buttonStyle
