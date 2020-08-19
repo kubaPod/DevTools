@@ -115,7 +115,7 @@ DropFromCurrentValue[parent_, path_, key_]:= Switch[ CurrentValue[parent, path]
 ];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*FrontEndCall*)
 
 
@@ -194,7 +194,7 @@ RenameLocal[parent_ : FrontEnd`InputNotebook[]] /; $Notebooks := Catch @ Module[
       ; While[
           Not @ ScopingBoxTokens @ selectionTokens
           
-        , new =  FrontEndCall[nb
+        , new =  Last @ FrontEndCall[nb
           , { "SilentMove", All, Expression} (*ExpandSelection does not support AutoScroll :( *)                 
           , { "Get", "SelectionData"}                  
           ]
@@ -237,7 +237,7 @@ renameSymbolDialog[symbol_String, selectionData_]:=DialogInput[
 ]
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*LocalizeVariable*)
 
 
@@ -297,7 +297,7 @@ LocalizeVariable[] /; $Notebooks := Catch @ Module[
     ]
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*MainLinkSubmit*)
 
 
@@ -312,7 +312,7 @@ MainLinkSubmit // Attributes = {HoldAll};
 
 MainLinkSubmit[procedure_] /; TrueQ @ $Notebooks := MessageDialog[
   Dynamic[
-      NotebookClose[]; procedure
+      Print[1]; NotebookClose[]; procedure
     , SynchronousUpdating->False
   ]
   , CellContext -> $Context
@@ -1025,7 +1025,7 @@ templatesEditorToolbar[]:=Grid[{{
 , BaseStyle->{Black, ButtonBoxOptions->{Appearance -> FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]}} ]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*NotebookActions*)
 
 
@@ -1037,7 +1037,7 @@ NotebookActionsEnable[]:= AddToCurrentValue[$FrontEnd, NotebookEventActions,
 NotebookActionsDisable[]:= DropFromCurrentValue[$FrontEnd, NotebookEventActions, {"MenuCommand", "NewColumn"}] 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*OpenNotebookMenu*)
 
 
@@ -1057,13 +1057,17 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
     , appearances       := FrontEndResource["FEExpressions","MoreLeftSetterNinePatchAppearance"]
     , selectedAppearance = FrontEndResource["FEExpressions","OrangeButtonNinePatchAppearance"]
     , regularAppearance  = FrontEndResource["FEExpressions","GrayButtonNinePatchAppearance"]
-    , $actions     = NeedsResource[$paclet, "NotebookActions"]  // If[! ListQ@#, Beep[];Throw @ $Failed, #]& (* 'proper' templates *)
+    (*, $actions     = NeedsResource[$paclet, "NotebookActions"]  // If[! ListQ@#, Beep[];Throw @ $Failed, #]&*) (* 'proper' templates *)
     }
    
   , DynamicModule[
-      { menuObject, closeMenu, n = Length @ $actions, item       
+      { menuObject, closeMenu, n,$actions, item       
       }
-    , Grid[{{
+      
+    , $actions     = NeedsResource[$paclet, "NotebookActions"]  // If[! ListQ@#, Beep[];Throw @ $Failed, #]& 
+    ; n = Length @ $actions
+    
+    ; Grid[{{
         Column[
           Table[ With[{i = i, $action = $actions[[i]]}
           , EventHandler[
@@ -1105,10 +1109,18 @@ NotebookMenu[ "NotebookActions", parentNotebook_NotebookObject, type_String]:= C
          ];
              
          nbEvents = {
-          "KeyDown" :> ((*TODO what if select \[Rule] {} *)
-            "Action"[parentNotebook] /. First @ Select[$actions, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]
-          ; closeMenu[]
-          )
+          "KeyDown" :> With[
+            {
+              actionItem = First @ Select[$actions, Lookup["ShortKey"][#] === CurrentValue["EventKey"]&]
+            }
+          , closeMenu[]
+          ; If[
+                  Lookup[actionItem, "Method"] === "Queued"
+                , Unevaluated[MainLinkSubmit["Action" @ parentNotebook]] /. actionItem  
+                , actionItem["Action"] @ parentNotebook
+              ]
+           ]
+          
         , "UpArrowKeyDown"             :> (item = Mod[item -1, n, 1])
         , "DownArrowKeyDown"           :> (item = Mod[item +1, n, 1])
         , "LeftArrowKeyDown"           :> {}

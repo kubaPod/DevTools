@@ -21,32 +21,35 @@ Cell[BoxData[
  CellLabel->"In[12]:=",ExpressionUUID->"5e42e6f1-d125-4f09-91b2-b2a1bde0fe8c"],
 
 Cell[BoxData[
- RowBox[{"Needs", "@", 
-  "\"\<PacletManager`\>\""}]], \
-"Input",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
+ RowBox[{"Needs", "@", "\"\<PacletManager`\>\""}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"83c58c26-59ef-4941-b2f7-442138042837"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"SetDirectory", "@", 
   RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
+ CellLabel->"In[2]:=",ExpressionUUID->"b7d2e21f-0df9-4a94-8c44-3d3946b79328"],
 
-Cell[BoxData["\<\"C:\\\\Users\\\\Kuba\\\\IdeaProjects\\\\DevTools\"\>"], \
-"Output",
- CellLabel->"Out[1]=",ExpressionUUID->"a0d12eb4-400c-48f0-b3a7-563d18b23e6d"]
+Cell[BoxData["\<\"E:\\\\Idea Projects\\\\DevTools\"\>"], "Output",
+ CellLabel->"Out[2]=",ExpressionUUID->"4f9b4fd9-8d16-4d62-9bdb-bedd6fe48203"]
 }, Open  ]],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PacletDirectoryAdd", "@", 
-  RowBox[{
-  "NotebookDirectory", "[", 
-   "]"}]}]], "Input",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"44eff276-0e68-46fa-a4ee-e4cfbbfb16f1"],
 
 Cell[BoxData[
- RowBox[{"Needs", "@", 
-  "\"\<DevTools`\>\""}]], \
-"Input",ExpressionUUID->"a5b2a260-a612-4ea1-b216-0916bbde9e9a"],
+ RowBox[{"{", "\<\"E:\\\\Idea Projects\\\\DevTools\\\\\"\>", "}"}]], "Output",
+ CellLabel->"Out[3]=",ExpressionUUID->"64a2989c-b7c5-4e3b-918c-22c2b9fd28f5"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Needs", "@", "\"\<DevTools`\>\""}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"a5b2a260-a612-4ea1-b216-0916bbde9e9a"],
 
 Cell[BoxData[
  RowBox[{
@@ -192,11 +195,12 @@ Cell[BoxData[
   "]"}]], "Input",ExpressionUUID->"49a7ac72-2cc7-4bac-9653-c01bf4e07c2b"]
 }, Open  ]]
 },
-WindowSize->{1715, 932},
-WindowMargins->{{Automatic, 116}, {Automatic, 43}},
+WindowSize->{866, 1022},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TrackCellChangeTimes->False,
-FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (November 28, 2018)",
-StyleDefinitions->"Default.nb"
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5b1ab475-d48a-4cf3-ab2e-be14c90aeacc"
 ]
 
